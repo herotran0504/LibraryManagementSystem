@@ -1,4 +1,4 @@
-package librarysystem.mappings;
+package librarysystem.dashboard;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -6,9 +6,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import librarysystem.controller.UserController;
+import librarysystem.user.controller.UserController;
 import librarysystem.main.Main;
 import business.Auth;
+import librarysystem.user.controller.UserData;
 import librarysystem.util.DialogUtil;
 import librarysystem.util.Navigator;
 
@@ -48,10 +49,10 @@ public class Dashboard extends Navigator implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        if (UserController.auth.toString().equals(Auth.ADMIN.toString())) {
+        if (UserData.auth.toString().equals(Auth.ADMIN.toString())) {
             checkout.setDisable(true);
             welcomeLBL.setText(greeting(Auth.ADMIN));
-        } else if (UserController.auth.toString().equals(Auth.LIBRARIAN.toString())) {
+        } else if (UserData.auth.toString().equals(Auth.LIBRARIAN.toString())) {
             addCopy.setDisable(true);
             openBook.setDisable(true);
             /*openPeriodical.setDisable(true);*/

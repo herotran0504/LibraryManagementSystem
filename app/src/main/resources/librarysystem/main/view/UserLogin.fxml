@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="193.0" prefWidth="370.0" styleClass="anchorpane"
 	xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="librarysystem.mappings.UserLoginMapper">
+	fx:controller="librarysystem.user.view.LoginWindow">
 	<stylesheets>
 		<URL value="@../css/main.css" />
 	</stylesheets>

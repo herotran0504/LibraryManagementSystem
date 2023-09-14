@@ -6,7 +6,7 @@
 
 <AnchorPane minHeight="268.9609459472631" prefHeight="269.0"
 	prefWidth="973.0" styleClass="anchorpane" xmlns="http://javafx.com/javafx/8.0.40"
-	xmlns:fx="http://javafx.com/fxml/1" fx:controller="librarysystem.mappings.AddNewCopy">
+	xmlns:fx="http://javafx.com/fxml/1" fx:controller="librarysystem.book.view.AddNewCopy">
 	<stylesheets>
 		<URL value="@../css/main.css" />
 	</stylesheets>

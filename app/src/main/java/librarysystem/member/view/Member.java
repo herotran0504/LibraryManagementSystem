@@ -1,10 +1,10 @@
-package librarysystem.mappings;
+package librarysystem.member.view;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import librarysystem.controller.ControllerFactory;
-import librarysystem.controller.LibraryMemberController;
+import librarysystem.member.controller.LibraryMemberController;
 import librarysystem.controller.UiLoader;
 import business.Address;
 import business.LibraryMember;

@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="500.0" prefWidth="600.0" styleClass="anchorpane"
 	xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="librarysystem.mappings.Dashboard">
+	fx:controller="librarysystem.dashboard.Dashboard">
 	<children>
 		<Label fx:id="welcomeLBL" layoutX="294.0" layoutY="14.0"
 			prefHeight="39.0" prefWidth="262.0" text="Library Management System"

@@ -1,4 +1,4 @@
-package librarysystem.mappings;
+package librarysystem.book.view;
 
 import business.*;
 import javafx.collections.ObservableList;
@@ -6,9 +6,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import librarysystem.controller.CheckoutController;
+import librarysystem.book.controller.CheckoutController;
 import librarysystem.controller.ControllerFactory;
-import librarysystem.controller.LibraryMemberController;
+import librarysystem.member.controller.LibraryMemberController;
 import librarysystem.controller.UiLoader;
 import librarysystem.util.Const;
 import librarysystem.util.DialogUtil;

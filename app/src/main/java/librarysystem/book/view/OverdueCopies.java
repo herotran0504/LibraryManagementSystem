@@ -1,4 +1,4 @@
-package librarysystem.mappings;
+package librarysystem.book.view;
 
 import business.BookCopy;
 import business.CheckoutCopies;
@@ -11,7 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import librarysystem.controller.CheckoutController;
+import librarysystem.book.controller.CheckoutController;
 import librarysystem.controller.ControllerFactory;
 import librarysystem.controller.UiLoader;
 import librarysystem.util.Const;

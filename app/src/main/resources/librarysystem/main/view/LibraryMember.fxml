@@ -9,7 +9,7 @@
 <?import javafx.scene.text.*?>
 <?import java.net.*?>
 
-<AnchorPane prefHeight="532.0" prefWidth="616.0" styleClass="anchorpane" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="librarysystem.mappings.Member">
+<AnchorPane prefHeight="532.0" prefWidth="616.0" styleClass="anchorpane" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="librarysystem.member.view.Member">
 <stylesheets>
     <URL value="@../css/main.css" />
   </stylesheets>

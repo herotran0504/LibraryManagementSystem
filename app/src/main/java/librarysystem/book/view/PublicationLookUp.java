@@ -1,4 +1,4 @@
-package librarysystem.mappings;
+package librarysystem.book.view;
 
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.fxml.FXML;
@@ -8,7 +8,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import librarysystem.controller.ControllerFactory;
-import librarysystem.controller.PublicationController;
+import librarysystem.book.controller.PublicationController;
 import business.Publication;
 import librarysystem.util.DialogUtil;
 import librarysystem.util.Functors;

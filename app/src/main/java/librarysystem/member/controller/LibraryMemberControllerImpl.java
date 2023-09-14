@@ -1,4 +1,4 @@
-package librarysystem.controller;
+package librarysystem.member.controller;
 
 import business.LibraryMember;
 import dataaccess.LibraryMemberDao;
@@ -8,13 +8,14 @@ import librarysystem.utils.Result;
 
 import java.util.List;
 
-public class LibraryMemberController {
+class LibraryMemberControllerImpl implements LibraryMemberController {
     private final LibraryMemberDao libraryMemberDao;
 
-    LibraryMemberController(LibraryMemberDao libraryMemberDao) {
+    LibraryMemberControllerImpl(LibraryMemberDao libraryMemberDao) {
         this.libraryMemberDao = libraryMemberDao;
     }
 
+    @Override
     public Result addNewMember(LibraryMember libraryMember) {
         try {
             libraryMember.setMemberId(IdManager.getNextID(Const.MEMBER_PROPERTY_KEY));
@@ -26,6 +27,7 @@ public class LibraryMemberController {
         }
     }
 
+    @Override
     public Result getMembers() {
         try {
             List<LibraryMember> list = libraryMemberDao.findMembers();
@@ -36,6 +38,7 @@ public class LibraryMemberController {
         }
     }
 
+    @Override
     public Result getMember(String id) {
         try {
             LibraryMember libraryMemeber = libraryMemberDao.findLibraryMember(id);
@@ -49,6 +52,7 @@ public class LibraryMemberController {
         }
     }
 
+    @Override
     public Result updateMember(LibraryMember libraryMember) {
         try {
             libraryMemberDao.updateLibraryMember(libraryMember);
@@ -59,6 +63,7 @@ public class LibraryMemberController {
         }
     }
 
+    @Override
     public Result deleteMember(String id) {
         try {
             libraryMemberDao.deleteLibraryMember(id);

@@ -1,4 +1,4 @@
-package librarysystem.mappings;
+package librarysystem.book.view;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import librarysystem.controller.ControllerFactory;
-import librarysystem.controller.PublicationController;
+import librarysystem.book.controller.PublicationController;
 import librarysystem.controller.UiLoader;
 import business.Address;
 import business.Author;

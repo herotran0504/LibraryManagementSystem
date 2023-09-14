@@ -1,10 +1,10 @@
-package librarysystem.mappings;
+package librarysystem.book.view;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import librarysystem.controller.ControllerFactory;
-import librarysystem.controller.PublicationController;
+import librarysystem.book.controller.PublicationController;
 import librarysystem.controller.UiLoader;
 import business.Publication;
 import librarysystem.util.Const;

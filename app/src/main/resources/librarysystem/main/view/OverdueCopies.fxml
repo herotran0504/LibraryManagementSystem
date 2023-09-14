@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import java.net.*?>
 
-<AnchorPane minHeight="424.0" prefHeight="467.0" prefWidth="871.0" styleClass="anchorpane" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="librarysystem.mappings.OverdueCopies">
+<AnchorPane minHeight="424.0" prefHeight="467.0" prefWidth="871.0" styleClass="anchorpane" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="librarysystem.book.view.OverdueCopies">
 <stylesheets>
     <URL value="@../css/main.css" />
   </stylesheets>

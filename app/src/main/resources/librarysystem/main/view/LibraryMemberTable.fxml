@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import java.net.*?>
 
-<AnchorPane prefHeight="483.0" prefWidth="899.0" styleClass="anchorpane" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="librarysystem.mappings.LibraryMemberViewMapper">
+<AnchorPane prefHeight="483.0" prefWidth="899.0" styleClass="anchorpane" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="librarysystem.member.view.LibraryMemberViewMapper">
 <stylesheets>
     <URL value="@../css/main.css" />
   </stylesheets>

@@ -1,4 +1,4 @@
-package librarysystem.mappings;
+package librarysystem.user.view;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -6,7 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import librarysystem.controller.ControllerFactory;
-import librarysystem.controller.UserController;
+import librarysystem.user.controller.UserController;
 import business.User;
 import librarysystem.util.Navigator;
 import librarysystem.util.DialogUtil;
@@ -15,7 +15,7 @@ import librarysystem.utils.Result;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class UserLoginMapper extends Navigator implements Initializable {
+public class LoginWindow extends Navigator implements Initializable {
 
     @FXML
     private TextField userName;

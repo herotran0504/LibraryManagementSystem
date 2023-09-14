@@ -11,12 +11,23 @@ module librarysystem.main {
     opens librarysystem.controller to javafx.fxml;
     exports librarysystem.controller;
 
-    opens librarysystem.mappings to javafx.fxml;
-    exports librarysystem.mappings;
-
     opens librarysystem.util to javafx.fxml;
     exports librarysystem.util;
 
     exports mock;
     opens mock to javafx.fxml;
+    exports librarysystem.user.view;
+    opens librarysystem.user.view to javafx.fxml;
+    exports librarysystem.member.view;
+    opens librarysystem.member.view to javafx.fxml;
+    exports librarysystem.member.controller;
+    opens librarysystem.member.controller to javafx.fxml;
+    exports librarysystem.user.controller;
+    opens librarysystem.user.controller to javafx.fxml;
+    exports librarysystem.book.controller;
+    opens librarysystem.book.controller to javafx.fxml;
+    exports librarysystem.dashboard;
+    opens librarysystem.dashboard to javafx.fxml;
+    exports librarysystem.book.view;
+    opens librarysystem.book.view to javafx.fxml;
 }

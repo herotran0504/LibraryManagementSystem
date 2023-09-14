@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="345.0" prefWidth="748.0" styleClass="anchorpane"
 	xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2"
-	fx:controller="librarysystem.mappings.CheckoutMapper">
+	fx:controller="librarysystem.book.view.CheckoutMapper">
 	<children>
 		<Pane layoutX="80.0" layoutY="14.0" prefHeight="60.0" prefWidth="712.0">
 			<children>

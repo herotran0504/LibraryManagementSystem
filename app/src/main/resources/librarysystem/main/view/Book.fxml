@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="493.0" prefWidth="729.0" styleClass="anchorpane"
 	xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="librarysystem.mappings.AddBook">
+	fx:controller="librarysystem.book.view.AddBook">
 	<stylesheets>
 		<URL value="@../css/main.css" />
 	</stylesheets>

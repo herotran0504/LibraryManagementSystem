@@ -1,4 +1,4 @@
-package librarysystem.controller;
+package librarysystem.book.controller;
 
 import business.CheckoutRecord;
 import business.CheckoutRecordEntry;
@@ -8,13 +8,14 @@ import librarysystem.utils.Result;
 
 import java.util.List;
 
-public class CheckoutController {
+public class CheckoutControllerImpl implements CheckoutController {
     private final CheckoutDao checkoutDao;
 
-    CheckoutController(CheckoutDao checkoutDao) {
+    CheckoutControllerImpl(CheckoutDao checkoutDao) {
         this.checkoutDao = checkoutDao;
     }
 
+    @Override
     public Result save(CheckoutRecord record) {
         try {
             checkoutDao.save(record);
@@ -24,10 +25,12 @@ public class CheckoutController {
         }
     }
 
+    @Override
     public CheckoutRecord getCheckoutRecord(LibraryMember member) {
         return new CheckoutRecord(member);
     }
 
+    @Override
     public Result getCheckoutDetail(String memberId) {
         try {
             List<CheckoutRecordEntry> entry = checkoutDao.findCheckOutRecord(memberId);
@@ -37,6 +40,7 @@ public class CheckoutController {
         }
     }
 
+    @Override
     public List<CheckoutRecordEntry> getAllCheckoutRecordEntries() throws Result {
         return checkoutDao.getCheckoutRecordEntries();
     }

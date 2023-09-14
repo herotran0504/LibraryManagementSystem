@@ -1,5 +1,8 @@
-package librarysystem.mappings;
+package librarysystem.member.view;
 
+import business.Auth;
+import business.CheckoutRecordEntry;
+import business.LibraryMember;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,10 +13,11 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import librarysystem.controller.*;
-import business.Auth;
-import business.CheckoutRecordEntry;
-import business.LibraryMember;
+import librarysystem.book.controller.CheckoutController;
+import librarysystem.controller.ControllerFactory;
+import librarysystem.controller.UiLoader;
+import librarysystem.member.controller.LibraryMemberController;
+import librarysystem.user.controller.UserData;
 import librarysystem.util.Const;
 import librarysystem.util.DialogUtil;
 import librarysystem.util.Functors;
@@ -65,7 +69,7 @@ public class LibraryMemberViewMapper implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         populateGrid();
 
-        if (UserController.auth.toString().equals(Auth.LIBRARIAN.toString())) {
+        if (UserData.auth.toString().equals(Auth.LIBRARIAN.toString())) {
             editBTN.setDisable(true);
             deleteBTN.setDisable(true);
         }

@@ -8,7 +8,7 @@
 
 <AnchorPane minHeight="36.0" prefHeight="36.0" prefWidth="719.0"
 	xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="librarysystem.mappings.PublicationLookUp">
+	fx:controller="librarysystem.book.view.PublicationLookUp">
 	<children>
 		<Pane layoutX="23.0" layoutY="-1.0" prefHeight="31.0" prefWidth="691.0">
 			<children>

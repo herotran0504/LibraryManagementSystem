@@ -7,7 +7,5 @@ rootProject.name = 'LibraryManagementSystem'
 include('app',
         'business',
         'dataaccess',
-        'book',
-        'member',
         'utilities'
 )
