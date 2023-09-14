@@ -11,13 +11,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import librarysystem.controller.*;
-import librarysystem.models.Auth;
-import librarysystem.models.CheckoutRecordEntry;
-import librarysystem.models.LibraryMember;
+import business.Auth;
+import business.CheckoutRecordEntry;
+import business.LibraryMember;
 import librarysystem.util.Const;
 import librarysystem.util.DialogUtil;
 import librarysystem.util.Functors;
-import librarysystem.util.Result;
+import librarysystem.utils.Result;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -105,7 +105,7 @@ public class LibraryMemberViewMapper implements Initializable {
             }
 
         } catch (Exception e) {
-            DialogUtil.showServiceResponseMessage();
+            DialogUtil.showServiceResponseMessage(e);
         }
     }
 
@@ -142,7 +142,7 @@ public class LibraryMemberViewMapper implements Initializable {
                 }
             }
         } catch (Exception e) {
-            DialogUtil.showServiceResponseMessage();
+            DialogUtil.showServiceResponseMessage(e);
         }
     }
 
@@ -196,7 +196,7 @@ public class LibraryMemberViewMapper implements Initializable {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            DialogUtil.showServiceResponseMessage();
+            DialogUtil.showServiceResponseMessage(e);
         }
 
     }

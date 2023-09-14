@@ -1,6 +1,6 @@
 package librarysystem.controller;
 
-import librarysystem.dao.DaoFactory;
+import dataaccess.DaoFactory;
 
 public interface ControllerFactory {
     CheckoutController getCheckoutController();

@@ -9,10 +9,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import librarysystem.controller.ControllerFactory;
 import librarysystem.controller.PublicationController;
-import librarysystem.models.Publication;
+import business.Publication;
 import librarysystem.util.DialogUtil;
 import librarysystem.util.Functors;
-import librarysystem.util.Result;
+import librarysystem.utils.Result;
 
 import java.net.URL;
 import java.util.List;
@@ -89,9 +89,8 @@ public class PublicationLookUp implements Initializable {
             searchPublicationTitle.setText("");
             tableView.getItems().clear();
             allPublications.forEach(p -> tableView.getItems().add(p));
-
         } catch (Exception e) {
-            DialogUtil.showServiceResponseMessage();
+            DialogUtil.showServiceResponseMessage(e);
         }
     }
 

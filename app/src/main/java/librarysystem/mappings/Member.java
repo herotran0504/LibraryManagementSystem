@@ -6,11 +6,11 @@ import javafx.scene.control.TextField;
 import librarysystem.controller.ControllerFactory;
 import librarysystem.controller.LibraryMemberController;
 import librarysystem.controller.UiLoader;
-import librarysystem.models.Address;
-import librarysystem.models.LibraryMember;
+import business.Address;
+import business.LibraryMember;
 import librarysystem.util.Const;
 import librarysystem.util.DialogUtil;
-import librarysystem.util.Result;
+import librarysystem.utils.Result;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -77,19 +77,11 @@ public class Member implements Initializable {
                 }
 
             } catch (Exception e) {
-                DialogUtil.showServiceResponseMessage();
+                DialogUtil.showServiceResponseMessage(e);
             }
         }
 
     }
-
-//	private void hideWindow() {
-//		firstName.getScene().getWindow().hide();
-//	}
-//
-//	private void showMemberTableView() throws Exception {
-//		UINavigator.loadUI(Constants.MEMBER_TABLE);
-//	}
 
     public void setRecordAndShow(LibraryMember librabryMember) throws Exception {
         UiLoader.loadUI(Const.VIEW_MEMBER, librabryMember);

@@ -1,5 +1,6 @@
 package librarysystem.mappings;
 
+import business.*;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -9,11 +10,10 @@ import librarysystem.controller.CheckoutController;
 import librarysystem.controller.ControllerFactory;
 import librarysystem.controller.LibraryMemberController;
 import librarysystem.controller.UiLoader;
-import librarysystem.models.*;
 import librarysystem.util.Const;
 import librarysystem.util.DialogUtil;
 import librarysystem.util.Functors;
-import librarysystem.util.Result;
+import librarysystem.utils.Result;
 import librarysystem.utils.DateUtil;
 
 import java.net.URL;
@@ -104,7 +104,7 @@ public class CheckoutMapper implements Initializable {
                         back();
                     }
                 } catch (Exception e) {
-                    DialogUtil.showServiceResponseMessage();
+                    DialogUtil.showServiceResponseMessage(e);
                 }
             }
         }
@@ -134,7 +134,7 @@ public class CheckoutMapper implements Initializable {
                     memberId.requestFocus();
                 }
             } catch (Exception e) {
-                DialogUtil.showServiceResponseMessage();
+                DialogUtil.showServiceResponseMessage(e);
             }
 
         }

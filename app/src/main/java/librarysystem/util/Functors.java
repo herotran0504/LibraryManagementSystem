@@ -1,8 +1,8 @@
 package librarysystem.util;
 
-import librarysystem.models.BookCopy;
-import librarysystem.models.LibraryMember;
-import librarysystem.models.Publication;
+import business.BookCopy;
+import business.LibraryMember;
+import business.Publication;
 
 import java.util.ArrayList;
 import java.util.List;

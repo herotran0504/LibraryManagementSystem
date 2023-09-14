@@ -10,12 +10,12 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import librarysystem.controller.ControllerFactory;
 import librarysystem.controller.PublicationController;
 import librarysystem.controller.UiLoader;
-import librarysystem.models.Address;
-import librarysystem.models.Author;
-import librarysystem.models.Book;
+import business.Address;
+import business.Author;
+import business.Book;
 import librarysystem.util.Const;
 import librarysystem.util.DialogUtil;
-import librarysystem.util.Result;
+import librarysystem.utils.Result;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -4,4 +4,10 @@ plugins {
 
 rootProject.name = 'LibraryManagementSystem'
 
-include('app', 'utilities')
+include('app',
+        'business',
+        'dataaccess',
+        'book',
+        'member',
+        'utilities'
+)
