@@ -49,7 +49,7 @@
 			<children>
 				<Label prefHeight="17.0"
 					prefWidth="88.0"
-					text="User Login"
+					text="Login"
 					GridPane.columnSpan="2"
 					GridPane.halignment="CENTER">
 					<font>
@@ -60,7 +60,7 @@
 				<Label contentDisplay="RIGHT"
 					prefHeight="17.0"
 					prefWidth="94.0"
-					text="User Name:"
+					text="User Id:"
 					GridPane.halignment="RIGHT"
 					GridPane.rowIndex="1">
 					<font>
@@ -76,7 +76,7 @@
 						<Font size="13.0" />
 					</font>
 				</Label>
-				<TextField fx:id="userName"
+				<TextField fx:id="userId"
 					maxHeight="-Infinity"
 					text=""
 					maxWidth="-Infinity"
@@ -85,7 +85,7 @@
 					prefWidth="207.0"
 					GridPane.columnIndex="1"
 					GridPane.rowIndex="1" />
-				<PasswordField fx:id="userPassword"
+				<PasswordField fx:id="userPwd"
 					maxWidth="-Infinity"
 					text=""
 					minWidth="-Infinity"
@@ -103,7 +103,7 @@
 							layoutY="5.0"
 							mnemonicParsing="false"
 							onAction="#doLogin"
-							text="Login" />
+							text="Submit" />
 						<Button layoutX="155.0"
 							layoutY="5.0"
 							mnemonicParsing="false"

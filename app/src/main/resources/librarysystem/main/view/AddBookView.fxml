@@ -27,7 +27,7 @@
 			AnchorPane.leftAnchor="0.0">
 			<children>
 				<Text id="title-text"
-					text="Publication: Book"
+					text="Book"
 					GridPane.columnSpan="2"
 					GridPane.halignment="CENTER">
 					<font>

@@ -1,10 +1,10 @@
 package dataaccess;
 
 import business.User;
-import librarysystem.utils.Result;
+import business.exception.UserException;
 
 public interface UserDao {
-    void addUser(User user) throws Result;
+    void addUser(User user) throws UserException;
 
-    User checkUser(User user) throws Result;
+    User checkUser(User user) throws UserException;
 }

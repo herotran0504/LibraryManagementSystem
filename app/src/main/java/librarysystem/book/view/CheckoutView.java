@@ -8,13 +8,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import librarysystem.book.controller.CheckoutController;
 import librarysystem.controller.ControllerFactory;
-import librarysystem.member.controller.LibraryMemberController;
 import librarysystem.controller.UiLoader;
+import librarysystem.member.controller.LibraryMemberController;
 import librarysystem.util.Const;
 import librarysystem.util.DialogUtil;
 import librarysystem.util.Functors;
-import librarysystem.utils.Result;
 import librarysystem.utils.DateUtil;
+import librarysystem.utils.Result;
 
 import java.net.URL;
 import java.util.Calendar;
@@ -25,7 +25,7 @@ import java.util.ResourceBundle;
 public class CheckoutView implements Initializable {
 
     @FXML
-    private PublicationLookUpView publicationViewController;
+    private BookSearchView publicationViewController;
     @FXML
     private TextField firstName;
     @FXML
@@ -60,9 +60,8 @@ public class CheckoutView implements Initializable {
     }
 
     private void rowListenerValidate() {
-        ObservableList<Publication> list =
-                publicationViewController.getTableView().getSelectionModel().getSelectedItems();
-        Publication pub = list.get(0);
+        ObservableList<Book> list = publicationViewController.getTableView().getSelectionModel().getSelectedItems();
+        Book pub = list.get(0);
 
         int available = Functors.AVAILABLE_COPIES_COUNTER.apply(pub);
 
@@ -77,8 +76,7 @@ public class CheckoutView implements Initializable {
 
     @FXML
     protected void checkout() {
-        ObservableList<Publication> list = publicationViewController
-                .getTableView().getSelectionModel().getSelectedItems();
+        ObservableList<Book> list = publicationViewController.getTableView().getSelectionModel().getSelectedItems();
         if (list.isEmpty()) {
             DialogUtil.showInformationDialog("Select publication first");
         } else {
@@ -87,18 +85,17 @@ public class CheckoutView implements Initializable {
                 String member = getMemberId();
                 String checkoutDate = getCheckoutDate();
                 String dueDate = getDueDate();
-                Publication publication = list.get(0);
+                Book publication = list.get(0);
 
                 CheckoutRecord checkoutRecord;
                 LibraryMember libraryMember;
                 try {
-                    libraryMember = (LibraryMember) libraryMemberController.getMember(member).getData();
+                    libraryMember = libraryMemberController.getMember(member).getData();
                     BookCopy copy = Functors.AVAILABLE_COPIES_FINDER.apply(publication).get(0);
-                    //copy.setCheckedout(true);
                     checkoutRecord = checkoutController.getCheckoutRecord(libraryMember);
                     List<CheckoutRecordEntry> checkoutEntries = checkoutRecord.getCheckoutEntries();
                     checkoutEntries.add(new CheckoutRecordEntry(checkoutDate, dueDate, copy, checkoutRecord));
-                    Result serviceResponse = checkoutController.save(checkoutRecord);
+                    Result<Void> serviceResponse = checkoutController.save(checkoutRecord);
                     DialogUtil.showServiceResponseMessage(serviceResponse);
                     if (serviceResponse.getSuccess()) {
                         back();

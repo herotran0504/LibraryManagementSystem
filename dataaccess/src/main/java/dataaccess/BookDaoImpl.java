@@ -1,10 +1,9 @@
 package dataaccess;
 
 import business.Book;
-import business.BookCopy;
+import business.exception.BookException;
 import librarysystem.utils.FileOperation;
 import librarysystem.utils.FileOperation.StorageType;
-import librarysystem.utils.Result;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +14,7 @@ class BookDaoImpl implements BookDao {
     private static Map<String, Book> books;
 
     @Override
-    public void addBook(Book newBook) throws Result {
+    public void addBook(Book newBook) throws BookException {
         Map<String, Book> book = readBookMap();
         book.put(newBook.getIsbn(), newBook);
         books = book;
@@ -24,60 +23,36 @@ class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public void updateBook(Book newBook) throws Result {
+    public void updateBook(Book newBook) throws BookException {
         addBook(newBook);
     }
 
     @Override
-    public void deleteBook(String ISBN) throws Result {
+    public void deleteBook(String ISBN) throws BookException {
         Map<String, Book> book = readBookMap();
         book.remove(ISBN);
         FileOperation.saveToStorage(StorageType.BOOKS, book);
         books.remove(ISBN);
     }
 
-    @Override
-    public Book findBook(String ISBN) throws Result {
-        return null;
-    }
-
-    public Map<String, Book> readBookMap() throws Result {
+    public Map<String, Book> readBookMap() throws BookException {
         if (books == null) {
             try {
                 books = FileOperation.readFromStorageAsMap(StorageType.BOOKS);
             } catch (Exception e) {
-                throw new Result(false, e.getMessage());
+                throw new BookException(e.getMessage());
             }
         }
         return books;
     }
 
     @Override
-    public List<Book> getAll() throws Result {
+    public List<Book> getAll() throws BookException {
         List<Book> result = new ArrayList<>();
         for (Entry<String, Book> e : readBookMap().entrySet()) {
             result.add(e.getValue());
         }
         return result;
-    }
-
-    @Override
-    public void updateCheckoutCopy(String publicationId) throws Result {
-        Map<String, Book> books = readBookMap();
-
-        Book book;
-        if (books.containsKey(publicationId)) {
-            book = books.get(publicationId);
-            for (int i = 0; i < book.getCopies().length; i++) {
-                final BookCopy copy = book.getCopies()[i];
-                if (!copy.isAvailable()) {
-                    copy.changeAvailability();
-                    break;
-                }
-            }
-        }
-
-        FileOperation.saveToStorage(StorageType.BOOKS, books);
     }
 
 }

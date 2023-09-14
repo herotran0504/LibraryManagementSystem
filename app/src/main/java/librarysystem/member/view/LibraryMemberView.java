@@ -59,16 +59,14 @@ public class LibraryMemberView implements Initializable {
                 switch (msg) {
                     case ACTION_CREATE:
                         if (DialogUtil.showConfirmDialog("Are you sure to add?")) {
-                            Result serviceResponse = controller.addNewMember(libraryMember);
-                            DialogUtil.showServiceResponseMessage(serviceResponse);
+                            DialogUtil.showServiceResponseMessage(controller.addNewMember(libraryMember));
                             back();
                         }
                         break;
                     case ACTION_UPDATE:
                         if (DialogUtil.showConfirmDialog("Are you sure to update?")) {
                             libraryMember.setMemberId(getMemberIdHdn());
-                            Result serviceResponse = controller.updateMember(libraryMember);
-                            DialogUtil.showServiceResponseMessage(serviceResponse);
+                            DialogUtil.showServiceResponseMessage(controller.updateMember(libraryMember));
                             back();
                         }
                         break;
@@ -83,7 +81,7 @@ public class LibraryMemberView implements Initializable {
 
     }
 
-    public void setRecordAndShow(LibraryMember librabryMember) throws Exception {
+    public void setRecordAndShow(LibraryMember librabryMember) {
         UiLoader.loadUI(Const.VIEW_MEMBER, librabryMember);
     }
 

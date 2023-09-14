@@ -1,5 +1,6 @@
 package librarysystem.book.view;
 
+import business.Book;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -7,9 +8,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import librarysystem.book.controller.BookController;
 import librarysystem.controller.ControllerFactory;
-import librarysystem.book.controller.PublicationController;
-import business.Publication;
 import librarysystem.util.DialogUtil;
 import librarysystem.util.Functors;
 import librarysystem.utils.Result;
@@ -18,35 +18,35 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class PublicationLookUpView implements Initializable {
+public class BookSearchView implements Initializable {
 
-    private List<Publication> allPublications;
+    private List<Book> allPublications;
 
     @FXML
     private TextField searchPublicationId;
     @FXML
     private TextField searchPublicationTitle;
     @FXML
-    private TableView<Publication> tableView;
+    private TableView<Book> tableView;
 
-    public TableView<Publication> getTableView() {
+    public TableView<Book> getTableView() {
         return tableView;
     }
 
     @FXML
-    private TableColumn<Publication, String> collPublicationId;
+    private TableColumn<Book, String> collPublicationId;
     @FXML
-    private TableColumn<Publication, String> colTitle;
+    private TableColumn<Book, String> colTitle;
     @FXML
-    private TableColumn<Publication, Integer> colAvailableCopies;
+    private TableColumn<Book, Integer> colAvailableCopies;
     @FXML
-    private TableColumn<Publication, Integer> colTotalCopies;
+    private TableColumn<Book, Integer> colTotalCopies;
     @FXML
-    private TableColumn<Publication, Integer> colMaxCheckoutLength;
+    private TableColumn<Book, Integer> colMaxCheckoutLength;
     @FXML
-    private TableColumn<Publication, String> colPublicationType;
+    private TableColumn<Book, String> colPublicationType;
 
-    private final PublicationController controller = ControllerFactory.get().getPublicationController();
+    private final BookController controller = ControllerFactory.get().getBookController();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -60,16 +60,13 @@ public class PublicationLookUpView implements Initializable {
         searchPublicationTitle.textProperty().addListener((observable, oldValue, newValue) -> filterTableData());
     }
 
-    @SuppressWarnings("unchecked")
     public void showCompleteList() {
         try {
 
-            Result result = controller.getAllPublications();
+            Result<List<Book>> result = controller.getAllBooks();
 
             colPublicationType.setCellValueFactory(data -> new ReadOnlyObjectWrapper<>(data.getValue().getClass().getSimpleName()));
-
-
-            collPublicationId.setCellValueFactory(data -> new ReadOnlyObjectWrapper<>(data.getValue().getPublicationId()));
+            collPublicationId.setCellValueFactory(data -> new ReadOnlyObjectWrapper<>(data.getValue().getIsbn()));
             colTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
             colAvailableCopies.setCellValueFactory(data -> {
                 int numOfAvailableCopies = Functors.AVAILABLE_COPIES_COUNTER.apply(data.getValue());
@@ -78,13 +75,13 @@ public class PublicationLookUpView implements Initializable {
             colTotalCopies.setCellValueFactory(data -> {
                 int total = 0;
                 if (data.getValue().getCopies() != null) {
-                    total = data.getValue().getCopies().size();
+                    total = data.getValue().getCopies().length;
                 }
                 return new ReadOnlyObjectWrapper<>(total);
             });
             colMaxCheckoutLength.setCellValueFactory(new PropertyValueFactory<>("maxCheckoutLength"));
 
-            allPublications = (List<Publication>) result.getData();
+            allPublications = result.getData();
             searchPublicationId.setText("");
             searchPublicationTitle.setText("");
             tableView.getItems().clear();
@@ -97,7 +94,7 @@ public class PublicationLookUpView implements Initializable {
     private void filterTableData() {
         String newId = searchPublicationId.getText() != null ? searchPublicationId.getText().toLowerCase() : "";
         String newTitle = searchPublicationTitle.getText() != null ? searchPublicationTitle.getText().toLowerCase() : "";
-        List<Publication> result = Functors.PUBLICATION_FILTER.apply(allPublications, newId, newTitle);
+        List<Book> result = Functors.BOOK_FILTER.apply(allPublications, newId, newTitle);
         tableView.getItems().clear();
         result.forEach(p -> tableView.getItems().add(p));
     }

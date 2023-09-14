@@ -1,20 +1,23 @@
 package librarysystem.dashboard;
 
+import business.Auth;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import librarysystem.controller.UiLoader;
 import librarysystem.main.Main;
-import business.Auth;
 import librarysystem.user.controller.UserData;
+import librarysystem.util.Const;
 import librarysystem.util.DialogUtil;
 import librarysystem.util.Navigator;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import static librarysystem.util.Const.VIEW_OVERDUE_COPIES;
 
 public class DashboardView extends Navigator implements Initializable {
     @FXML
@@ -23,8 +26,6 @@ public class DashboardView extends Navigator implements Initializable {
     private Button checkout;
     @FXML
     private Button openBook;
-    /*@FXML
-    private Button openPeriodical;*/
     @FXML
     private Button addMember;
     @FXML
@@ -37,32 +38,37 @@ public class DashboardView extends Navigator implements Initializable {
     private Label welcomeLBL;
 
     @FXML
-    protected void openMemberView(ActionEvent event) throws IOException {
-        openNewMemberView();
+    protected void openMemberView(ActionEvent event) {
+        UiLoader.loadUI(Const.VIEW_MEMBER);
     }
 
     @FXML
-    protected void openMembersTable(ActionEvent event) throws IOException {
+    protected void openMembersTable(ActionEvent event) {
         openMembersListView();
+    }
+
+    public void openMembersListView() {
+        UiLoader.loadUI(Const.VIEW_MEMBER_TABLE);
+    }
+
+    public void openCheckoutView() {
+        UiLoader.loadUI(Const.VIEW_CHECKOUT);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        if (UserData.auth.toString().equals(Auth.ADMIN.toString())) {
+        if (UserData.getAuth().equals(Auth.ADMIN)) {
             checkout.setDisable(true);
             welcomeLBL.setText(greeting(Auth.ADMIN));
-        } else if (UserData.auth.toString().equals(Auth.LIBRARIAN.toString())) {
+        } else if (UserData.getAuth().equals(Auth.LIBRARIAN)) {
             addCopy.setDisable(true);
             openBook.setDisable(true);
-            /*openPeriodical.setDisable(true);*/
             addMember.setDisable(true);
-            final String value = greeting(Auth.LIBRARIAN);
-            welcomeLBL.setText(value);
+            welcomeLBL.setText(greeting(Auth.LIBRARIAN));
 
         } else {
             welcomeLBL.setText(greeting(Auth.BOTH));
         }
-
     }
 
     private static String greeting(Auth librarian) {
@@ -76,17 +82,17 @@ public class DashboardView extends Navigator implements Initializable {
 
     @FXML
     protected void openBook(ActionEvent event) {
-        openNewBookView();
+        UiLoader.loadUI(Const.VIEW_BOOK);
     }
 
     @FXML
     protected void addCopy(ActionEvent event) {
-        openAddCopyView();
+        UiLoader.loadUI(Const.VIEW_ADD_COPY);
     }
 
     @FXML
     protected void viewOverdueCopies(ActionEvent event) {
-        openOverdueCopiesView();
+        UiLoader.loadUI(VIEW_OVERDUE_COPIES);
     }
 
     @FXML

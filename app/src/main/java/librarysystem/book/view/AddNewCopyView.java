@@ -1,44 +1,41 @@
 package librarysystem.book.view;
 
+import business.Book;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import librarysystem.book.controller.BookController;
 import librarysystem.controller.ControllerFactory;
-import librarysystem.book.controller.PublicationController;
 import librarysystem.controller.UiLoader;
-import business.Publication;
 import librarysystem.util.Const;
 import librarysystem.util.DialogUtil;
 
 public class AddNewCopyView {
 
     @FXML
-    private PublicationLookUpView publicationViewController;
+    private BookSearchView publicationViewController;
 
     @FXML
     private TextField txtNumOfCopies;
 
-    private final PublicationController controller = ControllerFactory.get().getPublicationController();
+    private final BookController controller = ControllerFactory.get().getBookController();
 
     @FXML
     private void addNewCopy() {
-        ObservableList<Publication> selected = publicationViewController.getTableView()
+        ObservableList<Book> selected = publicationViewController.getTableView()
                 .getSelectionModel().getSelectedItems();
-        if (selected.size() == 0) {
+        if (selected.isEmpty()) {
             DialogUtil.showInformationDialog("Select a publication first");
         } else if (selected.size() > 1) {
             DialogUtil.showInformationDialog("Selecting multiple items is not allowed!!");
         } else {
             try {
                 Integer noOfCopies = Integer.parseInt(txtNumOfCopies.getText());
-                Publication p = selected.get(0);
+                Book p = selected.get(0);
                 for (int i = 0; i < noOfCopies; i++) {
                     p.addCopy();
                 }
-                // FIXME hung.tran
-//                if (p instanceof Book) {
-//                    controller.addNewBook((Book) p);
-//                }
+                controller.addNewBook(p);
                 publicationViewController.showCompleteList();
                 showBookAddedInfo(noOfCopies);
             } catch (NumberFormatException e) {

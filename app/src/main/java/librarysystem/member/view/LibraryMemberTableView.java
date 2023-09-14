@@ -69,7 +69,7 @@ public class LibraryMemberTableView implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         populateGrid();
 
-        if (UserData.auth.toString().equals(Auth.LIBRARIAN.toString())) {
+        if (UserData.getAuth().toString().equals(Auth.LIBRARIAN.toString())) {
             editBTN.setDisable(true);
             deleteBTN.setDisable(true);
         }
@@ -81,25 +81,20 @@ public class LibraryMemberTableView implements Initializable {
         filteredData.addAll(masterData);
         tableView.setItems(filteredData);
 
-        // Listen for text changes in the filter text field
         searchMemberName.textProperty().addListener((observable, oldValue, newValue) -> updateFilteredData());
-
         searchMemberId.textProperty().addListener((observable, oldValue, newValue) -> updateFilteredData());
     }
 
     private void showList() {
         try {
-            Result serviceResponse = controller.getMembers();
-            List<LibraryMember> memberList = (List<LibraryMember>) serviceResponse.getData();
+            Result<List<LibraryMember>> serviceResponse = controller.getMembers();
+            List<LibraryMember> memberList = serviceResponse.getData();
             for (LibraryMember libraryMember : memberList) {
-
                 colId.setCellValueFactory(new PropertyValueFactory<>("memberId"));
                 colFirstName.setCellValueFactory(new PropertyValueFactory<>("firstname"));
                 colLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
                 colPhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
 
-				/*colCity.setCellValueFactory(new PropertyValueFactory<Address, String>(
-						"city"));*/
                 colCity.setCellValueFactory(data -> new ReadOnlyObjectWrapper<>(data.getValue().getAddress().getCity()));
                 colStreet.setCellValueFactory(data -> new ReadOnlyObjectWrapper<>(data.getValue().getAddress().getStreet()));
                 colState.setCellValueFactory(data -> new ReadOnlyObjectWrapper<>(data.getValue().getAddress().getState()));
@@ -107,7 +102,6 @@ public class LibraryMemberTableView implements Initializable {
 
                 masterData.add(libraryMember);
             }
-
         } catch (Exception e) {
             DialogUtil.showServiceResponseMessage(e);
         }
@@ -122,7 +116,6 @@ public class LibraryMemberTableView implements Initializable {
             } else {
                 libraryMember = list.get(0);
                 new LibraryMemberView().setRecordAndShow(list.get(0));
-                // hideWindow();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -137,7 +130,7 @@ public class LibraryMemberTableView implements Initializable {
             } else {
                 if (DialogUtil.showConfirmDialog("Are you sure to delete?")) {
                     libraryMember = list.get(0);
-                    Result serviceResponse = controller.deleteMember(libraryMember.getMemberId());
+                    Result<Void> serviceResponse = controller.deleteMember(libraryMember.getMemberId());
                     DialogUtil.showServiceResponseMessage(serviceResponse);
 
                     filteredData.clear();
@@ -158,9 +151,7 @@ public class LibraryMemberTableView implements Initializable {
                 DialogUtil.showInformationDialog("Select Member First");
             } else {
                 libraryMember = list.get(0);
-                Result serviceResponse = checkoutController.getCheckoutDetail(libraryMember.getMemberId());
-                @SuppressWarnings("unchecked")
-                List<CheckoutRecordEntry> checkoutEntries = (List<CheckoutRecordEntry>) serviceResponse.getData();
+                List<CheckoutRecordEntry> checkoutEntries = checkoutController.getCheckoutDetail(libraryMember.getMemberId()).getData();
                 if (!checkoutEntries.isEmpty()) {
                     StringBuffer stringBuffer = new StringBuffer();
                     stringBuffer.append(String.format("%-5s", "SNO")
@@ -199,10 +190,8 @@ public class LibraryMemberTableView implements Initializable {
 
             }
         } catch (Exception e) {
-            e.printStackTrace();
             DialogUtil.showServiceResponseMessage(e);
         }
-
     }
 
     public static LibraryMember getSelectedMember() {
@@ -211,20 +200,17 @@ public class LibraryMemberTableView implements Initializable {
 
     private void updateFilteredData() {
         filteredData.clear();
-        String idSubString = searchMemberId.getText() == null ? ""
-                : searchMemberId.getText();
-        String nameSubString = searchMemberName.getText() == null ? ""
-                : searchMemberName.getText();
-        List<LibraryMember> members = Functors.MEMBER_FILTER.apply(masterData,
-                idSubString, nameSubString);
-        members.forEach(m -> filteredData.add(m));
-        // Must re-sort table after items changed
+        final String memberIdText = searchMemberId.getText();
+        String idSubString = memberIdText == null ? "" : memberIdText;
+        final String memberNameText = searchMemberName.getText();
+        String nameSubString = memberNameText == null ? "" : memberNameText;
+        List<LibraryMember> members = Functors.MEMBER_FILTER.apply(masterData, idSubString, nameSubString);
+        filteredData.addAll(members);
         reapplyTableSortOrder();
     }
 
     private void reapplyTableSortOrder() {
-        ArrayList<TableColumn<LibraryMember, ?>> sortOrder = new ArrayList<>(
-                tableView.getSortOrder());
+        List<TableColumn<LibraryMember, ?>> sortOrder = new ArrayList<>(tableView.getSortOrder());
         tableView.getSortOrder().clear();
         tableView.getSortOrder().addAll(sortOrder);
     }

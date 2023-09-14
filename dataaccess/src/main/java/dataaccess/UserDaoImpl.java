@@ -1,19 +1,20 @@
 package dataaccess;
 
 import business.User;
+import business.exception.LoginException;
+import business.exception.UserException;
 import librarysystem.utils.FileOperation;
 import librarysystem.utils.FileOperation.StorageType;
-import librarysystem.utils.Result;
 
-import java.util.HashMap;
+import java.util.Map;
 import java.util.Map.Entry;
 
 public class UserDaoImpl implements UserDao {
-    private static HashMap<String, User> users;
+    private static Map<String, User> users;
 
     @Override
-    public void addUser(User user) throws Result {
-        HashMap<String, User> mems = readUserMap();
+    public void addUser(User user) throws UserException {
+        Map<String, User> mems = readUserMap();
         if (!mems.containsKey(user.getId())) {
             mems.put(user.getId(), user);
             users = mems;
@@ -27,30 +28,23 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User checkUser(User user) throws Result {
-        HashMap<String, User> mems = readUserMap();
-        for (Entry<String, User> entry : mems.entrySet()) {
+    public User checkUser(User user) throws UserException {
+        Map<String, User> users = readUserMap();
+        for (Entry<String, User> entry : users.entrySet()) {
             User temp = entry.getValue();
-            if (user.getId().equals(temp.getId())
-                    && user.getPassword().equals(temp.getPassword()))
+            if (user.getId().equals(temp.getId()) && user.getPassword().equals(temp.getPassword())) {
                 return temp;
+            }
         }
         return null;
     }
 
-    @SuppressWarnings("unchecked")
-    public HashMap<String, User> readUserMap() throws Result {
+    public Map<String, User> readUserMap() throws LoginException {
         if (users == null) {
             try {
-                if (FileOperation.readFromStorage(StorageType.USERS) != null)
-                    users = (HashMap<String, User>) FileOperation
-                            .readFromStorage(StorageType.USERS);
-                else
-                    return users = new HashMap<>();
-
+                return FileOperation.readFromStorageAsMap(StorageType.USERS);
             } catch (Exception e) {
-                e.printStackTrace();
-                throw new Result(false, e.getMessage());
+                throw new LoginException(e.getMessage());
 
             }
         }

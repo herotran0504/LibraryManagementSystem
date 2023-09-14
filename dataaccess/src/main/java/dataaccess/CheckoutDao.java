@@ -2,14 +2,16 @@ package dataaccess;
 
 import business.CheckoutRecord;
 import business.CheckoutRecordEntry;
-import librarysystem.utils.Result;
+import business.exception.CheckoutException;
 
 import java.util.List;
 
 public interface CheckoutDao {
-    void save(CheckoutRecord checkoutRecord) throws Result;
+    void save(CheckoutRecord checkoutRecord) throws CheckoutException;
 
-    List<CheckoutRecordEntry> findCheckOutRecord(String memberId) throws Result;
+    List<CheckoutRecordEntry> findCheckOutRecord(String memberId) throws CheckoutException;
 
-    List<CheckoutRecordEntry> getCheckoutRecordEntries() throws Result;
+    List<CheckoutRecordEntry> getCheckoutRecordEntries() throws CheckoutException;
+
+    void updateCheckoutCopy(String publicationId) throws CheckoutException;
 }

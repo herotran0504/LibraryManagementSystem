@@ -1,5 +1,7 @@
 package librarysystem.user.view;
 
+import business.User;
+import business.exception.LoginException;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -7,9 +9,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import librarysystem.controller.ControllerFactory;
 import librarysystem.user.controller.UserController;
-import business.User;
-import librarysystem.util.Navigator;
 import librarysystem.util.DialogUtil;
+import librarysystem.util.Navigator;
 import librarysystem.utils.Result;
 
 import java.net.URL;
@@ -18,9 +19,9 @@ import java.util.ResourceBundle;
 public class LoginView extends Navigator implements Initializable {
 
     @FXML
-    private TextField userName;
+    private TextField userId;
     @FXML
-    private PasswordField userPassword;
+    private PasswordField userPwd;
 
     private final UserController controller = ControllerFactory.get().getUserController();
 
@@ -39,30 +40,36 @@ public class LoginView extends Navigator implements Initializable {
     protected void doLogin() {
         try {
             if (validateForm()) {
-                User user = new User(getUserName(), getUserPassword());
+                User user = new User(getUserId(), getUserPwd());
                 Result result = controller.checkUser(user);
                 if (result.getSuccess()) {
-                    userPassword.getScene().getWindow().hide();
+                    userPwd.getScene().getWindow().hide();
                     openDashboardView();
                 } else {
-                    DialogUtil.showWarningDialog("Login couldn't be completed. Please be sure to enter correct username and password.");
+                    showLoginError();
                 }
             }
+        } catch (LoginException e) {
+            showLoginError();
         } catch (Exception e) {
             DialogUtil.showServiceResponseMessage(e);
         }
     }
 
-    private String getUserName() {
-        return userName.textProperty().get();
+    private static void showLoginError() {
+        DialogUtil.showWarningDialog("Login couldn't be completed. Please be sure to enter correct username and password.");
     }
 
-    private String getUserPassword() {
-        return userPassword.textProperty().get();
+    private String getUserId() {
+        return userId.textProperty().get();
+    }
+
+    private String getUserPwd() {
+        return userPwd.textProperty().get();
     }
 
     private boolean validateForm() {
-        if (getUserName().isEmpty() || getUserPassword().isEmpty()) {
+        if (getUserId().isEmpty() || getUserPwd().isEmpty()) {
             DialogUtil.showExceptionDialog("Please input all field");
             return false;
         }

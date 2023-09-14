@@ -1,11 +1,12 @@
 package dataaccess;
 
 import business.Book;
+import business.BookCopy;
 import business.CheckoutRecord;
 import business.CheckoutRecordEntry;
+import business.exception.CheckoutException;
 import librarysystem.utils.FileOperation;
 import librarysystem.utils.FileOperation.StorageType;
-import librarysystem.utils.Result;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,8 +17,14 @@ class CheckoutDaoImpl implements CheckoutDao {
 
     private static Map<String, List<CheckoutRecordEntry>> checkout;
 
+    private final BookDao bookDao;
+
+    CheckoutDaoImpl(BookDao bookDao) {
+        this.bookDao = bookDao;
+    }
+
     @Override
-    public void save(CheckoutRecord checkoutRecord) throws Result {
+    public void save(CheckoutRecord checkoutRecord) throws CheckoutException {
         Map<String, List<CheckoutRecordEntry>> tempCheckout = readCheckoutMap();
         List<CheckoutRecordEntry> originalList = null;
 
@@ -38,26 +45,46 @@ class CheckoutDaoImpl implements CheckoutDao {
         updateCheckoutPublication(checkoutEntries.get(0).getCopy().getBook());
     }
 
-    private void updateCheckoutPublication(Book publication) throws Result {
-        if (publication instanceof Book) {
-            BookDao bookDao = new BookDaoImpl();
-            bookDao.updateCheckoutCopy(publication.getIsbn());
+    private void updateCheckoutPublication(Book book) throws CheckoutException {
+        if (book != null) {
+            updateCheckoutCopy(book.getIsbn());
         }
     }
 
-    public Map<String, List<CheckoutRecordEntry>> readCheckoutMap() throws Result {
+    @Override
+    public void updateCheckoutCopy(String isbn) throws CheckoutException {
+        try {
+            Map<String, Book> books = bookDao.readBookMap();
+            Book book;
+            if (books.containsKey(isbn)) {
+                book = books.get(isbn);
+                for (int i = 0; i < book.getCopies().length; i++) {
+                    final BookCopy copy = book.getCopies()[i];
+                    if (!copy.isAvailable()) {
+                        copy.changeAvailability();
+                        break;
+                    }
+                }
+            }
+            FileOperation.saveToStorage(StorageType.BOOKS, books);
+        } catch (Exception e) {
+            throw new CheckoutException(e);
+        }
+    }
+
+    public static Map<String, List<CheckoutRecordEntry>> readCheckoutMap() throws CheckoutException {
         if (checkout == null) {
             try {
                 checkout = FileOperation.readFromStorageAsMap(StorageType.CHECKOUT);
             } catch (Exception e) {
-                throw new Result(false, e.getMessage());
+                throw new CheckoutException(e.getMessage());
             }
         }
         return checkout;
     }
 
     @Override
-    public List<CheckoutRecordEntry> findCheckOutRecord(String memberId) throws Result {
+    public List<CheckoutRecordEntry> findCheckOutRecord(String memberId) throws CheckoutException {
         List<CheckoutRecordEntry> checkoutRecordEntries = new ArrayList<>();
         Map<String, List<CheckoutRecordEntry>> entry = readCheckoutMap();
         if (entry.containsKey(memberId)) {
@@ -67,13 +94,17 @@ class CheckoutDaoImpl implements CheckoutDao {
     }
 
     @Override
-    public List<CheckoutRecordEntry> getCheckoutRecordEntries() throws Result {
-        Map<String, List<CheckoutRecordEntry>> entry = readCheckoutMap();
-        List<CheckoutRecordEntry> entries = new ArrayList<>();
-        for (Entry<String, List<CheckoutRecordEntry>> e : entry.entrySet()) {
-            entries.addAll(e.getValue());
+    public List<CheckoutRecordEntry> getCheckoutRecordEntries() throws CheckoutException {
+        try {
+            Map<String, List<CheckoutRecordEntry>> entry = readCheckoutMap();
+            List<CheckoutRecordEntry> entries = new ArrayList<>();
+            for (Entry<String, List<CheckoutRecordEntry>> e : entry.entrySet()) {
+                entries.addAll(e.getValue());
+            }
+            return entries;
+        } catch (Exception e) {
+            throw new CheckoutException(e);
         }
-        return entries;
     }
 
 }

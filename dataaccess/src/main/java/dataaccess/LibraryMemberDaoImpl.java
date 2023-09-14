@@ -1,9 +1,9 @@
 package dataaccess;
 
 import business.LibraryMember;
+import business.exception.MemberException;
 import librarysystem.utils.FileOperation;
 import librarysystem.utils.FileOperation.StorageType;
-import librarysystem.utils.Result;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +13,7 @@ public class LibraryMemberDaoImpl implements LibraryMemberDao {
     private static Map<String, LibraryMember> members;
 
     @Override
-    public void addLibraryMember(LibraryMember libraryMember) throws Result {
+    public void addLibraryMember(LibraryMember libraryMember) throws MemberException {
         readMemberMap();
         System.out.println("Add: " + libraryMember);
         members.put(libraryMember.getMemberId(), libraryMember);
@@ -21,12 +21,12 @@ public class LibraryMemberDaoImpl implements LibraryMemberDao {
     }
 
     @Override
-    public void updateLibraryMember(LibraryMember libraryMember) throws Result {
+    public void updateLibraryMember(LibraryMember libraryMember) throws MemberException {
         addLibraryMember(libraryMember);
     }
 
     @Override
-    public void deleteLibraryMember(String id) throws Result {
+    public void deleteLibraryMember(String id) throws MemberException {
         readMemberMap();
         LibraryMember mem = members.remove(id);
         System.out.println("Delete: " + mem);
@@ -34,7 +34,7 @@ public class LibraryMemberDaoImpl implements LibraryMemberDao {
     }
 
     @Override
-    public LibraryMember findLibraryMember(String memberId) throws Result {
+    public LibraryMember findLibraryMember(String memberId) throws MemberException {
         readMemberMap();
         if (members.containsKey(memberId)) {
             LibraryMember mem = members.get(memberId);
@@ -44,19 +44,19 @@ public class LibraryMemberDaoImpl implements LibraryMemberDao {
         return null;
     }
 
-    public Map<String, LibraryMember> readMemberMap() throws Result {
+    public Map<String, LibraryMember> readMemberMap() throws MemberException {
         if (members == null) {
             try {
                 members = FileOperation.readFromStorageAsMap(StorageType.MEMBERS);
             } catch (Exception e) {
-                throw new Result(false, e.getMessage());
+                throw new MemberException(e.getMessage());
             }
         }
         return members;
     }
 
     @Override
-    public List<LibraryMember> findMembers() throws Result {
+    public List<LibraryMember> findMembers() throws MemberException {
         readMemberMap();
         List<LibraryMember> list = new ArrayList<>();
         for (Map.Entry<String, LibraryMember> entry : members.entrySet()) {

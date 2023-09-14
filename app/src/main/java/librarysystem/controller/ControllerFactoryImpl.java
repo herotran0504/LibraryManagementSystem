@@ -2,7 +2,7 @@ package librarysystem.controller;
 
 import dataaccess.DaoFactory;
 import librarysystem.book.controller.CheckoutController;
-import librarysystem.book.controller.PublicationController;
+import librarysystem.book.controller.BookController;
 import librarysystem.member.controller.LibraryMemberController;
 import librarysystem.user.controller.UserController;
 
@@ -30,8 +30,8 @@ class ControllerFactoryImpl implements ControllerFactory {
     }
 
     @Override
-    public PublicationController getPublicationController() {
-        return PublicationController.get(daoFactory.getBookDao());
+    public BookController getBookController() {
+        return BookController.get(daoFactory.getBookDao());
     }
 
 }

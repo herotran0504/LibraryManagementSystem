@@ -16,60 +16,57 @@ class LibraryMemberControllerImpl implements LibraryMemberController {
     }
 
     @Override
-    public Result addNewMember(LibraryMember libraryMember) {
+    public Result<Void> addNewMember(LibraryMember libraryMember) {
         try {
             libraryMember.setMemberId(IdManager.getNextID(Const.MEMBER_PROPERTY_KEY));
             libraryMemberDao.addLibraryMember(libraryMember);
-            System.out.println(libraryMember);
-            return new Result(true, "Successfully added");
+            return new Result<>(true, "Successfully added");
         } catch (Exception e) {
-            return new Result(false, Result.getRuntimeException());
+            return new Result<>(false, Result.getRuntimeException());
         }
     }
 
     @Override
-    public Result getMembers() {
+    public Result<List<LibraryMember>> getMembers() {
         try {
             List<LibraryMember> list = libraryMemberDao.findMembers();
-            return new Result(true, "Successfully added", list);
+            return new Result<>(true, "Successfully added", list);
         } catch (Exception e) {
-            e.printStackTrace();
-            return new Result(false, Result.getRuntimeException());
+            return new Result<>(false, Result.getRuntimeException());
         }
     }
 
     @Override
-    public Result getMember(String id) {
+    public Result<LibraryMember> getMember(String id) {
         try {
-            LibraryMember libraryMemeber = libraryMemberDao.findLibraryMember(id);
-            if (libraryMemeber != null) {
-                return new Result(true, "Successfully fetched", libraryMemeber);
+            LibraryMember libraryMember = libraryMemberDao.findLibraryMember(id);
+            if (libraryMember != null) {
+                return new Result<>(true, "Successfully fetched", libraryMember);
             } else {
-                return new Result(false, "Member doesn't exist");
+                return new Result<>(false, "Member doesn't exist");
             }
         } catch (Exception e) {
-            return new Result(false, Result.getRuntimeException());
+            return new Result<>(false, Result.getRuntimeException());
         }
     }
 
     @Override
-    public Result updateMember(LibraryMember libraryMember) {
+    public Result<Void> updateMember(LibraryMember libraryMember) {
         try {
             libraryMemberDao.updateLibraryMember(libraryMember);
-            System.out.println(libraryMember);
-            return new Result(true, "Successfully updated");
+            return new Result<>(true, "Successfully updated");
         } catch (Exception e) {
-            return new Result(false, Result.getRuntimeException());
+            return new Result<>(false, Result.getRuntimeException());
         }
     }
 
     @Override
-    public Result deleteMember(String id) {
+    public Result<Void> deleteMember(String id) {
         try {
             libraryMemberDao.deleteLibraryMember(id);
-            return new Result(true, "Successfully deleted");
+            return new Result<>(true, "Successfully deleted");
         } catch (Exception e) {
-            return new Result(false, Result.getRuntimeException());
+            return new Result<>(false, Result.getRuntimeException());
         }
     }
 }

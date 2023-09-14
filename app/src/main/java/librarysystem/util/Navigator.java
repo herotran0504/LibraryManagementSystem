@@ -15,67 +15,15 @@ import static librarysystem.util.Const.*;
 
 public abstract class Navigator {
 
-    public static void openDashboardView() {
-        try {
-            Stage stage = new Stage();
-            stage.setTitle(TITLE_LIBRARY_MANAGEMENT_SYSTEM);
-            stage.setResizable(false);
-            Pane mainPane = loadMainPane();
-            stage.setScene(new Scene(mainPane));
-            Platform.setImplicitExit(false);
-            stage.show();
-            stage.setOnCloseRequest(event -> Platform.exit());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void openNewMemberView() {
-        try {
-            UiLoader.loadUI(Const.VIEW_MEMBER);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void openMembersListView() {
-        try {
-            UiLoader.loadUI(Const.VIEW_MEMBER_TABLE);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void openNewBookView() {
-        try {
-            UiLoader.loadUI(Const.VIEW_BOOK);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void openCheckoutView() {
-        try {
-            UiLoader.loadUI(Const.VIEW_CHECKOUT);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void openAddCopyView() {
-        try {
-            UiLoader.loadUI(Const.VIEW_ADD_COPY);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void openOverdueCopiesView() {
-        try {
-            UiLoader.loadUI(VIEW_OVERDUE_COPIES);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public void openDashboardView() throws IOException {
+        Stage stage = new Stage();
+        stage.setTitle(TITLE_LIBRARY_MANAGEMENT_SYSTEM);
+        stage.setResizable(false);
+        Pane mainPane = loadMainPane();
+        stage.setScene(new Scene(mainPane));
+        Platform.setImplicitExit(false);
+        stage.show();
+        stage.setOnCloseRequest(event -> Platform.exit());
     }
 
     private static Pane loadMainPane() throws IOException {

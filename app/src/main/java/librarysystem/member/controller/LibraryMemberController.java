@@ -4,19 +4,21 @@ import business.LibraryMember;
 import dataaccess.LibraryMemberDao;
 import librarysystem.utils.Result;
 
+import java.util.List;
+
 public interface LibraryMemberController {
-    Result addNewMember(LibraryMember libraryMember);
+    Result<Void> addNewMember(LibraryMember libraryMember);
 
-    Result getMembers();
+    Result<List<LibraryMember>> getMembers();
 
-    Result getMember(String id);
+    Result<LibraryMember> getMember(String id);
 
-    Result updateMember(LibraryMember libraryMember);
+    Result<Void> updateMember(LibraryMember libraryMember);
 
-    Result deleteMember(String id);
+    Result<Void> deleteMember(String id);
 
-    static LibraryMemberController get(LibraryMemberDao libraryMemberDao) {
-        return new LibraryMemberControllerImpl(libraryMemberDao);
+    static LibraryMemberController get(LibraryMemberDao dao) {
+        return new LibraryMemberControllerImpl(dao);
     }
 }
 

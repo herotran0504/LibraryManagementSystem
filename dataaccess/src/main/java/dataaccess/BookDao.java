@@ -1,21 +1,20 @@
 package dataaccess;
 
 import business.Book;
-import librarysystem.utils.Result;
+import business.exception.BookException;
 
 import java.util.List;
+import java.util.Map;
 
 public interface BookDao {
 
-    void addBook(Book book) throws Result;
+    void addBook(Book book) throws BookException;
 
-    void updateBook(Book newBook) throws Result;
+    void updateBook(Book newBook) throws BookException;
 
-    void deleteBook(String id) throws Result;
+    void deleteBook(String id) throws BookException;
 
-    Book findBook(String id) throws Result;
+    Map<String, Book> readBookMap() throws BookException;
 
-    List<Book> getAll() throws Result;
-
-    void updateCheckoutCopy(String publicationId) throws Result;
+    List<Book> getAll() throws BookException;
 }

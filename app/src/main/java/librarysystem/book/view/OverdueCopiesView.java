@@ -1,9 +1,11 @@
 package librarysystem.book.view;
 
+import business.Book;
 import business.BookCopy;
 import business.CheckoutCopies;
 import business.CheckoutRecordEntry;
-import business.Publication;
+import business.exception.CheckoutException;
+import business.exception.MemberException;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,7 +18,6 @@ import librarysystem.controller.ControllerFactory;
 import librarysystem.controller.UiLoader;
 import librarysystem.util.Const;
 import librarysystem.util.DialogUtil;
-import librarysystem.utils.Result;
 import librarysystem.utils.DateUtil;
 
 import java.net.URL;
@@ -28,7 +29,7 @@ import java.util.ResourceBundle;
 
 public class OverdueCopiesView implements Initializable {
     @FXML
-    private PublicationLookUpView publicationViewController;
+    private BookSearchView publicationViewController;
     @FXML
     private TableView<BookCopy> copiesInfo;
     @FXML
@@ -46,7 +47,7 @@ public class OverdueCopiesView implements Initializable {
     @FXML
     private TableColumn<BookCopy, String> memberid;
 
-    private CheckoutCopies checkedoutCopies;
+    private CheckoutCopies checkoutCopies;
     private final CheckoutController checkoutController = ControllerFactory.get().getCheckoutController();
 
     @Override
@@ -54,7 +55,7 @@ public class OverdueCopiesView implements Initializable {
         List<CheckoutRecordEntry> checkoutEntries;
         try {
             checkoutEntries = checkoutController.getAllCheckoutRecordEntries();
-            checkedoutCopies = new CheckoutCopies(checkoutEntries);
+            checkoutCopies = new CheckoutCopies(checkoutEntries);
             publicationViewController.getTableView().getSelectionModel()
                     .selectedItemProperty()
                     .addListener((obs, oldSelection, newSelection) -> {
@@ -63,13 +64,13 @@ public class OverdueCopiesView implements Initializable {
                             showCopiesInfo();
                         }
                     });
-        } catch (Result e) {
+        } catch (CheckoutException e) {
             DialogUtil.showExceptionDialog(e.getMessage());
         }
     }
 
     private void showCopiesInfo() {
-        ObservableList<Publication> list = publicationViewController.getTableView().getSelectionModel().getSelectedItems();
+        ObservableList<Book> list = publicationViewController.getTableView().getSelectionModel().getSelectedItems();
         ObservableList<BookCopy> copies = FXCollections.observableArrayList();
         copies.addAll(list.get(0).getCopies());
         addCopiesColumnValueFactories();
@@ -78,28 +79,26 @@ public class OverdueCopiesView implements Initializable {
 
     private void addCopiesColumnValueFactories() {
         copyno.setCellValueFactory(data -> new ReadOnlyObjectWrapper<>(data.getValue().getCopyNum()));
-        checkoutdate
-                .setCellValueFactory(data -> new ReadOnlyObjectWrapper<>(checkedoutCopies
-                        .getCheckoutDate(data.getValue())));
 
-        duedate.setCellValueFactory(data -> new ReadOnlyObjectWrapper<>(checkedoutCopies
-                .getDueDate(data.getValue())));
+        checkoutdate.setCellValueFactory(data -> new ReadOnlyObjectWrapper<>(checkoutCopies.getCheckoutDate(data.getValue())));
+
+        duedate.setCellValueFactory(data -> new ReadOnlyObjectWrapper<>(checkoutCopies.getDueDate(data.getValue())));
 
         remarks.setCellValueFactory(data -> {
             try {
-                return new ReadOnlyObjectWrapper<>(getStatus(checkedoutCopies, data.getValue()));
-            } catch (Result e) {
+                return new ReadOnlyObjectWrapper<>(getStatus(checkoutCopies, data.getValue()));
+            } catch (MemberException e) {
                 DialogUtil.showExceptionDialog(e.getMessage());
                 return new ReadOnlyObjectWrapper<>("");
             }
         });
 
-        firstname.setCellValueFactory(data -> new ReadOnlyObjectWrapper<>(checkedoutCopies.getFirstNameOfMember(data.getValue())));
-        lastname.setCellValueFactory(data -> new ReadOnlyObjectWrapper<>(checkedoutCopies.getLastNameOfMember(data.getValue())));
-        memberid.setCellValueFactory(data -> new ReadOnlyObjectWrapper<>(checkedoutCopies.getCheckingMemberId(data.getValue())));
+        firstname.setCellValueFactory(data -> new ReadOnlyObjectWrapper<>(checkoutCopies.getFirstNameOfMember(data.getValue())));
+        lastname.setCellValueFactory(data -> new ReadOnlyObjectWrapper<>(checkoutCopies.getLastNameOfMember(data.getValue())));
+        memberid.setCellValueFactory(data -> new ReadOnlyObjectWrapper<>(checkoutCopies.getCheckingMemberId(data.getValue())));
     }
 
-    private static String getStatus(CheckoutCopies checkoutCopy, BookCopy copy) throws Result {
+    private static String getStatus(CheckoutCopies checkoutCopy, BookCopy copy) throws MemberException {
         final Map<String, CheckoutRecordEntry> checkedOutCopies = checkoutCopy.getCheckedOutCopies();
         if (checkedOutCopies.containsKey(copy.getPrimaryKey())) {
             try {
@@ -111,7 +110,7 @@ public class OverdueCopiesView implements Initializable {
                     return "OVERDUE";
                 }
             } catch (ParseException e) {
-                throw new Result(false, e.getMessage());
+                throw new MemberException(e.getMessage());
             }
         } else {
             return "AVAILABLE";

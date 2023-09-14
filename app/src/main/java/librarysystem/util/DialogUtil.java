@@ -52,16 +52,15 @@ public class DialogUtil {
 
     }
 
-    public static void showServiceResponseMessage(Result serviceResponse) {
-        if (serviceResponse.getSuccess()) {
-            showInformationDialog(serviceResponse.getMessage());
+    public static void showServiceResponseMessage(Result<?> result) {
+        if (result.getSuccess()) {
+            showInformationDialog(result.getMessage());
         } else {
-            showExceptionDialog(serviceResponse.getMessage());
+            showExceptionDialog(result.getMessage());
         }
     }
 
     public static void showServiceResponseMessage(Exception e) {
-        e.printStackTrace();
         showExceptionDialog(Result.getRuntimeException());
     }
 
