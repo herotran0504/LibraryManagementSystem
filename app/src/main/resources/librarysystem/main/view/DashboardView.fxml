@@ -13,10 +13,10 @@
 	fx:controller="librarysystem.dashboard.DashboardView">
 	<children>
 		<Label fx:id="welcomeLBL"
-			layoutX="294.0"
+			layoutX="220.0"
 			layoutY="14.0"
-			prefHeight="39.0"
-			prefWidth="262.0"
+			prefHeight="42.0"
+			prefWidth="560.0"
 			text="Library Management System"
 			textAlignment="CENTER"
 			wrapText="true">
