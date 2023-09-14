@@ -1,9 +1,10 @@
 package librarysystem.util;
 
+import librarysystem.utils.FileUtil;
+
 import java.io.*;
 import java.util.Properties;
 
-import static librarysystem.util.Const.MEMBER_PROPERTY_KEY;
 import static librarysystem.util.FileOperation.STORAGE_DIR;
 
 public class IdManager {
@@ -15,14 +16,15 @@ public class IdManager {
         InputStream input = null;
         String newValue = null;
         try {
+            FileUtil.createNewFile(OUTPUT_DIR);
             input = new FileInputStream(OUTPUT_DIR);
             // load a properties file
             prop.load(input);
 
             // get the property value and print it out
-            final int safeKeyInt = getSafeKeyInt(prop);
+            final int safeKeyInt = getSafeKeyInt(prop, key);
             newValue = String.valueOf(safeKeyInt + 1);
-            updateID(MEMBER_PROPERTY_KEY, safeKeyInt);
+            updateID(key, safeKeyInt + 1);
 
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -62,13 +64,14 @@ public class IdManager {
             }
 
         }
-        System.out.println("New::" + prop.getProperty(MEMBER_PROPERTY_KEY));
+        System.out.println("New::" + prop.getProperty(key));
     }
 
-    private static int getSafeKeyInt(Properties prop) {
+    private static int getSafeKeyInt(Properties prop, String key) {
         try {
-            return Integer.parseInt(prop.getProperty(MEMBER_PROPERTY_KEY));
+            return Integer.parseInt(prop.getProperty(key));
         } catch (Exception e) {
+            e.printStackTrace();
             return 0;
         }
     }
