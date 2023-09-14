@@ -69,7 +69,9 @@ public class IdManager {
 
     private static int getSafeKeyInt(Properties prop, String key) {
         try {
-            return Integer.parseInt(prop.getProperty(key));
+            String id = prop.getProperty(key);
+            if(id == null) return 0;
+            return Integer.parseInt(id);
         } catch (Exception e) {
             e.printStackTrace();
             return 0;

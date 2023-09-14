@@ -19,6 +19,7 @@ public class LibraryMemberController {
         try {
             libraryMember.setMemberId(IdManager.getNextID(Const.MEMBER_PROPERTY_KEY));
             libraryMemberDao.addLibraryMember(libraryMember);
+            System.out.println(libraryMember);
             return new Result(true, "Successfully added");
         } catch (Exception e) {
             return new Result(false, Result.getRuntimeException());
@@ -51,6 +52,7 @@ public class LibraryMemberController {
     public Result updateMember(LibraryMember libraryMember) {
         try {
             libraryMemberDao.updateLibraryMember(libraryMember);
+            System.out.println(libraryMember);
             return new Result(true, "Successfully updated");
         } catch (Exception e) {
             return new Result(false, Result.getRuntimeException());

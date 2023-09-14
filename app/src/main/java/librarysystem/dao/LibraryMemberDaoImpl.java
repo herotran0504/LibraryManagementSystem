@@ -15,6 +15,7 @@ public class LibraryMemberDaoImpl implements LibraryMemberDao {
     @Override
     public void addLibraryMember(LibraryMember libraryMember) throws Result {
         Map<String, LibraryMember> mems = readMemberMap();
+        System.out.println("Add: " + libraryMember);
         mems.put(libraryMember.getMemberId(), libraryMember);
         members = mems;
         FileOperation.saveToStorage(StorageType.MEMBERS, mems);
@@ -29,7 +30,8 @@ public class LibraryMemberDaoImpl implements LibraryMemberDao {
     @Override
     public void deleteLibraryMember(String id) throws Result {
         Map<String, LibraryMember> mems = readMemberMap();
-        mems.remove(id);
+        LibraryMember mem = mems.remove(id);
+        System.out.println("Delete: " + mem);
         FileOperation.saveToStorage(StorageType.MEMBERS, mems);
         members.remove(id);
     }
