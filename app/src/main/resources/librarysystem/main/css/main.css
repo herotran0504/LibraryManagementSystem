@@ -1,26 +1,26 @@
-.anchorpane{
-	-fx-padding:20.0 80.0 60.0 100.0;
-	-fx-background-color:   #808080;
+.anchorpane {
+    -fx-padding: 20.0 80.0 60.0 100.0;
+    -fx-background-color: #808080;
 }
 
 .label {
     -fx-font-size: 12.0px;
     -fx-font-weight: bold;
     -fx-text-fill: #333333;
-    -fx-effect: dropshadow( gaussian , rgba(255.0,255.0,255.0,0.5) , 0.0,0.0,0.0,1.0 );
+    -fx-effect: dropshadow(gaussian, rgba(255.0, 255.0, 255.0, 0.5), 0.0, 0.0, 0.0, 1.0);
 }
 
 #welcome-text {
-   -fx-font-size: 32.0px;
-   -fx-font-family: "Arial Black";
-   -fx-fill: #818181;
-   -fx-effect: innershadow( three-pass-box , rgba(0.0,0.0,0.0,0.7) , 6.0, 0.0 , 0.0 , 2.0 );
+    -fx-font-size: 32.0px;
+    -fx-font-family: "Arial Black";
+    -fx-fill: #818181;
+    -fx-effect: innershadow(three-pass-box, rgba(0.0, 0.0, 0.0, 0.7), 6.0, 0.0, 0.0, 2.0);
 }
 
 #actiontarget {
-  -fx-fill: FIREBRICK;
-  -fx-font-weight: bold;
-  -fx-effect: dropshadow( gaussian , rgba(255.0,255.0,255.0,0.5) , 0.0,0.0,0.0,1.0 );
+    -fx-fill: FIREBRICK;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(255.0, 255.0, 255.0, 0.5), 0.0, 0.0, 0.0, 1.0);
 }
 
 .button {
@@ -33,69 +33,72 @@
 .button:hover {
     -fx-background-color: linear-gradient(#2A5058, #61a2b1);
 }
-#gridPane{
-	-fx-hgap:10.0px;
-	-fx-vgap:10.0px;
-	-fx-alignment:top-right;
+
+#gridPane {
+    -fx-hgap: 10.0px;
+    -fx-vgap: 10.0px;
+    -fx-alignment: top-right;
 }
-#upperGrid{
-	-fx-vgap:20.0px;
+
+#upperGrid {
+    -fx-vgap: 20.0px;
 
 }
 
-#leftGridPane{
-	-fx-hgap:10.0px;
-	-fx-vgap:10.0px;
-	-fx-alignment:top-right;
+#leftGridPane {
+    -fx-hgap: 10.0px;
+    -fx-vgap: 10.0px;
+    -fx-alignment: top-right;
 
 }
 
 #addMember {
     -fx-background-size: 50.0 50.0;
     -fx-background-repeat: no-repeat;
-    -fx-background-position:center;
+    -fx-background-position: center;
 }
 
-#addBook{
+#addBook {
     -fx-background-size: 50.0 50.0;
     -fx-background-repeat: no-repeat;
-    -fx-background-position:center;
+    -fx-background-position: center;
 }
 
-#addCopies{
+#addCopies {
     -fx-background-size: 50.0 50.0;
     -fx-background-repeat: no-repeat;
-    -fx-background-position:center;
+    -fx-background-position: center;
 }
 
-#addPeriodical{
+#addPeriodical {
     -fx-background-size: 50.0 50.0;
     -fx-background-repeat: no-repeat;
-    -fx-background-position:center;
+    -fx-background-position: center;
 
 }
-#viewEditMember{
+
+#viewEditMember {
     -fx-background-size: 50.0 50.0;
     -fx-background-repeat: no-repeat;
-    -fx-background-position:center;
+    -fx-background-position: center;
 }
 
-#viewOverdue{
+#viewOverdue {
     -fx-background-size: 50.0 50.0;
     -fx-background-repeat: no-repeat;
-    -fx-background-position:center;
+    -fx-background-position: center;
 }
 
-#checkOut{
+#checkOut {
     -fx-background-size: 50.0 50.0;
     -fx-background-repeat: no-repeat;
-    -fx-background-position:center;
+    -fx-background-position: center;
 }
 
-#logOut{
+#logOut {
     -fx-background-size: 50.0 50.0;
     -fx-background-repeat: no-repeat;
-    -fx-background-position:center;
+    -fx-background-position: center;
 }
 
 root {

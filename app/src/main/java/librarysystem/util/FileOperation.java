@@ -22,6 +22,10 @@ public class FileOperation {
     public static void saveToStorage(StorageType type, Object ob) {
         ObjectOutputStream out = null;
         try {
+            File storage = new File(OUTPUT_DIR);
+            if (!storage.exists()) {
+                storage.mkdirs();
+            }
             Path path = FileSystems.getDefault().getPath(OUTPUT_DIR, type.toString());
             out = new ObjectOutputStream(Files.newOutputStream(path));
             out.writeObject(ob);
