@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
+<?import java.net.*?>
+
+<AnchorPane prefHeight="532.0000999999975" prefWidth="739.0" styleClass="anchorpane" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="librarysystem.mappings.AddPeriodical">
+<stylesheets>
+    <URL value="@../css/main.css" />
+  </stylesheets>
+  <children>
+    <GridPane alignment="CENTER" hgap="25.0" layoutX="111.0" layoutY="58.0" prefWidth="523.0" styleClass="gridpane" vgap="10.0">
+      <children>
+        <Text id="title-text" text="Publication: Periodical" GridPane.columnSpan="2" GridPane.halignment="CENTER">
+          <font>
+            <Font name="System Bold" size="18.0" />
+          </font>
+        </Text>
+        <Label text="Issue Number" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+        <Label text="Title" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+        <TextField fx:id="issue_number" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <TextField fx:id="title" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Label text="Max Checkout Length" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+        <TextField fx:id="maxcheckoutlength" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <Button alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#addNewPeriodical" text="Submit" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
+        <Button mnemonicParsing="false" onAction="#back" text="Back" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      </children>
+      <columnConstraints>
+        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="218.0" minWidth="10.0" prefWidth="137.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="385.0" minWidth="10.0" prefWidth="261.0" />
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints maxHeight="31.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="31.0" minHeight="10.0" prefHeight="29.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      </rowConstraints>
+    </GridPane>
+  </children>
+</AnchorPane>

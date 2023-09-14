@@ -1,0 +1,5 @@
+plugins {
+    id 'librarysystem.java-common-conventions'
+
+    id 'application'
+}

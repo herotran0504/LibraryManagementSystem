@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox prefHeight="200.0" prefWidth="300.0" xmlns:fx="http://javafx.com/fxml" fx:controller="librarysystem.main.MainController">
+  <children>
+    <StackPane fx:id="stackPane" VBox.vgrow="ALWAYS" />
+  </children>
+</VBox>

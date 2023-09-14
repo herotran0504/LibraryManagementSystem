@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import java.net.*?>
+
+<AnchorPane prefHeight="483.0" prefWidth="899.0" styleClass="anchorpane" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="librarysystem.mappings.LibraryMemberViewMapper">
+<stylesheets>
+    <URL value="@../css/main.css" />
+  </stylesheets>
+  <children>
+    <Pane layoutX="82.0" layoutY="7.0" prefHeight="59.0" prefWidth="693.0">
+      <children>
+        <Label layoutY="21.0" prefHeight="17.0" prefWidth="73.0" text="Member ID:" />
+        <TextField fx:id="searchMemberId" layoutX="87.0" layoutY="16.0" />
+        <Label layoutX="398.0" layoutY="20.0" prefHeight="17.0" prefWidth="87.0" text="Member Name" />
+        <TextField fx:id="searchMemberName" layoutX="492.0" layoutY="16.0" prefHeight="25.0" prefWidth="226.0" />
+        <TableView fx:id="tableView" layoutY="45.0" prefHeight="320.0" prefWidth="718.0">
+          <columns>
+            <TableColumn fx:id="colId" prefWidth="77.0" text="ID" />
+            <TableColumn fx:id="colFirstName" prefWidth="129.0" text="First Name" />
+            <TableColumn fx:id="colLastName" prefWidth="98.0" text="Last Name" />
+            <TableColumn fx:id="colPhone" prefWidth="105.0" text="Phone No" />
+            <TableColumn fx:id="colStreet" prefWidth="79.0" text="Street" />
+            <TableColumn fx:id="colCity" prefWidth="71.0" text="City" />
+            <TableColumn fx:id="colState" minWidth="0.0" prefWidth="76.0" text="State" />
+            <TableColumn fx:id="colZip" prefWidth="82.0" text="Zip Code" />
+          </columns>
+        </TableView>
+      </children>
+    </Pane>
+    <Pane layoutX="14.0" layoutY="393.0" prefHeight="25.0" prefWidth="615.0">
+         <children>
+        <Button fx:id="deleteBTN" layoutX="343.0" layoutY="-12.0" mnemonicParsing="false" onAction="#deleteRecord" prefHeight="25.0" prefWidth="111.0" text="Delete Record" />
+         </children>
+    </Pane>
+  <Button layoutX="736.0" layoutY="381.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="64.0" text="Back" />
+  <Button layoutX="611.0" layoutY="381.0" mnemonicParsing="false" onAction="#printCheckoutInfo" prefHeight="25.0" prefWidth="103.0" text="Print" />
+  <Button fx:id="editBTN" layoutX="490.0" layoutY="381.0" mnemonicParsing="false" onAction="#addEditAction" prefHeight="25.0" prefWidth="96.0" text="Edit Record" />
+  </children>
+</AnchorPane>
