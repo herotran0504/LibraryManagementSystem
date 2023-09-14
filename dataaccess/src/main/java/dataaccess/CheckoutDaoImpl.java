@@ -42,10 +42,10 @@ class CheckoutDaoImpl implements CheckoutDao {
         checkout = tempCheckout;
         FileOperation.saveToStorage(StorageType.CHECKOUT, tempCheckout);
         checkout.put(memberId, originalList);
-        updateCheckoutPublication(checkoutEntries.get(0).getCopy().getBook());
+        updateCheckoutBook(checkoutEntries.get(0).getCopy().getBook());
     }
 
-    private void updateCheckoutPublication(Book book) throws CheckoutException {
+    private void updateCheckoutBook(Book book) throws CheckoutException {
         if (book != null) {
             updateCheckoutCopy(book.getIsbn());
         }
@@ -60,7 +60,7 @@ class CheckoutDaoImpl implements CheckoutDao {
                 book = books.get(isbn);
                 for (int i = 0; i < book.getCopies().length; i++) {
                     final BookCopy copy = book.getCopies()[i];
-                    if (!copy.isAvailable()) {
+                    if (copy.isAvailable()) {
                         copy.changeAvailability();
                         break;
                     }

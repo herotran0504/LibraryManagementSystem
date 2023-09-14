@@ -29,6 +29,6 @@ public class Functors {
     public static final Function<Book, Integer> AVAILABLE_COPIES_COUNTER = (p) -> Functors.AVAILABLE_COPIES_FINDER.apply(p).size();
 
     public static final Function<Book, List<BookCopy>> AVAILABLE_COPIES_FINDER = (p) -> p.getCopies() == null ? new ArrayList<>() : Arrays.stream(p.getCopies())
-            .filter(p1 -> !p1.isAvailable())
+            .filter(BookCopy::isAvailable)
             .collect(Collectors.toList());
 }

@@ -62,9 +62,7 @@ public class BookSearchView implements Initializable {
 
     public void showCompleteList() {
         try {
-
             Result<List<Book>> result = controller.getAllBooks();
-
             colPublicationType.setCellValueFactory(data -> new ReadOnlyObjectWrapper<>(data.getValue().getClass().getSimpleName()));
             collPublicationId.setCellValueFactory(data -> new ReadOnlyObjectWrapper<>(data.getValue().getIsbn()));
             colTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
