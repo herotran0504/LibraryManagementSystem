@@ -1,9 +1,6 @@
 package librarysystem.dao;
 
-import librarysystem.models.Book;
-import librarysystem.models.CheckoutRecord;
-import librarysystem.models.CheckoutRecordEntry;
-import librarysystem.models.Publication;
+import librarysystem.models.*;
 import librarysystem.util.FileOperation;
 import librarysystem.util.Result;
 
@@ -37,13 +34,13 @@ class CheckoutDaoImpl implements CheckoutDao {
         checkout = tempCheckout;
         FileOperation.saveToStorage(CHECKOUT, tempCheckout);
         checkout.put(memberId, originalList);
-        updateCheckoutPublication(checkoutEntries.get(0).getCopy().getPublication());
+        updateCheckoutPublication(checkoutEntries.get(0).getCopy().getBook());
     }
 
-    private void updateCheckoutPublication(Publication publication) throws Result {
+    private void updateCheckoutPublication(Book publication) throws Result {
         if (publication instanceof Book) {
             BookDao bookDao = new BookDaoImpl();
-            bookDao.updateCheckoutCopy(publication.getPublicationId());
+            bookDao.updateCheckoutCopy(publication.getIsbn());
         }
     }
 

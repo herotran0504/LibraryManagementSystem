@@ -1,6 +1,6 @@
 package librarysystem.util;
 
-import librarysystem.models.Copy;
+import librarysystem.models.BookCopy;
 import librarysystem.models.LibraryMember;
 import librarysystem.models.Publication;
 
@@ -27,8 +27,8 @@ public class Functors {
 
     public static final Function<Publication, Integer> AVAILABLE_COPIES_COUNTER = (p) -> Functors.AVAILABLE_COPIES_FINDER.apply(p).size();
 
-    public static final Function<Publication, List<Copy>> AVAILABLE_COPIES_FINDER = (p) -> p.getCopies() == null ? new ArrayList<>() : p.getCopies()
+    public static final Function<Publication, List<BookCopy>> AVAILABLE_COPIES_FINDER = (p) -> p.getCopies() == null ? new ArrayList<>() : p.getCopies()
             .stream()
-            .filter(p1 -> !p1.isCheckedOut())
+            .filter(p1 -> !p1.isAvailable())
             .collect(Collectors.toList());
 }

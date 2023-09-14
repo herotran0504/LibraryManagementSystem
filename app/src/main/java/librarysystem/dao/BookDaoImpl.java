@@ -1,6 +1,7 @@
 package librarysystem.dao;
 
 import librarysystem.models.Book;
+import librarysystem.models.BookCopy;
 import librarysystem.util.FileOperation;
 import librarysystem.util.FileOperation.StorageType;
 import librarysystem.util.Result;
@@ -16,11 +17,10 @@ class BookDaoImpl implements BookDao {
     @Override
     public void addBook(Book newBook) throws Result {
         Map<String, Book> book = readBookMap();
-        book.put(newBook.getISBN(), newBook);
+        book.put(newBook.getIsbn(), newBook);
         books = book;
         FileOperation.saveToStorage(StorageType.BOOKS, book);
-        System.out.println(book);
-        books.put(newBook.getISBN(), newBook);
+        books.put(newBook.getIsbn(), newBook);
     }
 
     @Override
@@ -68,9 +68,10 @@ class BookDaoImpl implements BookDao {
         Book book;
         if (books.containsKey(publicationId)) {
             book = books.get(publicationId);
-            for (int i = 0; i < book.getCopies().size(); i++) {
-                if (!book.getCopies().get(i).isCheckedOut()) {
-                    book.getCopies().get(i).setCheckedOut(true);
+            for (int i = 0; i < book.getCopies().length; i++) {
+                final BookCopy copy = book.getCopies()[i];
+                if (!copy.isAvailable()) {
+                    copy.changeAvailability();
                     break;
                 }
             }

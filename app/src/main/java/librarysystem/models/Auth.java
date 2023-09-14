@@ -1,5 +1,5 @@
 package librarysystem.models;
 
-public enum Role {
+public enum Auth {
     LIBRARIAN, ADMIN, BOTH
 }

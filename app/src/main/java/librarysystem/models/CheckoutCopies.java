@@ -19,7 +19,7 @@ public class CheckoutCopies {
         }
     }
 
-    public String getCheckoutDate(Copy copy) {
+    public String getCheckoutDate(BookCopy copy) {
         if (checkedOutCopies.containsKey(copy.getPrimaryKey())) {
             return checkedOutCopies.get(copy.getPrimaryKey()).getCheckoutDate();
         } else {
@@ -27,7 +27,7 @@ public class CheckoutCopies {
         }
     }
 
-    public String getDueDate(Copy copy) {
+    public String getDueDate(BookCopy copy) {
         if (checkedOutCopies.containsKey(copy.getPrimaryKey())) {
             return checkedOutCopies.get(copy.getPrimaryKey()).getDueDate();
         } else {
@@ -35,7 +35,7 @@ public class CheckoutCopies {
         }
     }
 
-    public String getStatus(Copy copy) throws Result {
+    public String getStatus(BookCopy copy) throws Result {
         if (checkedOutCopies.containsKey(copy.getPrimaryKey())) {
             try {
                 Date dueDate = DateUtil.parse(checkedOutCopies.get(copy.getPrimaryKey()).getDueDate());
@@ -53,7 +53,7 @@ public class CheckoutCopies {
         }
     }
 
-    public String getFirstNameOfMember(Copy copy) {
+    public String getFirstNameOfMember(BookCopy copy) {
         if (checkedOutCopies.containsKey(copy.getPrimaryKey())) {
             return checkedOutCopies.get(copy.getPrimaryKey()).getCheckoutRecord().getLibraryMember().getFirstname();
         } else {
@@ -61,7 +61,7 @@ public class CheckoutCopies {
         }
     }
 
-    public String getLastNameOfMember(Copy copy) {
+    public String getLastNameOfMember(BookCopy copy) {
         if (checkedOutCopies.containsKey(copy.getPrimaryKey())) {
             return checkedOutCopies.get(copy.getPrimaryKey()).getCheckoutRecord().getLibraryMember().getLastName();
         } else {
@@ -69,7 +69,7 @@ public class CheckoutCopies {
         }
     }
 
-    public String getCheckingMemberId(Copy copy) {
+    public String getCheckingMemberId(BookCopy copy) {
         if (checkedOutCopies.containsKey(copy.getPrimaryKey())) {
             return checkedOutCopies.get(copy.getPrimaryKey()).getCheckoutRecord().getLibraryMember().getMemberId();
         } else {

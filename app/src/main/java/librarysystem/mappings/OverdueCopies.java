@@ -10,9 +10,9 @@ import javafx.scene.control.TableView;
 import librarysystem.controller.CheckoutController;
 import librarysystem.controller.ControllerFactory;
 import librarysystem.controller.UiLoader;
+import librarysystem.models.BookCopy;
 import librarysystem.models.CheckoutCopies;
 import librarysystem.models.CheckoutRecordEntry;
-import librarysystem.models.Copy;
 import librarysystem.models.Publication;
 import librarysystem.util.Const;
 import librarysystem.util.DialogUtil;
@@ -26,21 +26,21 @@ public class OverdueCopies implements Initializable {
     @FXML
     private PublicationLookUp publicationViewController;
     @FXML
-    private TableView<Copy> copiesInfo;
+    private TableView<BookCopy> copiesInfo;
     @FXML
-    private TableColumn<Copy, Integer> copyno;
+    private TableColumn<BookCopy, Integer> copyno;
     @FXML
-    private TableColumn<Copy, String> checkoutdate;
+    private TableColumn<BookCopy, String> checkoutdate;
     @FXML
-    private TableColumn<Copy, String> duedate;
+    private TableColumn<BookCopy, String> duedate;
     @FXML
-    private TableColumn<Copy, String> remarks;
+    private TableColumn<BookCopy, String> remarks;
     @FXML
-    private TableColumn<Copy, String> firstname;
+    private TableColumn<BookCopy, String> firstname;
     @FXML
-    private TableColumn<Copy, String> lastname;
+    private TableColumn<BookCopy, String> lastname;
     @FXML
-    private TableColumn<Copy, String> memberid;
+    private TableColumn<BookCopy, String> memberid;
 
     private CheckoutCopies checkedoutCopies;
     private final CheckoutController checkoutController = ControllerFactory.get().getCheckoutController();
@@ -66,7 +66,7 @@ public class OverdueCopies implements Initializable {
 
     private void showCopiesInfo() {
         ObservableList<Publication> list = publicationViewController.getTableView().getSelectionModel().getSelectedItems();
-        ObservableList<Copy> copies = FXCollections.observableArrayList();
+        ObservableList<BookCopy> copies = FXCollections.observableArrayList();
         copies.addAll(list.get(0).getCopies());
         addCopiesColumnValueFactories();
         copiesInfo.setItems(copies);

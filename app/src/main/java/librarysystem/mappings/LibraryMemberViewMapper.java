@@ -11,12 +11,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import librarysystem.controller.*;
-import librarysystem.models.Role;
+import librarysystem.models.Auth;
 import librarysystem.models.CheckoutRecordEntry;
 import librarysystem.models.LibraryMember;
 import librarysystem.util.Const;
-import librarysystem.util.Functors;
 import librarysystem.util.DialogUtil;
+import librarysystem.util.Functors;
 import librarysystem.util.Result;
 
 import java.net.URL;
@@ -65,7 +65,7 @@ public class LibraryMemberViewMapper implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         populateGrid();
 
-        if (UserController.role.toString().equals(Role.LIBRARIAN.toString())) {
+        if (UserController.auth.toString().equals(Auth.LIBRARIAN.toString())) {
             editBTN.setDisable(true);
             deleteBTN.setDisable(true);
         }
@@ -166,19 +166,18 @@ public class LibraryMemberViewMapper implements Initializable {
                             + String.format("%-15s", "Checkout Date")
                             + String.format("%-15s", "Due Date"));
 
-                    stringBuffer
-                            .append("\n========================================================================================");
+                    stringBuffer.append("\n========================================================================================");
                     int count = 0;
                     for (CheckoutRecordEntry checkoutRecordEntry : checkoutEntries) {
                         stringBuffer.append('\n');
                         stringBuffer.append(String.format("%-5s", ++count)
                                 + String.format("%-15s", checkoutRecordEntry
-                                .getCopy().getPublication()
-                                .getPublicationId())
+                                .getCopy().getBook()
+                                .getIsbn())
                                 + String.format("%-30s", checkoutRecordEntry
-                                .getCopy().getPublication().getTitle())
+                                .getCopy().getBook().getTitle())
                                 + String.format("%-12s", checkoutRecordEntry
-                                .getCopy().getPublication().getClass()
+                                .getCopy().getBook().getClass()
                                 .getSimpleName())
                                 + String.format("%-15s",
                                 checkoutRecordEntry.getCheckoutDate())

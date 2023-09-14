@@ -14,8 +14,8 @@ import librarysystem.models.Address;
 import librarysystem.models.Author;
 import librarysystem.models.Book;
 import librarysystem.util.Const;
-import librarysystem.util.Result;
 import librarysystem.util.DialogUtil;
+import librarysystem.util.Result;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,14 +53,11 @@ public class AddBook {
 
     @FXML
     protected void addNewMember() {
-        Book book = new Book();
-        book.setISBN(isbn.getText());
-        book.setTitle(title.getText());
-        book.setMaxCheckoutLength(Integer.parseInt(maxcheckoutlength.getText()));
-
-        List<Author> authors = new ArrayList<>(authorstable.getItems());
-        book.setAuthorList(authors);
-
+        final String isbn = this.isbn.getText();
+        final String title = this.title.getText();
+        final int maxCheckoutLength = Integer.parseInt(maxcheckoutlength.getText());
+        final List<Author> authors = new ArrayList<>(authorstable.getItems());
+        Book book = new Book(isbn, title, maxCheckoutLength, authors);
         try {
             Result response = controller.addNewBook(book);
             if (response.getSuccess()) {

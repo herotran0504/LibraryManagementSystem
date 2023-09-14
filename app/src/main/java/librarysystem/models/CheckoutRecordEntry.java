@@ -6,13 +6,13 @@ public class CheckoutRecordEntry implements Serializable {
 
     private final String checkoutDate;
     private final String dueDate;
-    private final Copy copy;
+    private final BookCopy copy;
     private final CheckoutRecord checkoutRecord;
 
     public CheckoutRecordEntry(
             String checkoutDate,
             String dueDate,
-            Copy copy,
+            BookCopy copy,
             CheckoutRecord checkoutRecord
     ) {
         this.checkoutDate = checkoutDate;
@@ -29,7 +29,7 @@ public class CheckoutRecordEntry implements Serializable {
         return dueDate;
     }
 
-    public Copy getCopy() {
+    public BookCopy getCopy() {
         return copy;
     }
 

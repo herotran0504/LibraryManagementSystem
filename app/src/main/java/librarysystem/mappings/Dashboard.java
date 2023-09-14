@@ -8,7 +8,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import librarysystem.controller.UserController;
 import librarysystem.main.Main;
-import librarysystem.models.Role;
+import librarysystem.models.Auth;
 import librarysystem.util.DialogUtil;
 import librarysystem.util.Navigator;
 
@@ -48,24 +48,24 @@ public class Dashboard extends Navigator implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        if (UserController.role.toString().equals(Role.ADMIN.toString())) {
+        if (UserController.auth.toString().equals(Auth.ADMIN.toString())) {
             checkout.setDisable(true);
-            welcomeLBL.setText(greeting(Role.ADMIN));
-        } else if (UserController.role.toString().equals(Role.LIBRARIAN.toString())) {
+            welcomeLBL.setText(greeting(Auth.ADMIN));
+        } else if (UserController.auth.toString().equals(Auth.LIBRARIAN.toString())) {
             addCopy.setDisable(true);
             openBook.setDisable(true);
             /*openPeriodical.setDisable(true);*/
             addMember.setDisable(true);
-            final String value = greeting(Role.LIBRARIAN);
+            final String value = greeting(Auth.LIBRARIAN);
             welcomeLBL.setText(value);
 
         } else {
-            welcomeLBL.setText(greeting(Role.BOTH));
+            welcomeLBL.setText(greeting(Auth.BOTH));
         }
 
     }
 
-    private static String greeting(Role librarian) {
+    private static String greeting(Auth librarian) {
         return "Welcome, Access Level [" + librarian + ']';
     }
 

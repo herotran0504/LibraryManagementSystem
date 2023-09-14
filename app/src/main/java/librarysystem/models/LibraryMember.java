@@ -5,26 +5,14 @@ public class LibraryMember extends Person {
     private String memberId;
     private CheckoutRecord checkoutRecord;
     private CheckoutRecordEntry checkoutRecordEntry;
-    private Copy numOfCopy;
+    private BookCopy numOfCopy;
 
     public LibraryMember() {
     }
 
-    public LibraryMember(
-            String memberId,
-            String firstName,
-            String lastName,
-            String phone,
-            Address address,
-            CheckoutRecord checkoutRecord,
-            CheckoutRecordEntry checkoutRecordEntry,
-            Copy numOfCopy
-    ) {
+    public LibraryMember(String memberId, String firstName, String lastName, String phone, Address address) {
         super(firstName, lastName, phone, address);
         this.memberId = memberId;
-        this.checkoutRecord = checkoutRecord;
-        this.checkoutRecordEntry = checkoutRecordEntry;
-        this.numOfCopy = numOfCopy;
     }
 
     public String getMemberId() {
@@ -51,11 +39,11 @@ public class LibraryMember extends Person {
         this.checkoutRecordEntry = checkoutRecordEntry;
     }
 
-    public Copy getNumOfCopy() {
+    public BookCopy getNumOfCopy() {
         return numOfCopy;
     }
 
-    public void setNumOfCopy(Copy numOfCopy) {
+    public void setNumOfCopy(BookCopy numOfCopy) {
         this.numOfCopy = numOfCopy;
     }
 

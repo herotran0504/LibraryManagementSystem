@@ -93,7 +93,7 @@ public class CheckoutMapper implements Initializable {
                 LibraryMember libraryMember;
                 try {
                     libraryMember = (LibraryMember) libraryMemberController.getMember(member).getData();
-                    Copy copy = Functors.AVAILABLE_COPIES_FINDER.apply(publication).get(0);
+                    BookCopy copy = Functors.AVAILABLE_COPIES_FINDER.apply(publication).get(0);
                     //copy.setCheckedout(true);
                     checkoutRecord = checkoutController.getCheckoutRecord(libraryMember);
                     List<CheckoutRecordEntry> checkoutEntries = checkoutRecord.getCheckoutEntries();

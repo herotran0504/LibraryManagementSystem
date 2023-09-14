@@ -14,11 +14,11 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void addUser(User user) throws Result {
         HashMap<String, User> mems = readUserMap();
-        if (!mems.containsKey(user.getUserName())) {
-            mems.put(user.getUserName(), user);
+        if (!mems.containsKey(user.getId())) {
+            mems.put(user.getId(), user);
             users = mems;
             FileOperation.saveToStorage(StorageType.USERS, mems);
-            users.put(user.getUserName(), user);
+            users.put(user.getId(), user);
         } else {
             System.out.println("ERROR: user already exist");
         }
@@ -31,8 +31,8 @@ public class UserDaoImpl implements UserDao {
         HashMap<String, User> mems = readUserMap();
         for (Entry<String, User> entry : mems.entrySet()) {
             User temp = entry.getValue();
-            if (user.getUserName().equals(temp.getUserName())
-                    && user.getUserPassword().equals(temp.getUserPassword()))
+            if (user.getId().equals(temp.getId())
+                    && user.getPassword().equals(temp.getPassword()))
                 return temp;
         }
         return null;

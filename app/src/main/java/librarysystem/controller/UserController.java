@@ -1,12 +1,12 @@
 package librarysystem.controller;
 
 import librarysystem.dao.UserDao;
-import librarysystem.models.Role;
+import librarysystem.models.Auth;
 import librarysystem.models.User;
 import librarysystem.util.Result;
 
 public class UserController {
-    public static Role role;
+    public static Auth auth;
     private final UserDao userDao;
 
     UserController(UserDao userDao) {
@@ -26,10 +26,10 @@ public class UserController {
         try {
             User result = userDao.checkUser(user);
             if (result != null) {
-                role = result.getRole();
+                auth = result.getAuthorization();
                 return new Result(true, "User exist");
             } else {
-                role = null;
+                auth = null;
                 return new Result(false, "User doesn't exist");
             }
         } catch (Exception e) {

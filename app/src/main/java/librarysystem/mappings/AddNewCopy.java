@@ -6,7 +6,6 @@ import javafx.scene.control.TextField;
 import librarysystem.controller.ControllerFactory;
 import librarysystem.controller.PublicationController;
 import librarysystem.controller.UiLoader;
-import librarysystem.models.Book;
 import librarysystem.models.Publication;
 import librarysystem.util.Const;
 import librarysystem.util.DialogUtil;
@@ -26,11 +25,9 @@ public class AddNewCopy {
         ObservableList<Publication> selected = publicationViewController.getTableView()
                 .getSelectionModel().getSelectedItems();
         if (selected.size() == 0) {
-            DialogUtil
-                    .showInformationDialog("Select a publication first");
+            DialogUtil.showInformationDialog("Select a publication first");
         } else if (selected.size() > 1) {
-            DialogUtil
-                    .showInformationDialog("Selecting multiple items is not allowed!!");
+            DialogUtil.showInformationDialog("Selecting multiple items is not allowed!!");
         } else {
             try {
                 Integer noOfCopies = Integer.parseInt(txtNumOfCopies.getText());
@@ -38,10 +35,10 @@ public class AddNewCopy {
                 for (int i = 0; i < noOfCopies; i++) {
                     p.addCopy();
                 }
-
-                if (p instanceof Book) {
-                    controller.addNewBook((Book) p);
-                }
+                // FIXME hung.tran
+//                if (p instanceof Book) {
+//                    controller.addNewBook((Book) p);
+//                }
                 publicationViewController.showCompleteList();
                 showBookAddedInfo(noOfCopies);
             } catch (NumberFormatException e) {

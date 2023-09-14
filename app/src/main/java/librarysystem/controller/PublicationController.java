@@ -2,7 +2,6 @@ package librarysystem.controller;
 
 import librarysystem.dao.BookDao;
 import librarysystem.models.Book;
-import librarysystem.models.Publication;
 import librarysystem.util.Result;
 
 import java.util.ArrayList;
@@ -22,8 +21,7 @@ public class PublicationController {
     }
 
     public Result getAllPublications() throws Result {
-        List<Publication> allPublications = new ArrayList<>();
-        allPublications.addAll(dao.getAll());
+        List<Book> allPublications = new ArrayList<>(dao.getAll());
         Result response = new Result(true, "All Publications Retrived");
         response.setData(allPublications);
         return response;

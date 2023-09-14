@@ -7,7 +7,7 @@ import java.util.List;
 public abstract class Publication implements Serializable {
 
     private String title;
-    private List<Copy> copies = new ArrayList<>();
+    protected List<BookCopy> copies = new ArrayList<>();
 
     private int maxCheckoutLength;
 
@@ -18,7 +18,7 @@ public abstract class Publication implements Serializable {
     protected Publication() {
     }
 
-    public List<Copy> getCopies() {
+    public List<BookCopy> getCopies() {
         return copies;
     }
 
@@ -46,9 +46,10 @@ public abstract class Publication implements Serializable {
         if (this.copies == null) {
             this.copies = new ArrayList<>();
         }
-        Copy copy = new Copy(this.copies.size() + 1);
-        copy.setCheckedOut(false);
-        copy.setPublication(this);
-        this.copies.add(copy);
+        // FIXME hung.tran
+//        BookCopy copy = new BookCopy((Book) this ,this.copies.size() + 1);
+//        copy.(false);
+//        copy.setPublication(this);
+//        this.copies.add(copy);
     }
 }

@@ -2,35 +2,37 @@ package librarysystem.models;
 
 import java.io.Serializable;
 
-public class User implements Serializable {
+public final class User implements Serializable {
 
-    private static final long serialVersionUID = 8093511372121801726L;
+    private final String id;
+    private final String password;
+    private Auth authorization;
 
-    private final String userName;
-    private final String userPassword;
-    private Role role;
-
-    public User(String userName, String userPassword, Role role) {
-        this.userName = userName;
-        this.userPassword = userPassword;
-        this.role = role;
+    public User(String id, String password, Auth authorization) {
+        this.id = id;
+        this.password = password;
+        this.authorization = authorization;
     }
 
-    public User(String userName, String userPassword) {
-        this.userName = userName;
-        this.userPassword = userPassword;
+    public User(String id, String password) {
+        this.id = id;
+        this.password = password;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getId() {
+        return id;
     }
 
-    public String getUserPassword() {
-        return userPassword;
+    public String getPassword() {
+        return password;
     }
 
-    public Role getRole() {
-        return role;
+    public Auth getAuthorization() {
+        return authorization;
     }
 
+    @Override
+    public String toString() {
+        return "[" + id + ":" + password + ", " + authorization.toString() + "]";
+    }
 }

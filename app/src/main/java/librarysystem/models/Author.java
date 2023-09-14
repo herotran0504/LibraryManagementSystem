@@ -1,28 +1,20 @@
 package librarysystem.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Author extends Person {
 
     private String credentials;
     private String shortBio;
-    private List<Book> bookList;
+    private List<Book> bookList = new ArrayList<>();
 
     public Author() {
     }
 
-    public Author(
-            String firstname,
-            String lastName,
-            String phone,
-            Address address,
-            String credentials,
-            String shortBio,
-            List<Book> bookList
-    ) {
+    public Author(String firstname, String lastName, String phone, Address address, String shortBio) {
         super(firstname, lastName, phone, address);
-        this.credentials = credentials;
-        this.bookList = bookList;
+        this.shortBio = shortBio;
     }
 
     public String getCredentials() {
