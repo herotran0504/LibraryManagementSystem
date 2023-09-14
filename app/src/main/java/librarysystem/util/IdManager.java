@@ -3,9 +3,12 @@ package librarysystem.util;
 import java.io.*;
 import java.util.Properties;
 
+import static librarysystem.util.Const.MEMBER_PROPERTY_KEY;
+import static librarysystem.util.FileOperation.STORAGE_DIR;
+
 public class IdManager {
 
-    public static final String OUTPUT_DIR = System.getProperty("user.dir") + "\\storage\\id.properties";
+    public static final String OUTPUT_DIR = STORAGE_DIR + "id.properties";
 
     public static String getNextID(String key) {
         Properties prop = new Properties();
@@ -13,13 +16,13 @@ public class IdManager {
         String newValue = null;
         try {
             input = new FileInputStream(OUTPUT_DIR);
-
             // load a properties file
             prop.load(input);
 
             // get the property value and print it out
-            newValue = String.valueOf((Integer.valueOf(prop.getProperty(key)) + 1));
-            updateID("librarymember_id", (Integer.valueOf(prop.getProperty(key)) + 1));
+            final int safeKeyInt = getSafeKeyInt(prop);
+            newValue = String.valueOf(safeKeyInt + 1);
+            updateID(MEMBER_PROPERTY_KEY, safeKeyInt);
 
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -38,9 +41,7 @@ public class IdManager {
     public static void updateID(String key, int newValue) {
         Properties prop = new Properties();
         OutputStream output = null;
-
         try {
-
             output = new FileOutputStream(OUTPUT_DIR);
 
             // set the properties value
@@ -61,7 +62,15 @@ public class IdManager {
             }
 
         }
-        System.out.println("New::" + prop.getProperty("librarymember_id"));
-
+        System.out.println("New::" + prop.getProperty(MEMBER_PROPERTY_KEY));
     }
+
+    private static int getSafeKeyInt(Properties prop) {
+        try {
+            return Integer.parseInt(prop.getProperty(MEMBER_PROPERTY_KEY));
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
 }

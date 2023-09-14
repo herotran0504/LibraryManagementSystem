@@ -14,9 +14,9 @@ import librarysystem.util.Const;
 import librarysystem.util.DialogUtil;
 import librarysystem.util.Functors;
 import librarysystem.util.Result;
+import librarysystem.utils.DateUtil;
 
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -47,11 +47,8 @@ public class CheckoutMapper implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         checkoutBtn.setDisable(true);
-        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-        Date date = new Date();
-        setCheckoutDate(sdf.format(date));
+        setCheckoutDate(DateUtil.format(new Date()));
 
-        // Listener
         publicationViewController.getTableView().getSelectionModel()
                 .selectedItemProperty()
                 .addListener((obs, oldSelection, newSelection) -> {
@@ -132,7 +129,6 @@ public class CheckoutMapper implements Initializable {
                     setLastName(libraryMember.getLastName());
                     memberId.setDisable(true);
                     checkMemberBtn.setDisable(true);
-
                 } else {
                     DialogUtil.showServiceResponseMessage(result);
                     memberId.requestFocus();
@@ -185,9 +181,7 @@ public class CheckoutMapper implements Initializable {
         Calendar c = Calendar.getInstance();
         c.setTime(date);
         c.add(Calendar.DATE, day);
-
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-        return dateFormat.format(c.getTime());
+        return DateUtil.format(c.getTime());
     }
 
     public void back() {

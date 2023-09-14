@@ -1,9 +1,9 @@
 package librarysystem.models;
 
 import librarysystem.util.Result;
+import librarysystem.utils.DateUtil;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -37,12 +37,9 @@ public class CheckoutCopies {
 
     public String getStatus(Copy copy) throws Result {
         if (checkedOutCopies.containsKey(copy.getPrimaryKey())) {
-            SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
-            Date dueDate;
-            Date currentDate;
             try {
-                dueDate = format.parse(checkedOutCopies.get(copy.getPrimaryKey()).getDueDate());
-                currentDate = new Date();
+                Date dueDate = DateUtil.parse(checkedOutCopies.get(copy.getPrimaryKey()).getDueDate());
+                Date currentDate = new Date();
                 if (dueDate.compareTo(currentDate) > 0) {
                     return "CHECKED OUT";
                 } else {
@@ -51,7 +48,6 @@ public class CheckoutCopies {
             } catch (ParseException e) {
                 throw new Result(false, e.getMessage());
             }
-
         } else {
             return "AVAILABLE";
         }

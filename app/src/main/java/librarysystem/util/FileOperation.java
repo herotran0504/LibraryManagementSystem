@@ -1,5 +1,7 @@
 package librarysystem.util;
 
+import librarysystem.utils.FileUtil;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -13,20 +15,18 @@ import java.util.Map;
 public class FileOperation {
 
     public enum StorageType {
-        BOOKS, PERIODICALS, MEMBERS, USERS, CHECKOUT
+        BOOKS, MEMBERS, USERS, CHECKOUT
     }
 
-    public static final String OUTPUT_DIR = System.getProperty("user.dir") + "/storage/";
-    public static final String DATE_PATTERN = "MM/dd/yyyy";
+    public static final String SLASH = System.getProperty("file.separator");
+
+    public static final String STORAGE_DIR = System.getProperty("user.dir") + SLASH + "storage" + SLASH;
 
     public static void saveToStorage(StorageType type, Object ob) {
         ObjectOutputStream out = null;
         try {
-            File storage = new File(OUTPUT_DIR);
-            if (!storage.exists()) {
-                storage.mkdirs();
-            }
-            Path path = FileSystems.getDefault().getPath(OUTPUT_DIR, type.toString());
+            FileUtil.mkdirs(STORAGE_DIR);
+            Path path = FileSystems.getDefault().getPath(STORAGE_DIR, type.toString());
             out = new ObjectOutputStream(Files.newOutputStream(path));
             out.writeObject(ob);
         } catch (IOException e) {
@@ -45,7 +45,7 @@ public class FileOperation {
         ObjectInputStream in = null;
         Object retVal = null;
         try {
-            Path path = FileSystems.getDefault().getPath(OUTPUT_DIR, type.toString());
+            Path path = FileSystems.getDefault().getPath(STORAGE_DIR, type.toString());
 
             File file = new File(path.toString());
             if (file.length() != 0) { //Check Empty File Or Not
