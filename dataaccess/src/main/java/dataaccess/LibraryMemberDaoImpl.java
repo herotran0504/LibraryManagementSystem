@@ -14,12 +14,10 @@ public class LibraryMemberDaoImpl implements LibraryMemberDao {
 
     @Override
     public void addLibraryMember(LibraryMember libraryMember) throws Result {
-        Map<String, LibraryMember> mems = readMemberMap();
+        readMemberMap();
         System.out.println("Add: " + libraryMember);
-        mems.put(libraryMember.getMemberId(), libraryMember);
-        members = mems;
-        FileOperation.saveToStorage(StorageType.MEMBERS, mems);
         members.put(libraryMember.getMemberId(), libraryMember);
+        FileOperation.saveToStorage(StorageType.MEMBERS, members);
     }
 
     @Override
@@ -29,19 +27,19 @@ public class LibraryMemberDaoImpl implements LibraryMemberDao {
 
     @Override
     public void deleteLibraryMember(String id) throws Result {
-        Map<String, LibraryMember> mems = readMemberMap();
-        LibraryMember mem = mems.remove(id);
+        readMemberMap();
+        LibraryMember mem = members.remove(id);
         System.out.println("Delete: " + mem);
-        FileOperation.saveToStorage(StorageType.MEMBERS, mems);
-        members.remove(id);
+        FileOperation.saveToStorage(StorageType.MEMBERS, members);
     }
 
     @Override
     public LibraryMember findLibraryMember(String memberId) throws Result {
-        Map<String, LibraryMember> mems = readMemberMap();
-        if (mems.containsKey(memberId)) {
-            System.out.println(mems.get(memberId));
-            return mems.get(memberId);
+        readMemberMap();
+        if (members.containsKey(memberId)) {
+            LibraryMember mem = members.get(memberId);
+            System.out.println(mem);
+            return mem;
         }
         return null;
     }
@@ -59,9 +57,9 @@ public class LibraryMemberDaoImpl implements LibraryMemberDao {
 
     @Override
     public List<LibraryMember> findMembers() throws Result {
+        readMemberMap();
         List<LibraryMember> list = new ArrayList<>();
-        Map<String, LibraryMember> hash = readMemberMap();
-        for (Map.Entry<String, LibraryMember> entry : hash.entrySet()) {
+        for (Map.Entry<String, LibraryMember> entry : members.entrySet()) {
             list.add(entry.getValue());
         }
         return list;
