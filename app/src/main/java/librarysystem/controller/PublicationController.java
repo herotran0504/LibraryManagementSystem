@@ -1,8 +1,8 @@
 package librarysystem.controller;
 
-import librarysystem.dao.BookDao;
-import librarysystem.models.Book;
-import librarysystem.util.Result;
+import business.Book;
+import dataaccess.BookDao;
+import librarysystem.utils.Result;
 
 import java.util.ArrayList;
 import java.util.List;

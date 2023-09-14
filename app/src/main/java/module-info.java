@@ -2,6 +2,8 @@ module librarysystem.main {
     requires javafx.controls;
     requires javafx.fxml;
     requires librarysystem.utils;
+    requires business;
+    requires dataaccess;
 
     opens librarysystem.main to javafx.fxml;
     exports librarysystem.main;
@@ -15,6 +17,6 @@ module librarysystem.main {
     opens librarysystem.util to javafx.fxml;
     exports librarysystem.util;
 
-    opens librarysystem.models to javafx.fxml;
-    exports librarysystem.models;
+    exports mock;
+    opens mock to javafx.fxml;
 }

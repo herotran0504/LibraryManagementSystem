@@ -1,0 +1,4 @@
+plugins {
+    id 'java'
+    id 'librarysystem.java-library-conventions'
+}

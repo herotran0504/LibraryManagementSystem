@@ -7,10 +7,10 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import librarysystem.controller.ControllerFactory;
 import librarysystem.controller.UserController;
-import librarysystem.models.User;
+import business.User;
 import librarysystem.util.Navigator;
 import librarysystem.util.DialogUtil;
-import librarysystem.util.Result;
+import librarysystem.utils.Result;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -49,7 +49,7 @@ public class UserLoginMapper extends Navigator implements Initializable {
                 }
             }
         } catch (Exception e) {
-            DialogUtil.showServiceResponseMessage();
+            DialogUtil.showServiceResponseMessage(e);
         }
     }
 

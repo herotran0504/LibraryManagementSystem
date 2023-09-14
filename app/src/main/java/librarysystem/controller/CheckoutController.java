@@ -1,10 +1,10 @@
 package librarysystem.controller;
 
-import librarysystem.dao.CheckoutDao;
-import librarysystem.models.CheckoutRecord;
-import librarysystem.models.CheckoutRecordEntry;
-import librarysystem.models.LibraryMember;
-import librarysystem.util.Result;
+import business.CheckoutRecord;
+import business.CheckoutRecordEntry;
+import business.LibraryMember;
+import dataaccess.CheckoutDao;
+import librarysystem.utils.Result;
 
 import java.util.List;
 

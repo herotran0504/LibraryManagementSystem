@@ -5,7 +5,7 @@ import librarysystem.utils.FileUtil;
 import java.io.*;
 import java.util.Properties;
 
-import static librarysystem.util.FileOperation.STORAGE_DIR;
+import static librarysystem.utils.FileOperation.STORAGE_DIR;
 
 public class IdManager {
 

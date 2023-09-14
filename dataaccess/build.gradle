@@ -1,0 +1,9 @@
+plugins {
+    id 'java'
+    id 'librarysystem.java-library-conventions'
+}
+
+dependencies {
+    implementation project(':business')
+    implementation project(path: ':utilities')
+}

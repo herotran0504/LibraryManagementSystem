@@ -1,9 +1,9 @@
 package librarysystem.controller;
 
-import librarysystem.dao.UserDao;
-import librarysystem.models.Auth;
-import librarysystem.models.User;
-import librarysystem.util.Result;
+import business.Auth;
+import business.User;
+import dataaccess.UserDao;
+import librarysystem.utils.Result;
 
 public class UserController {
     public static Auth auth;

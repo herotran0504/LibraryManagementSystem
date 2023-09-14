@@ -1,10 +1,10 @@
 package librarysystem.controller;
 
-import librarysystem.dao.LibraryMemberDao;
-import librarysystem.models.LibraryMember;
+import business.LibraryMember;
+import dataaccess.LibraryMemberDao;
 import librarysystem.util.Const;
 import librarysystem.util.IdManager;
-import librarysystem.util.Result;
+import librarysystem.utils.Result;
 
 import java.util.List;
 

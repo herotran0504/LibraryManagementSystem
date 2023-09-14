@@ -8,7 +8,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import librarysystem.controller.UserController;
 import librarysystem.main.Main;
-import librarysystem.models.Auth;
+import business.Auth;
 import librarysystem.util.DialogUtil;
 import librarysystem.util.Navigator;
 

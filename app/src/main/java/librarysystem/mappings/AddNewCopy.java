@@ -6,7 +6,7 @@ import javafx.scene.control.TextField;
 import librarysystem.controller.ControllerFactory;
 import librarysystem.controller.PublicationController;
 import librarysystem.controller.UiLoader;
-import librarysystem.models.Publication;
+import business.Publication;
 import librarysystem.util.Const;
 import librarysystem.util.DialogUtil;
 

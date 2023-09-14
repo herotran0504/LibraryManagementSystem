@@ -1,5 +1,9 @@
 package librarysystem.mappings;
 
+import business.BookCopy;
+import business.CheckoutCopies;
+import business.CheckoutRecordEntry;
+import business.Publication;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,16 +14,16 @@ import javafx.scene.control.TableView;
 import librarysystem.controller.CheckoutController;
 import librarysystem.controller.ControllerFactory;
 import librarysystem.controller.UiLoader;
-import librarysystem.models.BookCopy;
-import librarysystem.models.CheckoutCopies;
-import librarysystem.models.CheckoutRecordEntry;
-import librarysystem.models.Publication;
 import librarysystem.util.Const;
 import librarysystem.util.DialogUtil;
-import librarysystem.util.Result;
+import librarysystem.utils.Result;
+import librarysystem.utils.DateUtil;
 
 import java.net.URL;
+import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class OverdueCopies implements Initializable {
@@ -83,8 +87,7 @@ public class OverdueCopies implements Initializable {
 
         remarks.setCellValueFactory(data -> {
             try {
-                return new ReadOnlyObjectWrapper<>(checkedoutCopies
-                        .getStatus(data.getValue()));
+                return new ReadOnlyObjectWrapper<>(getStatus(checkedoutCopies, data.getValue()));
             } catch (Result e) {
                 DialogUtil.showExceptionDialog(e.getMessage());
                 return new ReadOnlyObjectWrapper<>("");
@@ -94,6 +97,25 @@ public class OverdueCopies implements Initializable {
         firstname.setCellValueFactory(data -> new ReadOnlyObjectWrapper<>(checkedoutCopies.getFirstNameOfMember(data.getValue())));
         lastname.setCellValueFactory(data -> new ReadOnlyObjectWrapper<>(checkedoutCopies.getLastNameOfMember(data.getValue())));
         memberid.setCellValueFactory(data -> new ReadOnlyObjectWrapper<>(checkedoutCopies.getCheckingMemberId(data.getValue())));
+    }
+
+    private static String getStatus(CheckoutCopies checkoutCopy, BookCopy copy) throws Result {
+        final Map<String, CheckoutRecordEntry> checkedOutCopies = checkoutCopy.getCheckedOutCopies();
+        if (checkedOutCopies.containsKey(copy.getPrimaryKey())) {
+            try {
+                Date dueDate = DateUtil.parse(checkedOutCopies.get(copy.getPrimaryKey()).getDueDate());
+                Date currentDate = new Date();
+                if (dueDate.compareTo(currentDate) > 0) {
+                    return "CHECKED OUT";
+                } else {
+                    return "OVERDUE";
+                }
+            } catch (ParseException e) {
+                throw new Result(false, e.getMessage());
+            }
+        } else {
+            return "AVAILABLE";
+        }
     }
 
     public void back() {
