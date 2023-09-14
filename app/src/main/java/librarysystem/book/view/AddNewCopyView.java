@@ -10,10 +10,10 @@ import business.Publication;
 import librarysystem.util.Const;
 import librarysystem.util.DialogUtil;
 
-public class AddNewCopy {
+public class AddNewCopyView {
 
     @FXML
-    private PublicationLookUp publicationViewController;
+    private PublicationLookUpView publicationViewController;
 
     @FXML
     private TextField txtNumOfCopies;

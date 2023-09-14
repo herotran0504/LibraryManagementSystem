@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
 
 import static librarysystem.util.Const.*;
 
-public class Member implements Initializable {
+public class LibraryMemberView implements Initializable {
     @FXML
     private TextField firstName;
     @FXML
@@ -89,8 +89,8 @@ public class Member implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        if (LibraryMemberViewMapper.getSelectedMember() != null) {
-            LibraryMember libraryMember = LibraryMemberViewMapper.getSelectedMember();
+        if (LibraryMemberTableView.getSelectedMember() != null) {
+            LibraryMember libraryMember = LibraryMemberTableView.getSelectedMember();
             firstName.textProperty().set(libraryMember.getFirstname());
             lastName.textProperty().set(libraryMember.getLastName());
             phone.textProperty().set(libraryMember.getPhone());

@@ -26,9 +26,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-public class OverdueCopies implements Initializable {
+public class OverdueCopiesView implements Initializable {
     @FXML
-    private PublicationLookUp publicationViewController;
+    private PublicationLookUpView publicationViewController;
     @FXML
     private TableView<BookCopy> copiesInfo;
     @FXML

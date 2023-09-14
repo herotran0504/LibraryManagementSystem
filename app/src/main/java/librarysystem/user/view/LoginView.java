@@ -15,7 +15,7 @@ import librarysystem.utils.Result;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class LoginWindow extends Navigator implements Initializable {
+public class LoginView extends Navigator implements Initializable {
 
     @FXML
     private TextField userName;

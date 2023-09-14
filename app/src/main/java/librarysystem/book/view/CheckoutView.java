@@ -22,10 +22,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class CheckoutMapper implements Initializable {
+public class CheckoutView implements Initializable {
 
     @FXML
-    private PublicationLookUp publicationViewController;
+    private PublicationLookUpView publicationViewController;
     @FXML
     private TextField firstName;
     @FXML

@@ -6,7 +6,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import librarysystem.user.controller.UserController;
 import librarysystem.main.Main;
 import business.Auth;
 import librarysystem.user.controller.UserData;
@@ -17,7 +16,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Dashboard extends Navigator implements Initializable {
+public class DashboardView extends Navigator implements Initializable {
     @FXML
     private Button memberView;
     @FXML

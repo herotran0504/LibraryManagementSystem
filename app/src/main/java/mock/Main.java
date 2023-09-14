@@ -13,7 +13,14 @@ public class Main {
         System.out.println(allWhoseZipContains3());
         System.out.println(allHavingOverdueBook());
         System.out.println(allHavingMultipleAuthors());
+        System.out.println(getAllBooks());
 
+    }
+
+    public static List<Book> getAllBooks() {
+        DataAccess da = new DataAccessFacade();
+        Collection<Book> books = da.readBooksMap().values();
+        return new ArrayList<>(books);
     }
 
     //Returns a list of all ids of LibraryMembers whose zipcode contains the digit 3

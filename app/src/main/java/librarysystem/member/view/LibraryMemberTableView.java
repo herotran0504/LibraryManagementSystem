@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class LibraryMemberViewMapper implements Initializable {
+public class LibraryMemberTableView implements Initializable {
 
     @FXML
     private TableView<LibraryMember> tableView;
@@ -121,7 +121,7 @@ public class LibraryMemberViewMapper implements Initializable {
                 DialogUtil.showInformationDialog("Select Member First");
             } else {
                 libraryMember = list.get(0);
-                new Member().setRecordAndShow(list.get(0));
+                new LibraryMemberView().setRecordAndShow(list.get(0));
                 // hideWindow();
             }
         } catch (Exception e) {
