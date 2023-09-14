@@ -41,7 +41,7 @@ public class LoginView extends Navigator implements Initializable {
         try {
             if (validateForm()) {
                 User user = new User(getUserId(), getUserPwd());
-                Result result = controller.checkUser(user);
+                Result<User> result = controller.checkUser(user);
                 if (result.getSuccess()) {
                     userPwd.getScene().getWindow().hide();
                     openDashboardView();

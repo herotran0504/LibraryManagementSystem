@@ -43,7 +43,7 @@
 					layoutY="-4.0"
 					minHeight="198.0"
 					prefHeight="216.0"
-					source="PublicationLookUpView.fxml" />
+					source="BookSearchView.fxml" />
 			</children>
 		</Pane>
 		<Button layoutX="756.0"

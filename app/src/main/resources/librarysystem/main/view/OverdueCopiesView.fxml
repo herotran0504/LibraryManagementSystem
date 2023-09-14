@@ -20,7 +20,7 @@
         layoutY="8.0"
         minHeight="198.0"
         prefHeight="238.0"
-        source="PublicationLookUpView.fxml" />
+        source="BookSearchView.fxml" />
     <TableView fx:id="copiesInfo"
         layoutX="90.0"
         layoutY="261.0"
