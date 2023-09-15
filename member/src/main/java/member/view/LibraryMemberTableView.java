@@ -1,10 +1,15 @@
-package librarysystem.member.view;
+package member.view;
 
 import business.Auth;
 import business.CheckoutRecordEntry;
 import business.LibraryMember;
+import core.auth.UserData;
 import core.navigator.GlobalProvider;
 import core.util.DialogUtil;
+import core.util.Functors;
+import core.viewmodel.CheckoutViewModel;
+import core.viewmodel.MemberViewModel;
+import core.viewmodel.ViewModelRegistry;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,11 +20,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import librarysystem.book.controller.CheckoutController;
-import librarysystem.controller.ControllerFactory;
-import librarysystem.member.controller.LibraryMemberController;
-import core.auth.UserData;
-import core.util.Functors;
 import librarysystem.utils.Result;
 
 import java.net.URL;
@@ -61,8 +61,8 @@ public class LibraryMemberTableView implements Initializable {
     private final ObservableList<LibraryMember> masterData = FXCollections.observableArrayList();
     private final ObservableList<LibraryMember> filteredData = FXCollections.observableArrayList();
 
-    private final LibraryMemberController controller = ControllerFactory.get().getLibraryMemberController();
-    private final CheckoutController checkoutController = ControllerFactory.get().getCheckoutController();
+    private final MemberViewModel memberViewModel = ViewModelRegistry.getInstance().get(MemberViewModel.class);
+    private final CheckoutViewModel checkoutViewModel = ViewModelRegistry.getInstance().get(CheckoutViewModel.class);
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -86,7 +86,7 @@ public class LibraryMemberTableView implements Initializable {
 
     private void showList() {
         try {
-            Result<List<LibraryMember>> serviceResponse = controller.getMembers();
+            Result<List<LibraryMember>> serviceResponse = memberViewModel.getMembers();
             List<LibraryMember> memberList = serviceResponse.getData();
             for (LibraryMember libraryMember : memberList) {
                 colId.setCellValueFactory(new PropertyValueFactory<>("memberId"));
@@ -129,7 +129,7 @@ public class LibraryMemberTableView implements Initializable {
             } else {
                 if (DialogUtil.showConfirmDialog("Are you sure to delete?")) {
                     libraryMember = list.get(0);
-                    Result<Void> serviceResponse = controller.deleteMember(libraryMember.getMemberId());
+                    Result<Void> serviceResponse = memberViewModel.deleteMember(libraryMember.getMemberId());
                     DialogUtil.showServiceResponseMessage(serviceResponse);
 
                     filteredData.clear();
@@ -150,7 +150,7 @@ public class LibraryMemberTableView implements Initializable {
                 DialogUtil.showInformationDialog("Select Member First");
             } else {
                 libraryMember = list.get(0);
-                List<CheckoutRecordEntry> checkoutEntries = checkoutController.getCheckoutDetail(libraryMember.getMemberId()).getData();
+                List<CheckoutRecordEntry> checkoutEntries = checkoutViewModel.getCheckoutDetail(libraryMember.getMemberId()).getData();
                 if (!checkoutEntries.isEmpty()) {
                     StringBuffer stringBuffer = new StringBuffer();
                     stringBuffer.append(String.format("%-5s", "SNO")

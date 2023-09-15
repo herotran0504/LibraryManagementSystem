@@ -1,18 +1,18 @@
-package librarysystem.book.view;
+package checkout.view;
 
 import book.view.BookSearchView;
 import business.*;
 import core.navigator.GlobalProvider;
 import core.util.DialogUtil;
 import core.util.Functors;
+import core.viewmodel.CheckoutViewModel;
+import core.viewmodel.MemberViewModel;
+import core.viewmodel.ViewModelRegistry;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import librarysystem.book.controller.CheckoutController;
-import librarysystem.controller.ControllerFactory;
-import librarysystem.member.controller.LibraryMemberController;
 import librarysystem.utils.DateUtil;
 import librarysystem.utils.Result;
 
@@ -41,8 +41,8 @@ public class CheckoutView implements Initializable {
     @FXML
     private Button checkoutBtn;
 
-    private final LibraryMemberController libraryMemberController = ControllerFactory.get().getLibraryMemberController();
-    private final CheckoutController checkoutController = ControllerFactory.get().getCheckoutController();
+    private final MemberViewModel memberViewModel = ViewModelRegistry.getInstance().get(MemberViewModel.class);
+    private final CheckoutViewModel checkoutViewModel = ViewModelRegistry.getInstance().get(CheckoutViewModel.class);
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -90,12 +90,12 @@ public class CheckoutView implements Initializable {
                 CheckoutRecord checkoutRecord;
                 LibraryMember libraryMember;
                 try {
-                    libraryMember = libraryMemberController.getMember(member).getData();
+                    libraryMember = memberViewModel.getMember(member).getData();
                     BookCopy copy = Functors.AVAILABLE_COPIES_FINDER.apply(publication).get(0);
-                    checkoutRecord = checkoutController.getCheckoutRecord(libraryMember);
+                    checkoutRecord = checkoutViewModel.getCheckoutRecord(libraryMember);
                     List<CheckoutRecordEntry> checkoutEntries = checkoutRecord.getCheckoutEntries();
                     checkoutEntries.add(new CheckoutRecordEntry(checkoutDate, dueDate, copy, checkoutRecord));
-                    Result<Void> serviceResponse = checkoutController.save(checkoutRecord);
+                    Result<Void> serviceResponse = checkoutViewModel.save(checkoutRecord);
                     DialogUtil.showServiceResponseMessage(serviceResponse);
                     if (serviceResponse.getSuccess()) {
                         back();
@@ -119,7 +119,7 @@ public class CheckoutView implements Initializable {
             DialogUtil.showExceptionDialog("Please input member id");
         } else {
             try {
-                Result result = libraryMemberController.getMember(getMemberId());
+                Result result = memberViewModel.getMember(getMemberId());
                 if (result.getSuccess()) {
                     LibraryMember libraryMember = (LibraryMember) result.getData();
                     setFirstName(libraryMember.getFirstname());

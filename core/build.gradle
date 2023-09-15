@@ -12,9 +12,9 @@ javafx {
 
 dependencies {
     implementation project(':utilities')
+    implementation project(':business')
 
     implementation 'org.apache.commons:commons-text'
     implementation 'org.openjfx:javafx-controls:16'
     implementation 'org.openjfx:javafx-fxml:16'
-    implementation project(path: ':business')
 }

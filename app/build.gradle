@@ -27,6 +27,8 @@ dependencies {
     implementation project(':login')
     implementation project(':core')
     implementation project(':book')
+    implementation project(':member')
+    implementation project(':checkout')
 
     implementation 'org.apache.commons:commons-text'
     implementation 'org.openjfx:javafx-controls:16'

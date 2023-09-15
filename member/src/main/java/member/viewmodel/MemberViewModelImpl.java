@@ -1,24 +1,27 @@
-package librarysystem.member.controller;
+package member.viewmodel;
 
 import business.LibraryMember;
+import core.util.MemberIdHelper;
+import core.viewmodel.MemberViewModel;
+import dataaccess.DaoFactory;
 import dataaccess.LibraryMemberDao;
-import librarysystem.util.Const;
-import librarysystem.util.MemberIdHelper;
 import librarysystem.utils.Result;
 
 import java.util.List;
 
-class LibraryMemberControllerImpl implements LibraryMemberController {
+public class MemberViewModelImpl implements MemberViewModel {
+    private final static String MEMBER_PROPERTY_KEY = "librarymember_id";
+
     private final LibraryMemberDao libraryMemberDao;
 
-    LibraryMemberControllerImpl(LibraryMemberDao libraryMemberDao) {
+    MemberViewModelImpl(LibraryMemberDao libraryMemberDao) {
         this.libraryMemberDao = libraryMemberDao;
     }
 
     @Override
     public Result<Void> addNewMember(LibraryMember libraryMember) {
         try {
-            libraryMember.setMemberId(MemberIdHelper.getNextID(Const.MEMBER_PROPERTY_KEY));
+            libraryMember.setMemberId(MemberIdHelper.getNextID(MEMBER_PROPERTY_KEY));
             libraryMemberDao.addLibraryMember(libraryMember);
             return new Result<>(true, "Successfully added");
         } catch (Exception e) {
@@ -68,5 +71,9 @@ class LibraryMemberControllerImpl implements LibraryMemberController {
         } catch (Exception e) {
             return new Result<>(false, Result.getRuntimeException());
         }
+    }
+
+    public static MemberViewModel create() {
+        return new MemberViewModelImpl(DaoFactory.getDaoFactory().getLibraryMemberDao());
     }
 }

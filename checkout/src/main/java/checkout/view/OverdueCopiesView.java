@@ -1,4 +1,4 @@
-package librarysystem.book.view;
+package checkout.view;
 
 import book.view.BookSearchView;
 import business.Book;
@@ -9,6 +9,8 @@ import business.exception.CheckoutException;
 import business.exception.MemberException;
 import core.navigator.GlobalProvider;
 import core.util.DialogUtil;
+import core.viewmodel.CheckoutViewModel;
+import core.viewmodel.ViewModelRegistry;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,8 +18,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import librarysystem.book.controller.CheckoutController;
-import librarysystem.controller.ControllerFactory;
 import librarysystem.utils.DateUtil;
 
 import java.net.URL;
@@ -48,13 +48,13 @@ public class OverdueCopiesView implements Initializable {
     private TableColumn<BookCopy, String> memberid;
 
     private CheckoutCopies checkoutCopies;
-    private final CheckoutController checkoutController = ControllerFactory.get().getCheckoutController();
+    private final CheckoutViewModel viewModel = ViewModelRegistry.getInstance().get(CheckoutViewModel.class);
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         List<CheckoutRecordEntry> checkoutEntries;
         try {
-            checkoutEntries = checkoutController.getAllCheckoutRecordEntries();
+            checkoutEntries = viewModel.getAllCheckoutRecordEntries();
             checkoutCopies = new CheckoutCopies(checkoutEntries);
             publicationViewController.getTableView().getSelectionModel()
                     .selectedItemProperty()

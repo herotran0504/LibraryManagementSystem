@@ -1,4 +1,4 @@
-module member {
+module checkout {
     requires javafx.controls;
     requires javafx.fxml;
 
@@ -6,8 +6,9 @@ module member {
     requires dataaccess;
     requires business;
     requires librarysystem.utils;
+    requires book;
 
-    exports member.view;
-    opens member.view to javafx.fxml;
-    exports member.init;
+    exports checkout.view;
+    opens checkout.view to javafx.fxml;
+    exports checkout.init;
 }

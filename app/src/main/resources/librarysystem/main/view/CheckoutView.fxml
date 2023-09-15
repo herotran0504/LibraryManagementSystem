@@ -10,7 +10,7 @@
 	styleClass="anchorpane"
 	xmlns:fx="http://javafx.com/fxml/1"
 	xmlns="http://javafx.com/javafx/2.2"
-	fx:controller="librarysystem.book.view.CheckoutView">
+	fx:controller="checkout.view.CheckoutView">
 	<children>
 		<Pane layoutX="80.0"
 			layoutY="14.0"

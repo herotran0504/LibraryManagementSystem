@@ -1,9 +1,6 @@
 package librarysystem.util;
 
 public class Const {
-    public final static String ACTION_CREATE = "Create";
-    public final static String ACTION_UPDATE = "Update";
-    public final static String MEMBER_PROPERTY_KEY = "librarymember_id";
 
     public static final String VIEW_MAIN = "view/main.fxml";
     public static final String VIEW_LOGIN = "view/LoginView.fxml";

@@ -9,7 +9,7 @@
 <AnchorPane styleClass="anchorpane"
             xmlns="http://javafx.com/javafx/17.0.2-ea"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="librarysystem.member.view.LibraryMemberView">
+            fx:controller="member.view.LibraryMemberView">
     <stylesheets>
         <URL value="@../css/main.css"/>
     </stylesheets>

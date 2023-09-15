@@ -5,5 +5,5 @@ plugins {
 
 dependencies {
     implementation project(':business')
-    implementation project(path: ':utilities')
+    implementation project(':utilities')
 }

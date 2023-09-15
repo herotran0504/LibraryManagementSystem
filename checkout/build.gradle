@@ -15,6 +15,7 @@ dependencies {
     implementation project(':business')
     implementation project(':utilities')
     implementation project(':dataaccess')
+    implementation project(':book')
 
     implementation 'org.apache.commons:commons-text'
     implementation 'org.openjfx:javafx-controls:16'

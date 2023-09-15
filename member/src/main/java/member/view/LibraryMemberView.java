@@ -1,22 +1,25 @@
-package librarysystem.member.view;
+package member.view;
 
 import business.Address;
 import business.LibraryMember;
 import core.navigator.GlobalProvider;
 import core.util.DialogUtil;
+import core.viewmodel.MemberViewModel;
+import core.viewmodel.ViewModelRegistry;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
-import librarysystem.controller.ControllerFactory;
-import librarysystem.member.controller.LibraryMemberController;
-import librarysystem.util.Const;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static librarysystem.util.Const.*;
-
 public class LibraryMemberView implements Initializable {
+
+    private final static String ACTION_CREATE = "Create";
+    private final static String ACTION_UPDATE = "Update";
+    private static final String VIEW_MEMBER_TABLE = "view/LibraryMemberTableView.fxml";
+    private static final String VIEW_MEMBER = "view/LibraryMemberView.fxml";
+
     @FXML
     private TextField firstName;
     @FXML
@@ -37,7 +40,7 @@ public class LibraryMemberView implements Initializable {
     @FXML
     private TextField actionHdn; // Hidden Field
 
-    private final LibraryMemberController controller = ControllerFactory.get().getLibraryMemberController();
+    private final MemberViewModel viewModel = ViewModelRegistry.getInstance().get(MemberViewModel.class);
 
     @FXML
     protected void addNewMember() {
@@ -58,14 +61,14 @@ public class LibraryMemberView implements Initializable {
             switch (msg) {
                 case ACTION_CREATE:
                     if (DialogUtil.showConfirmDialog("Are you sure to add?")) {
-                        DialogUtil.showServiceResponseMessage(controller.addNewMember(libraryMember));
+                        DialogUtil.showServiceResponseMessage(viewModel.addNewMember(libraryMember));
                         back();
                     }
                     break;
                 case ACTION_UPDATE:
                     if (DialogUtil.showConfirmDialog("Are you sure to update?")) {
                         libraryMember.setMemberId(getMemberIdHdn());
-                        DialogUtil.showServiceResponseMessage(controller.updateMember(libraryMember));
+                        DialogUtil.showServiceResponseMessage(viewModel.updateMember(libraryMember));
                         back();
                     }
                     break;
@@ -79,7 +82,7 @@ public class LibraryMemberView implements Initializable {
     }
 
     public void setRecordAndShow(LibraryMember librabryMember) {
-        GlobalProvider.getInstance().loader.loadViewController(Const.VIEW_MEMBER, librabryMember);
+        GlobalProvider.getInstance().loader.loadViewController(VIEW_MEMBER, librabryMember);
     }
 
     @Override

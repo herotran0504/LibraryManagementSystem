@@ -1,4 +1,4 @@
-package librarysystem.util;
+package core.util;
 
 import librarysystem.utils.FileUtil;
 

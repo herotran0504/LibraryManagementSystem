@@ -1,4 +1,4 @@
-package librarysystem.controller;
+package librarysystem.loader;
 
 import core.loader.ViewControllerLoader;
 import core.viewmodel.AppController;

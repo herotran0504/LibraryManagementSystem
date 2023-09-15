@@ -1,16 +1,14 @@
-package librarysystem.book.controller;
+package core.viewmodel;
 
 import business.CheckoutRecord;
 import business.CheckoutRecordEntry;
 import business.LibraryMember;
 import business.exception.CheckoutException;
-import dataaccess.CheckoutDao;
 import librarysystem.utils.Result;
 
 import java.util.List;
 
-public interface CheckoutController {
-
+public interface CheckoutViewModel extends ViewModel {
     Result<Void> save(CheckoutRecord record) throws CheckoutException;
 
     CheckoutRecord getCheckoutRecord(LibraryMember member) throws CheckoutException;
@@ -18,9 +16,4 @@ public interface CheckoutController {
     Result<List<CheckoutRecordEntry>> getCheckoutDetail(String memberId) throws CheckoutException;
 
     List<CheckoutRecordEntry> getAllCheckoutRecordEntries() throws CheckoutException;
-
-    static CheckoutController get(CheckoutDao checkoutDao) {
-        return new CheckoutControllerImpl(checkoutDao);
-    }
 }
-

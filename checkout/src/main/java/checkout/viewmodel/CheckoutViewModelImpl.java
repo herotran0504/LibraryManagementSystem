@@ -1,18 +1,20 @@
-package librarysystem.book.controller;
+package checkout.viewmodel;
 
 import business.CheckoutRecord;
 import business.CheckoutRecordEntry;
 import business.LibraryMember;
 import business.exception.CheckoutException;
+import core.viewmodel.CheckoutViewModel;
 import dataaccess.CheckoutDao;
+import dataaccess.DaoFactory;
 import librarysystem.utils.Result;
 
 import java.util.List;
 
-public class CheckoutControllerImpl implements CheckoutController {
+public class CheckoutViewModelImpl implements CheckoutViewModel {
     private final CheckoutDao checkoutDao;
 
-    CheckoutControllerImpl(CheckoutDao checkoutDao) {
+    CheckoutViewModelImpl(CheckoutDao checkoutDao) {
         this.checkoutDao = checkoutDao;
     }
 
@@ -44,5 +46,9 @@ public class CheckoutControllerImpl implements CheckoutController {
     @Override
     public List<CheckoutRecordEntry> getAllCheckoutRecordEntries() throws CheckoutException {
         return checkoutDao.getCheckoutRecordEntries();
+    }
+
+    public static CheckoutViewModel create() {
+        return new CheckoutViewModelImpl(DaoFactory.getDaoFactory().getCheckoutDao());
     }
 }
