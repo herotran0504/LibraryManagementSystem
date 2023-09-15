@@ -46,7 +46,7 @@ public class BookSearchView implements Initializable {
     @FXML
     private TableColumn<Book, String> colPublicationType;
 
-    private final BookViewModel controller = ViewModelRegistry.getInstance().get(BookViewModel.class);
+    private final BookViewModel viewModel = ViewModelRegistry.getInstance().get(BookViewModel.class);
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -62,7 +62,7 @@ public class BookSearchView implements Initializable {
 
     public void showCompleteList() {
         try {
-            Result<List<Book>> result = controller.getAllBooks();
+            Result<List<Book>> result = viewModel.getAllBooks();
             colPublicationType.setCellValueFactory(data -> new ReadOnlyObjectWrapper<>(data.getValue().getClass().getSimpleName()));
             collPublicationId.setCellValueFactory(data -> new ReadOnlyObjectWrapper<>(data.getValue().getIsbn()));
             colTitle.setCellValueFactory(new PropertyValueFactory<>("title"));

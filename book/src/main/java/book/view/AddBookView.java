@@ -52,7 +52,7 @@ public class AddBookView {
     @FXML
     private TableColumn<Author, String> column_shortBio;
 
-    private final BookViewModel controller = ViewModelRegistry.getInstance().get(BookViewModel.class);
+    private final BookViewModel viewModel = ViewModelRegistry.getInstance().get(BookViewModel.class);
 
     @FXML
     protected void addNewMember() {
@@ -64,7 +64,7 @@ public class AddBookView {
         Book book = new Book(isbn, title, maxCheckoutLength, authors);
         if (copyNum > 1) book.addCopy(copyNum - 1);
         try {
-            Result<Void> response = controller.addNewBook(book);
+            Result<Void> response = viewModel.addNewBook(book);
             if (response.getSuccess()) {
                 DialogUtil.showInformationDialog(response.getMessage());
                 back();

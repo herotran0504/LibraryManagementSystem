@@ -24,7 +24,7 @@ public class LoginView implements Initializable {
     @FXML
     private PasswordField userPwd;
 
-    private final UserViewModel controller = ViewModelRegistry.getInstance().get(UserViewModel.class);
+    private final UserViewModel viewModel = ViewModelRegistry.getInstance().get(UserViewModel.class);
     private final Navigator navigator = GlobalProvider.getInstance().navigator;
 
     @Override
@@ -36,9 +36,9 @@ public class LoginView implements Initializable {
         try {
             final String id = getUserId();
             final String pwd = getUserPwd();
-            if (controller.validate(id, pwd)) {
+            if (viewModel.validate(id, pwd)) {
                 User user = new User(id, pwd);
-                Result<User> result = controller.checkUser(user);
+                Result<User> result = viewModel.checkUser(user);
                 if (result.getSuccess()) {
                     userPwd.getScene().getWindow().hide();
                     openDashboardView();

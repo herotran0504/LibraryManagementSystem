@@ -17,7 +17,7 @@ public class AddNewCopyView {
     @FXML
     private TextField txtNumOfCopies;
 
-    private final BookViewModel controller = ViewModelRegistry.getInstance().get(BookViewModel.class);
+    private final BookViewModel viewModel = ViewModelRegistry.getInstance().get(BookViewModel.class);
 
     @FXML
     private void addNewCopy() {
@@ -34,7 +34,7 @@ public class AddNewCopyView {
                 for (int i = 0; i < noOfCopies; i++) {
                     p.addCopy();
                 }
-                controller.addNewBook(p);
+                viewModel.addNewBook(p);
                 publicationViewController.showCompleteList();
                 showBookAddedInfo(noOfCopies);
             } catch (NumberFormatException e) {
