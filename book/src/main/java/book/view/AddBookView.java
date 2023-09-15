@@ -56,6 +56,7 @@ public class AddBookView {
 
     @FXML
     protected void addNewMember() {
+        if (!validateForm()) return;
         final String isbn = this.isbn.getText();
         final String title = this.title.getText();
         final int maxCheckoutLength = Integer.parseInt(maxcheckoutlength.getText());
@@ -83,7 +84,6 @@ public class AddBookView {
 
     @FXML
     protected void addNewAuthor() {
-        if (!validateForm()) return;
         final Author author = createAuthor();
         handleFirstName();
         handleLastName();
