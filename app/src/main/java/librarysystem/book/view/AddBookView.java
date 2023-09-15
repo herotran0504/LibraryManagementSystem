@@ -84,6 +84,7 @@ public class AddBookView {
 
     @FXML
     protected void addNewAuthor() {
+        if(!validateForm()) return;
         final Author author = createAuthor();
         handleFirstName();
         handleLastName();
@@ -148,6 +149,34 @@ public class AddBookView {
             Author author = t.getTableView().getItems().get(t.getTablePosition().getRow());
             author.setFirstname(t.getNewValue());
         });
+    }
+
+    private boolean validateForm() {
+        if(
+            isbn.getText().trim().isEmpty() ||
+            title.getText().trim().isEmpty() ||
+            maxcheckoutlength.getText().trim().isEmpty() ||
+            Copies.getText().trim().isEmpty()
+        ) {
+            DialogUtil.showExceptionDialog("Please input all field");
+            return false;
+        }
+
+        try {
+            Integer.parseInt(maxcheckoutlength.getText().trim());
+        } catch (Exception e) {
+            DialogUtil.showExceptionDialog("Max Checkout Length contains only digit");
+            return false;
+        }
+
+        try {
+            Integer.parseInt(Copies.getText().trim());
+        } catch (Exception e) {
+            DialogUtil.showExceptionDialog("Copies contains only digit");
+            return false;
+        }
+        return true;
+
     }
 
     public void back() {

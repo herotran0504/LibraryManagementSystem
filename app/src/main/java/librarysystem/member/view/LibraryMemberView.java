@@ -42,6 +42,7 @@ public class LibraryMemberView implements Initializable {
 
     @FXML
     protected void addNewMember() {
+        if (!validateForm()) return;
         LibraryMember libraryMember = new LibraryMember();
         libraryMember.setFirstname(getFirstName());
         libraryMember.setLastName(getLastName());
@@ -54,29 +55,28 @@ public class LibraryMemberView implements Initializable {
         libraryMember.setAddress(address);
         String msg = getActionHdn();
 
-        if (validateForm()) {
-            try {
-                switch (msg) {
-                    case ACTION_CREATE:
-                        if (DialogUtil.showConfirmDialog("Are you sure to add?")) {
-                            DialogUtil.showServiceResponseMessage(controller.addNewMember(libraryMember));
-                            back();
-                        }
-                        break;
-                    case ACTION_UPDATE:
-                        if (DialogUtil.showConfirmDialog("Are you sure to update?")) {
-                            libraryMember.setMemberId(getMemberIdHdn());
-                            DialogUtil.showServiceResponseMessage(controller.updateMember(libraryMember));
-                            back();
-                        }
-                        break;
-                    default:
-                        break;
-                }
 
-            } catch (Exception e) {
-                DialogUtil.showServiceResponseMessage(e);
+        try {
+            switch (msg) {
+                case ACTION_CREATE:
+                    if (DialogUtil.showConfirmDialog("Are you sure to add?")) {
+                        DialogUtil.showServiceResponseMessage(controller.addNewMember(libraryMember));
+                        back();
+                    }
+                    break;
+                case ACTION_UPDATE:
+                    if (DialogUtil.showConfirmDialog("Are you sure to update?")) {
+                        libraryMember.setMemberId(getMemberIdHdn());
+                        DialogUtil.showServiceResponseMessage(controller.updateMember(libraryMember));
+                        back();
+                    }
+                    break;
+                default:
+                    break;
             }
+
+        } catch (Exception e) {
+            DialogUtil.showServiceResponseMessage(e);
         }
 
     }
