@@ -10,11 +10,11 @@
 		<URL value="@../css/main.css" />
 	</stylesheets>
 	<children>
-		<Pane layoutX="47.0" layoutY="388.0" prefHeight="32.0" prefWidth="834.0">
+		<Pane layoutX="45.0" layoutY="395.0" prefHeight="32.0" prefWidth="834.0">
 			<children>
 				<Label layoutX="433.0" layoutY="9.0" text="Number of copies" />
 				<TextField fx:id="txtNumOfCopies" layoutX="563.0" layoutY="3.0" prefWidth="71.0" />
-				<Button layoutX="662.0" layoutY="4.0" minHeight="24.0" minWidth="56.0" onAction="#addNewCopy" text="Add New Copies" />
+				<Button contentDisplay="CENTER" layoutX="656.0" layoutY="-1.0" minHeight="36.0" minWidth="120.0" onAction="#addNewCopy" text="Add New Copies" />
 			</children>
 		</Pane>
 		<Pane layoutX="100.0" layoutY="160.0" prefHeight="227.0" prefWidth="724.0">
@@ -22,7 +22,7 @@
 				<fx:include fx:id="publicationView" layoutX="8.0" layoutY="-4.0" minHeight="198.0" prefHeight="216.0" source="BookSearchView.fxml" />
 			</children>
 		</Pane>
-		<Button layoutX="11.0" layoutY="14.0" onAction="#cancelWindow" prefWidth="71.0" text="Back" />
+		<Button alignment="CENTER" contentDisplay="CENTER" layoutX="11.0" layoutY="14.0" onAction="#cancelWindow" prefWidth="71.0" text="Back" />
       <Text fill="WHITE" layoutX="380.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="h1_title" text="Add Copies" AnchorPane.leftAnchor="380.0" AnchorPane.rightAnchor="381.39609375" />
 	</children>
 </AnchorPane>

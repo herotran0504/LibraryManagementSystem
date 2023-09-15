@@ -37,7 +37,7 @@
               <Button alignment="CENTER" contentDisplay="CENTER" layoutX="644.0" layoutY="4.0" minHeight="36.0" minWidth="120.0" mnemonicParsing="false" onAction="#printCheckoutInfo" text="Print" />
             </children>
         </Pane>
-        <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="64.0" text="Back" />
+        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="64.0" text="Back" textAlignment="CENTER" />
       <Text fill="WHITE" layoutX="328.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Member Info" AnchorPane.leftAnchor="328.0" AnchorPane.rightAnchor="328.0">
          <font>
             <Font size="36.0" />
