@@ -2,7 +2,6 @@ package librarysystem.user.view;
 
 import business.User;
 import business.exception.LoginException;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.PasswordField;
@@ -16,7 +15,7 @@ import librarysystem.utils.Result;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class LoginView extends Navigator implements Initializable {
+public class LoginView implements Navigator, Initializable {
 
     @FXML
     private TextField userId;
@@ -30,17 +29,12 @@ public class LoginView extends Navigator implements Initializable {
     }
 
     @FXML
-    protected void doCancel() {
-        if (DialogUtil.showConfirmDialog("Are you want to exit?")) {
-            Platform.exit();
-        }
-    }
-
-    @FXML
     protected void doLogin() {
         try {
-            if (validateForm()) {
-                User user = new User(getUserId(), getUserPwd());
+            final String id = getUserId();
+            final String pwd = getUserPwd();
+            if (controller.validate(id, pwd)) {
+                User user = new User(id, pwd);
                 Result<User> result = controller.checkUser(user);
                 if (result.getSuccess()) {
                     userPwd.getScene().getWindow().hide();
@@ -66,14 +60,6 @@ public class LoginView extends Navigator implements Initializable {
 
     private String getUserPwd() {
         return userPwd.textProperty().get();
-    }
-
-    private boolean validateForm() {
-        if (getUserId().isEmpty() || getUserPwd().isEmpty()) {
-            DialogUtil.showExceptionDialog("Please input all field");
-            return false;
-        }
-        return true;
     }
 
 }

@@ -14,4 +14,6 @@ public interface UserController {
     static UserController get(UserDao userDao) {
         return new UserControllerImpl(userDao);
     }
+
+    boolean validate(String userId, String pwd);
 }

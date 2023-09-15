@@ -3,6 +3,7 @@ package librarysystem.user.controller;
 import business.User;
 import business.exception.LoginException;
 import dataaccess.UserDao;
+import librarysystem.util.DialogUtil;
 import librarysystem.utils.Result;
 
 class UserControllerImpl implements UserController {
@@ -37,4 +38,14 @@ class UserControllerImpl implements UserController {
             throw new LoginException(e);
         }
     }
+
+    @Override
+    public boolean validate(String userId, String pwd) {
+        if (userId.trim().isEmpty() || pwd.trim().isEmpty()) {
+            DialogUtil.showExceptionDialog("Please input all field");
+            return false;
+        }
+        return true;
+    }
+
 }

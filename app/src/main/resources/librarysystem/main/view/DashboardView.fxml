@@ -5,18 +5,15 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="500.0"
-	prefWidth="600.0"
-	styleClass="anchorpane"
-	xmlns="http://javafx.com/javafx/8.0.40"
+<AnchorPane styleClass="anchorpane"
+	xmlns="http://javafx.com/javafx/17.0.2-ea"
 	xmlns:fx="http://javafx.com/fxml/1"
 	fx:controller="librarysystem.dashboard.DashboardView">
 	<children>
 		<Label fx:id="welcomeLBL"
-			layoutX="220.0"
-			layoutY="14.0"
-			prefHeight="42.0"
-			prefWidth="560.0"
+			layoutX="262.0"
+			layoutY="31.0"
+			prefHeight="46.0"
 			text="Library Management System"
 			textAlignment="CENTER"
 			wrapText="true">
@@ -25,75 +22,68 @@
 					size="36.0" />
 			</font>
 		</Label>
-		<GridPane hgap="10.0"
-			layoutX="130.0"
-			layoutY="100.0"
-			prefHeight="234.0"
-			prefWidth="590.0"
+		<GridPane layoutX="212.0"
+			layoutY="134.0"
 			vgap="0.0">
 			<children>
 				<Button id="viewEditMember"
 					fx:id="memberView"
+					minHeight="36.0"
+					minWidth="120.0"
 					mnemonicParsing="false"
 					onAction="#openMembersListView"
-					prefHeight="62.0"
-					prefWidth="130.00009999999747"
 					text="Member Info"
 					GridPane.columnIndex="0"
+					GridPane.halignment="CENTER"
 					GridPane.rowIndex="0" />
 				<Button id="viewOverdue"
 					fx:id="overdueCopy"
+					minHeight="36.0"
+					minWidth="120.0"
 					mnemonicParsing="false"
 					onAction="#viewOverdueCopies"
-					prefHeight="65.0"
-					prefWidth="130.0"
 					text="Overdue Copies"
 					GridPane.columnIndex="1"
+					GridPane.halignment="CENTER"
 					GridPane.rowIndex="0" />
 				<Button id="checkOut"
 					fx:id="checkout"
-					minHeight="21.0"
+					minHeight="36.0"
+					minWidth="120.0"
 					mnemonicParsing="false"
 					onAction="#openCheckoutView"
-					prefHeight="65.0"
-					prefWidth="130.0"
 					text="Check Out"
 					GridPane.columnIndex="2"
+					GridPane.halignment="CENTER"
 					GridPane.rowIndex="0" />
-				<Button id="logOut"
-					fx:id="logout"
-					mnemonicParsing="false"
-					onAction="#logout"
-					prefHeight="65.0"
-					prefWidth="130.0"
-					text="Sign Out"
-					GridPane.columnIndex="3" />
 				<Button id="addMember"
 					fx:id="addMember"
-					minWidth="31.0"
+					minHeight="36.0"
+					minWidth="120.0"
 					mnemonicParsing="false"
 					onAction="#openMemberView"
-					prefHeight="65.0"
-					prefWidth="130.0"
 					text="Add Member"
+					GridPane.halignment="CENTER"
 					GridPane.rowIndex="1" />
 				<Button id="addBook"
 					fx:id="openBook"
+					minHeight="36.0"
+					minWidth="120.0"
 					mnemonicParsing="false"
 					onAction="#openBook"
-					prefHeight="64.99990844726562"
-					prefWidth="129.9998779296875"
 					text="Add Book"
 					GridPane.columnIndex="1"
+					GridPane.halignment="CENTER"
 					GridPane.rowIndex="1" />
 				<Button id="addCopies"
 					fx:id="addCopy"
+					minHeight="36.0"
+					minWidth="120.0"
 					mnemonicParsing="false"
 					onAction="#addCopy"
-					prefHeight="65.0"
-					prefWidth="129.9998779296875"
 					text="Add Copies"
 					GridPane.columnIndex="2"
+					GridPane.halignment="CENTER"
 					GridPane.rowIndex="1" />
 			</children>
 			<columnConstraints>
@@ -105,23 +95,20 @@
 					maxWidth="164.0"
 					minWidth="10.0"
 					prefWidth="164.0" />
-				<ColumnConstraints hgrow="SOMETIMES"
-					maxWidth="157.0"
-					minWidth="10.0"
-					prefWidth="157.0" />
-				<ColumnConstraints hgrow="SOMETIMES"
+				<ColumnConstraints halignment="CENTER"
+					hgrow="ALWAYS"
 					maxWidth="157.0"
 					minWidth="10.0"
 					prefWidth="157.0" />
 			</columnConstraints>
 			<rowConstraints>
-				<RowConstraints maxHeight="117.0"
+				<RowConstraints maxHeight="129.0"
 					minHeight="10.0"
-					prefHeight="117.0"
+					prefHeight="118.0"
 					vgrow="SOMETIMES" />
-				<RowConstraints maxHeight="117.0"
+				<RowConstraints maxHeight="135.0"
 					minHeight="10.0"
-					prefHeight="117.0"
+					prefHeight="116.0"
 					vgrow="SOMETIMES" />
 				<RowConstraints maxHeight="53.0"
 					minHeight="0.0"
@@ -129,6 +116,16 @@
 					vgrow="SOMETIMES" />
 			</rowConstraints>
 		</GridPane>
+		<Button id="logOut"
+			fx:id="logout"
+			alignment="CENTER"
+			layoutX="759.0"
+			layoutY="19.0"
+			minHeight="24.0"
+			minWidth="46.0"
+			mnemonicParsing="false"
+			onAction="#logout"
+			text="Sign Out" />
 	</children>
 	<stylesheets>
 		<URL value="@../css/main.css" />

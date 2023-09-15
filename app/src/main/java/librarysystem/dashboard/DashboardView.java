@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
 
 import static librarysystem.util.Const.VIEW_OVERDUE_COPIES;
 
-public class DashboardView extends Navigator implements Initializable {
+public class DashboardView implements Navigator, Initializable {
     @FXML
     private Button memberView;
     @FXML
@@ -57,22 +57,6 @@ public class DashboardView extends Navigator implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        if (UserData.getAuth().equals(Auth.ADMIN)) {
-            checkout.setDisable(true);
-            welcomeLBL.setText(greeting(Auth.ADMIN));
-        } else if (UserData.getAuth().equals(Auth.LIBRARIAN)) {
-            addCopy.setDisable(true);
-            openBook.setDisable(true);
-            addMember.setDisable(true);
-            welcomeLBL.setText(greeting(Auth.LIBRARIAN));
-
-        } else {
-            welcomeLBL.setText(greeting(Auth.BOTH));
-        }
-    }
-
-    private static String greeting(Auth librarian) {
-        return "Welcome, Access Level [" + librarian + ']';
     }
 
     @FXML

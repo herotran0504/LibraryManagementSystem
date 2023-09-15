@@ -1,31 +1,27 @@
 .anchorpane {
-    -fx-padding: 20.0 70.0 90.0 100.0;
-    /*-fx-background-image: url('../images/bg.jpg');*/
-    /*-fx-background-repeat: stretch;*/
-    /*-fx-background-size: 900 600;*/
-    -fx-background-position: center center;
-    -fx-background-color: #857d7d;
+    -fx-padding: 40.0 40.0 40.0 40.0;
+    -fx-background-position: center;
+    -fx-background-color: linear-gradient(to top right, #382af9, #9747FF);
+}
+
+.h1 {
+    -fx-font-family: "Arial";
+    -fx-font-size: 36.0;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFFFFF;
 }
 
 .label {
-    -fx-font-size: 12.0px;
+    -fx-font-family: "Arial";
+    -fx-font-size: 14.0;
     -fx-font-weight: bold;
-    -fx-text-fill: #39ded0;//#333333;
-    //-fx-effect: dropshadow(gaussian, rgba(255.0, 255.0, 255.0, 0.5), 0.0, 0.0, 0.0, 1.0);
-}
-
-#welcome-text {
-    -fx-font-size: 50.0px;
-    -fx-font-family: "Arial Black";
-    -fx-fill: #818181;
-    -fx-effect: innershadow(three-pass-box, rgba(0.0, 0.0, 0.0, 0.7), 6.0, 0.0, 0.0, 2.0);
+    -fx-text-fill: #FFFFFF;
 }
 
 #welcomeLBL {
-    -fx-font-size: 25.0px;
-    -fx-font-family: "Arial Black";
+    -fx-font-size: 28.0;
+    -fx-font-family: "Arial";
     -fx-fill: #818181;
-    //-fx-effect: innershadow(three-pass-box, rgba(0.0, 0.0, 0.0, 0.7), 6.0, 0.0, 0.0, 2.0);
 }
 
 #actiontarget {
@@ -35,40 +31,26 @@
 }
 
 .button {
+    -fx-padding: 4.0, 12.0, 4.0, 12.0;
     -fx-text-fill: white;
-    -fx-font-family: "Arial Narrow";
+    -fx-font-family: "Arial";
     -fx-font-weight: bold;
-    -fx-font-size: 14.0px;
-    -fx-background-color:
-            linear-gradient(#ffd65b, #e68400),
-            linear-gradient(#ffef84, #f2ba44),
-            linear-gradient(#ffea6a, #efaa22),
-            linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%),
-            linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));
-    //-fx-background-color: linear-gradient(#61a2b1, #2A5058);
-}
-
-.text-field {
-    -fx-background-color: #cdf1dd;
-    -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;
-}
-.text-field:focused {
-    -fx-background-color: white;
-    -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;
+    -fx-font-size: 14.0;
+    -fx-background-color: #4daa54;
 }
 
 .button:hover {
-    -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+    -fx-background-color: #6E6D70;
 }
 
 #gridPane {
-    -fx-hgap: 10.0px;
-    -fx-vgap: 10.0px;
+    -fx-hgap: 10.0;
+    -fx-vgap: 10.0;
     -fx-alignment: top-right;
 }
 
 #upperGrid {
-    -fx-vgap: 20.0px;
+    -fx-vgap: 20.0;
 
 }
 

@@ -19,8 +19,6 @@ public class Main extends Application {
         stage.setTitle(TITLE_LIBRARY_MANAGEMENT_SYSTEM);
         stage.setScene(createScene(loadUserLogin()));
         stage.setResizable(false);
-        stage.setWidth(400);
-        stage.setHeight(270);
         Platform.setImplicitExit(false);
         stage.show();
         stage.setOnCloseRequest(e -> Platform.exit());

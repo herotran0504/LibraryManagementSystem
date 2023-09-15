@@ -13,9 +13,9 @@ import java.io.IOException;
 
 import static librarysystem.util.Const.*;
 
-public abstract class Navigator {
+public interface Navigator {
 
-    public void openDashboardView() throws IOException {
+    default void openDashboardView() throws IOException {
         Stage stage = new Stage();
         stage.setTitle(TITLE_LIBRARY_MANAGEMENT_SYSTEM);
         stage.setResizable(false);
