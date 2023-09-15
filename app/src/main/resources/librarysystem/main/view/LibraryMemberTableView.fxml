@@ -3,6 +3,7 @@
 <?import java.net.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane styleClass="anchorpane" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="member.view.LibraryMemberTableView">
     <stylesheets>
@@ -31,11 +32,16 @@
         </Pane>
         <Pane layoutX="26.0" layoutY="391.0" prefHeight="44.0" prefWidth="818.0">
             <children>
-                <Button fx:id="deleteBTN" alignment="CENTER" contentDisplay="CENTER" layoutX="425.0" layoutY="1.0" minHeight="24.0" minWidth="56.0" mnemonicParsing="false" onAction="#deleteRecord" text="Delete Record" />
-              <Button fx:id="editBTN" alignment="CENTER" contentDisplay="CENTER" layoutX="552.0" layoutY="1.0" minHeight="24.0" minWidth="56.0" mnemonicParsing="false" onAction="#addEditAction" text="Edit Record" />
-              <Button alignment="CENTER" contentDisplay="CENTER" layoutX="658.0" layoutY="1.0" minHeight="24.0" minWidth="56.0" mnemonicParsing="false" onAction="#printCheckoutInfo" text="Print" />
+                <Button fx:id="deleteBTN" alignment="CENTER" contentDisplay="CENTER" layoutX="371.0" layoutY="4.0" minHeight="36.0" minWidth="120.0" mnemonicParsing="false" onAction="#deleteRecord" text="Delete Record" />
+              <Button fx:id="editBTN" alignment="CENTER" contentDisplay="CENTER" layoutX="507.0" layoutY="4.0" minHeight="36.0" minWidth="120.0" mnemonicParsing="false" onAction="#addEditAction" text="Edit Record" />
+              <Button alignment="CENTER" contentDisplay="CENTER" layoutX="644.0" layoutY="4.0" minHeight="36.0" minWidth="120.0" mnemonicParsing="false" onAction="#printCheckoutInfo" text="Print" />
             </children>
         </Pane>
         <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="64.0" text="Back" />
+      <Text fill="WHITE" layoutX="328.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Member Info" AnchorPane.leftAnchor="328.0" AnchorPane.rightAnchor="328.0">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Text>
     </children>
 </AnchorPane>
