@@ -3,45 +3,39 @@
 <?import java.net.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="483.0" prefWidth="899.0" styleClass="anchorpane" xmlns="http://javafx.com/javafx/17.0.2-ea"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="member.view.LibraryMemberTableView">
+<AnchorPane styleClass="anchorpane" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="member.view.LibraryMemberTableView">
     <stylesheets>
-        <URL value="@../css/main.css"/>
+        <URL value="@../css/main.css" />
     </stylesheets>
     <children>
-        <Pane layoutX="82.0" layoutY="7.0" prefHeight="59.0" prefWidth="693.0">
+        <Pane layoutX="82.0" layoutY="126.0" prefHeight="262.0" prefWidth="706.0">
             <children>
-                <Label layoutY="21.0" prefHeight="17.0" prefWidth="87.0" text="Member ID:"/>
-                <TextField fx:id="searchMemberId" layoutX="87.0" layoutY="17.0"/>
-                <Label layoutX="374.0" layoutY="21.0" prefHeight="17.0" prefWidth="103.0" text="Member Name"/>
-                <TextField fx:id="searchMemberName" layoutX="477.0" layoutY="17.0" prefHeight="25.0" prefWidth="226.0"/>
-                <TableView fx:id="tableView" layoutY="45.0" prefHeight="320.0" prefWidth="718.0">
+                <Label layoutY="21.0" prefHeight="17.0" prefWidth="87.0" text="Member ID:" />
+                <TextField fx:id="searchMemberId" layoutX="87.0" layoutY="17.0" />
+                <Label layoutX="374.0" layoutY="21.0" prefHeight="17.0" prefWidth="103.0" text="Member Name" />
+                <TextField fx:id="searchMemberName" layoutX="477.0" layoutY="17.0" prefHeight="25.0" prefWidth="226.0" />
+                <TableView fx:id="tableView" layoutX="1.0" layoutY="-13.0" prefHeight="272.0" prefWidth="705.0">
                     <columns>
-                        <TableColumn fx:id="colId" prefWidth="77.0" text="ID"/>
-                        <TableColumn fx:id="colFirstName" prefWidth="129.0" text="First Name"/>
-                        <TableColumn fx:id="colLastName" prefWidth="98.0" text="Last Name"/>
-                        <TableColumn fx:id="colPhone" prefWidth="105.0" text="Phone No"/>
-                        <TableColumn fx:id="colStreet" prefWidth="79.0" text="Street"/>
-                        <TableColumn fx:id="colCity" prefWidth="71.0" text="City"/>
-                        <TableColumn fx:id="colState" minWidth="0.0" prefWidth="76.0" text="State"/>
-                        <TableColumn fx:id="colZip" prefWidth="82.0" text="Zip Code"/>
+                        <TableColumn fx:id="colId" prefWidth="77.0" text="ID" />
+                        <TableColumn fx:id="colFirstName" prefWidth="100.0" text="First Name" />
+                        <TableColumn fx:id="colLastName" prefWidth="100.0" text="Last Name" />
+                        <TableColumn fx:id="colPhone" prefWidth="100.0" text="Phone No" />
+                        <TableColumn fx:id="colStreet" prefWidth="79.0" text="Street" />
+                        <TableColumn fx:id="colCity" prefWidth="71.0" text="City" />
+                        <TableColumn fx:id="colState" minWidth="0.0" text="State" />
+                        <TableColumn fx:id="colZip" prefWidth="100.0" text="Zip Code" />
                     </columns>
                 </TableView>
             </children>
         </Pane>
-        <Pane layoutX="14.0" layoutY="393.0" prefHeight="25.0" prefWidth="615.0">
+        <Pane layoutX="26.0" layoutY="391.0" prefHeight="44.0" prefWidth="818.0">
             <children>
-                <Button fx:id="deleteBTN" layoutX="343.0" layoutY="-12.0" mnemonicParsing="false"
-                        onAction="#deleteRecord" prefHeight="25.0" prefWidth="111.0" text="Delete Record"/>
+                <Button fx:id="deleteBTN" alignment="CENTER" contentDisplay="CENTER" layoutX="425.0" layoutY="1.0" minHeight="24.0" minWidth="56.0" mnemonicParsing="false" onAction="#deleteRecord" text="Delete Record" />
+              <Button fx:id="editBTN" alignment="CENTER" contentDisplay="CENTER" layoutX="552.0" layoutY="1.0" minHeight="24.0" minWidth="56.0" mnemonicParsing="false" onAction="#addEditAction" text="Edit Record" />
+              <Button alignment="CENTER" contentDisplay="CENTER" layoutX="658.0" layoutY="1.0" minHeight="24.0" minWidth="56.0" mnemonicParsing="false" onAction="#printCheckoutInfo" text="Print" />
             </children>
         </Pane>
-        <Button layoutX="736.0" layoutY="381.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0"
-                prefWidth="64.0" text="Back"/>
-        <Button layoutX="611.0" layoutY="381.0" mnemonicParsing="false" onAction="#printCheckoutInfo" prefHeight="25.0"
-                prefWidth="103.0" text="Print"/>
-        <Button fx:id="editBTN" layoutX="490.0" layoutY="381.0" mnemonicParsing="false" onAction="#addEditAction"
-                prefHeight="25.0" prefWidth="96.0" text="Edit Record"/>
+        <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="64.0" text="Back" />
     </children>
 </AnchorPane>

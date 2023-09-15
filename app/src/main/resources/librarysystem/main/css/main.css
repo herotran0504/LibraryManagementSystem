@@ -4,11 +4,11 @@
     -fx-background-color: linear-gradient(to top right, #382af9, #9747FF);
 }
 
-.h1 {
+.h1_title {
     -fx-font-family: "Arial";
     -fx-font-size: 36.0;
     -fx-font-weight: bold;
-    -fx-text-fill: #FFFFFF;
+    -fx-text-fill: #ffffff;
 }
 
 .label {
@@ -41,6 +41,7 @@
 
 .button:hover {
     -fx-background-color: #6E6D70;
+    -fx-text-alignment: center;
 }
 
 #gridPane {
