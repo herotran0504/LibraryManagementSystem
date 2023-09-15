@@ -17,7 +17,7 @@ javafx {
 }
 
 application {
-    mainClass = 'librarysystem.main.App'
+    mainClass = "librarysystem.main.App"
 }
 
 dependencies {
