@@ -48,6 +48,13 @@
 					GridPane.columnIndex="2"
 					GridPane.halignment="RIGHT"
 					GridPane.rowIndex="1" />
+				<Label text="Copies : "
+				   GridPane.columnIndex="2"
+				   GridPane.halignment="RIGHT"
+				   GridPane.rowIndex="2" />
+				<TextField fx:id="Copies"
+				   GridPane.columnIndex="3"
+				   GridPane.rowIndex="2" />
 				<TextField fx:id="isbn"
 					GridPane.columnIndex="1"
 					GridPane.rowIndex="1" />
@@ -126,7 +133,7 @@
 					text="Add author"
 					GridPane.columnIndex="3"
 					GridPane.halignment="RIGHT"
-					GridPane.rowIndex="2" />
+					GridPane.rowIndex="3" />
 			</children>
 			<columnConstraints>
 				<ColumnConstraints halignment="CENTER"

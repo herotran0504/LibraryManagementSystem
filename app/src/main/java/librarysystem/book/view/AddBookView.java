@@ -30,6 +30,9 @@ public class AddBookView {
     private TextField title;
 
     @FXML
+    private TextField Copies;
+
+    @FXML
     private TextField maxcheckoutlength;
 
     @FXML
@@ -57,8 +60,10 @@ public class AddBookView {
         final String isbn = this.isbn.getText();
         final String title = this.title.getText();
         final int maxCheckoutLength = Integer.parseInt(maxcheckoutlength.getText());
+        final int copyNum = Integer.parseInt(Copies.getText());
         final List<Author> authors = new ArrayList<>(authorstable.getItems());
         Book book = new Book(isbn, title, maxCheckoutLength, authors);
+        if(copyNum > 1) book.addCopy(copyNum - 1);
         try {
             Result<Void> response = controller.addNewBook(book);
             if (response.getSuccess()) {

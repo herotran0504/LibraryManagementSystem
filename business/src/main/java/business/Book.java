@@ -46,6 +46,11 @@ final public class Book implements Serializable {
         copies = newArr;
     }
 
+    public void addCopy(int copyNum) {
+        for(int i = 0; i< copyNum; i++)
+            addCopy();
+    }
+
 
     @Override
     public boolean equals(Object ob) {
