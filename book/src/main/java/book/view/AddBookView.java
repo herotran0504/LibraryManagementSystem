@@ -1,10 +1,13 @@
-package librarysystem.book.view;
+package book.view;
 
 import business.Address;
 import business.Author;
 import business.Book;
 import business.exception.BookException;
+import core.navigator.GlobalProvider;
 import core.util.DialogUtil;
+import core.viewmodel.BookViewModel;
+import core.viewmodel.ViewModelRegistry;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellEditEvent;
@@ -12,15 +15,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import librarysystem.book.controller.BookController;
-import librarysystem.controller.ControllerFactory;
-import librarysystem.controller.UiLoader;
 import librarysystem.utils.Result;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static librarysystem.util.Const.VIEW_DASHBOARD;
 
 public class AddBookView {
 
@@ -54,7 +52,7 @@ public class AddBookView {
     @FXML
     private TableColumn<Author, String> column_shortBio;
 
-    private final BookController controller = ControllerFactory.get().getBookController();
+    private final BookViewModel controller = ViewModelRegistry.getInstance().get(BookViewModel.class);
 
     @FXML
     protected void addNewMember() {
@@ -153,11 +151,10 @@ public class AddBookView {
     }
 
     private boolean validateForm() {
-        if (
-                isbn.getText().trim().isEmpty() ||
-                        title.getText().trim().isEmpty() ||
-                        maxcheckoutlength.getText().trim().isEmpty() ||
-                        Copies.getText().trim().isEmpty()
+        if (isbn.getText().trim().isEmpty() ||
+                title.getText().trim().isEmpty() ||
+                maxcheckoutlength.getText().trim().isEmpty() ||
+                Copies.getText().trim().isEmpty()
         ) {
             DialogUtil.showExceptionDialog("Please input all field");
             return false;
@@ -181,6 +178,7 @@ public class AddBookView {
     }
 
     public void back() {
-        UiLoader.loadUI(VIEW_DASHBOARD);
+        GlobalProvider.getInstance().loader.loadViewController("view/DashboardView.fxml");
     }
+
 }

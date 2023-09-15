@@ -1,4 +1,4 @@
-package librarysystem.util;
+package core.util;
 
 import business.Book;
 import business.BookCopy;
@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public class Functors {
+public final class Functors {
 
     public static final TriFunction<List<Book>, String, String, List<Book>> BOOK_FILTER = (l, idSubString, titleSubString) -> l
             .stream()
@@ -31,4 +31,7 @@ public class Functors {
     public static final Function<Book, List<BookCopy>> AVAILABLE_COPIES_FINDER = (p) -> p.getCopies() == null ? new ArrayList<>() : Arrays.stream(p.getCopies())
             .filter(BookCopy::isAvailable)
             .collect(Collectors.toList());
+
+    private Functors() {
+    }
 }

@@ -1,11 +1,14 @@
 package librarysystem.book.view;
 
+import book.view.BookSearchView;
 import business.Book;
 import business.BookCopy;
 import business.CheckoutCopies;
 import business.CheckoutRecordEntry;
 import business.exception.CheckoutException;
 import business.exception.MemberException;
+import core.navigator.GlobalProvider;
+import core.util.DialogUtil;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,8 +18,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import librarysystem.book.controller.CheckoutController;
 import librarysystem.controller.ControllerFactory;
-import core.util.DialogUtil;
-import librarysystem.controller.UiLoader;
 import librarysystem.utils.DateUtil;
 
 import java.net.URL;
@@ -25,8 +26,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
-
-import static librarysystem.util.Const.VIEW_DASHBOARD;
 
 public class OverdueCopiesView implements Initializable {
     @FXML
@@ -119,6 +118,6 @@ public class OverdueCopiesView implements Initializable {
     }
 
     public void back() {
-        UiLoader.loadUI(VIEW_DASHBOARD);
+        GlobalProvider.getInstance().navigator.reloadDashBoardView();
     }
 }

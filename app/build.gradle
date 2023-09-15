@@ -17,7 +17,7 @@ javafx {
 }
 
 application {
-    mainClass = 'librarysystem.main.Main'
+    mainClass = 'librarysystem.main.App'
 }
 
 dependencies {
@@ -26,6 +26,7 @@ dependencies {
     implementation project(':dataaccess')
     implementation project(':login')
     implementation project(':core')
+    implementation project(':book')
 
     implementation 'org.apache.commons:commons-text'
     implementation 'org.openjfx:javafx-controls:16'

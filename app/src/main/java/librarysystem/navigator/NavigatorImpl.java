@@ -1,5 +1,7 @@
 package librarysystem.navigator;
 
+import core.loader.ViewControllerLoader;
+import core.navigator.GlobalProvider;
 import core.navigator.Navigator;
 import core.viewmodel.AppController;
 import javafx.application.Platform;
@@ -7,14 +9,34 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import librarysystem.controller.UiLoader;
 import librarysystem.main.App;
+import librarysystem.util.Const;
 
 import java.io.IOException;
 
 import static librarysystem.util.Const.*;
 
 public class NavigatorImpl implements Navigator {
+
+    @Override
+    public void reloadDashBoardView() {
+        loadViewController(VIEW_DASHBOARD);
+    }
+
+    @Override
+    public void openMemberView() {
+        loadViewController(VIEW_MEMBER);
+    }
+
+    @Override
+    public void openMemberListView() {
+        loadViewController(VIEW_MEMBER_TABLE);
+    }
+
+    @Override
+    public void openCheckoutView() {
+        loadViewController(Const.VIEW_CHECKOUT);
+    }
 
     @Override
     public void openDashboardView() throws IOException {
@@ -32,8 +54,13 @@ public class NavigatorImpl implements Navigator {
         FXMLLoader loader = new FXMLLoader(App.class.getResource(VIEW_MAIN));
         Pane mainPane = loader.load();
         AppController appController = loader.getController();
-        UiLoader.setAppController(appController);
-        UiLoader.loadUI(VIEW_DASHBOARD);
+        final ViewControllerLoader controllerLoader = GlobalProvider.getInstance().loader;
+        controllerLoader.attachAppController(appController);
+        controllerLoader.loadViewController(VIEW_DASHBOARD);
         return mainPane;
+    }
+
+    private static void loadViewController(String viewMember) {
+        GlobalProvider.getInstance().loader.loadViewController(viewMember);
     }
 }

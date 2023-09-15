@@ -1,18 +1,19 @@
-package librarysystem.book.controller;
+package book.viewmodel;
 
 import business.Book;
 import business.exception.BookException;
+import core.viewmodel.BookViewModel;
 import dataaccess.BookDao;
+import dataaccess.DaoFactory;
 import librarysystem.utils.Result;
 
 import java.util.ArrayList;
 import java.util.List;
 
-class BookControllerImpl implements BookController {
-
+public class BookViewModelImpl implements BookViewModel {
     private final BookDao dao;
 
-    BookControllerImpl(BookDao dao) {
+    BookViewModelImpl(BookDao dao) {
         this.dao = dao;
     }
 
@@ -26,5 +27,9 @@ class BookControllerImpl implements BookController {
     public Result<List<Book>> getAllBooks() throws BookException {
         List<Book> books = new ArrayList<>(dao.getAll());
         return new Result<>(true, "All books Retrieved", books);
+    }
+
+    public static BookViewModel create() {
+        return new BookViewModelImpl(DaoFactory.getDaoFactory().getBookDao());
     }
 }

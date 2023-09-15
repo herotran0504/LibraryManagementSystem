@@ -12,7 +12,7 @@
 	styleClass="anchorpane"
 	xmlns="http://javafx.com/javafx/8.0.40"
 	xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="librarysystem.book.view.AddBookView">
+	fx:controller="book.view.AddBookView">
 	<stylesheets>
 		<URL value="@../css/main.css" />
 	</stylesheets>

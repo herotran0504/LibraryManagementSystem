@@ -6,6 +6,7 @@ module librarysystem.main {
     requires dataaccess;
     requires login;
     requires core;
+    requires book;
 
     opens librarysystem.main to javafx.fxml;
     exports librarysystem.main;

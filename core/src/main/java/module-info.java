@@ -16,4 +16,5 @@ module core {
     exports core.service;
     opens core.service to javafx.fxml;
     exports core.auth;
+    exports core.loader;
 }

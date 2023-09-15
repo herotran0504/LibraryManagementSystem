@@ -1,6 +1,10 @@
 package librarysystem.book.view;
 
+import book.view.BookSearchView;
 import business.*;
+import core.navigator.GlobalProvider;
+import core.util.DialogUtil;
+import core.util.Functors;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -8,10 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import librarysystem.book.controller.CheckoutController;
 import librarysystem.controller.ControllerFactory;
-import librarysystem.controller.UiLoader;
 import librarysystem.member.controller.LibraryMemberController;
-import core.util.DialogUtil;
-import librarysystem.util.Functors;
 import librarysystem.utils.DateUtil;
 import librarysystem.utils.Result;
 
@@ -20,8 +21,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
-
-import static librarysystem.util.Const.VIEW_DASHBOARD;
 
 public class CheckoutView implements Initializable {
 
@@ -183,7 +182,7 @@ public class CheckoutView implements Initializable {
     }
 
     public void back() {
-        UiLoader.loadUI(VIEW_DASHBOARD);
+        GlobalProvider.getInstance().navigator.reloadDashBoardView();
     }
 
 }

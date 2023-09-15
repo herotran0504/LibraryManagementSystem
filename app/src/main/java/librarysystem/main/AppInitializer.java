@@ -1,11 +1,11 @@
 package librarysystem.main;
 
-import core.navigator.Navigator;
+import book.init.BookInitializer;
 import core.navigator.GlobalProvider;
 import core.service.Initializer;
+import librarysystem.controller.ViewControllerLoaderImpl;
 import librarysystem.navigator.NavigatorImpl;
 import login.init.LoginInitializer;
-import mock.Main;
 
 import java.util.Arrays;
 import java.util.List;
@@ -17,12 +17,13 @@ final class AppInitializer implements Initializer {
     @Override
     public void initialize() {
         List<Initializer> boostraps = Arrays.asList(
-                new LoginInitializer()
+                new LoginInitializer(),
+                new BookInitializer()
         );
         boostraps.forEach(Initializer::initialize);
-        Navigator navigator = new NavigatorImpl();
-        GlobalProvider.getInstance().navigator = navigator;
+        GlobalProvider.getInstance().navigator = new NavigatorImpl();
         GlobalProvider.getInstance().appClass = App.class;
+        GlobalProvider.getInstance().loader = new ViewControllerLoaderImpl();
     }
 
     static void start() {

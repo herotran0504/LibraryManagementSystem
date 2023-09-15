@@ -3,6 +3,7 @@ package librarysystem.member.view;
 import business.Auth;
 import business.CheckoutRecordEntry;
 import business.LibraryMember;
+import core.navigator.GlobalProvider;
 import core.util.DialogUtil;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
@@ -16,18 +17,15 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import librarysystem.book.controller.CheckoutController;
 import librarysystem.controller.ControllerFactory;
-import librarysystem.controller.UiLoader;
 import librarysystem.member.controller.LibraryMemberController;
 import core.auth.UserData;
-import librarysystem.util.Functors;
+import core.util.Functors;
 import librarysystem.utils.Result;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-
-import static librarysystem.util.Const.VIEW_DASHBOARD;
 
 public class LibraryMemberTableView implements Initializable {
 
@@ -218,6 +216,6 @@ public class LibraryMemberTableView implements Initializable {
 
     public void back() {
         libraryMember = null;
-        UiLoader.loadUI(VIEW_DASHBOARD);
+        GlobalProvider.getInstance().navigator.reloadDashBoardView();
     }
 }

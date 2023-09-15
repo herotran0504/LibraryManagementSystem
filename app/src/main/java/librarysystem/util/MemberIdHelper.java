@@ -7,9 +7,9 @@ import java.util.Properties;
 
 import static librarysystem.utils.FileOperation.STORAGE_DIR;
 
-public class IdManager {
+public class MemberIdHelper {
 
-    public static final String OUTPUT_DIR = STORAGE_DIR + "id.properties";
+    public static final String OUTPUT_DIR = STORAGE_DIR + "ID.PROPERTIES";
 
     public static String getNextID(String key) {
         Properties prop = new Properties();

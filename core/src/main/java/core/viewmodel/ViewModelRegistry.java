@@ -10,14 +10,6 @@ public final class ViewModelRegistry {
     private ViewModelRegistry() {
     }
 
-    private static class RegistryHolder {
-        private static final ViewModelRegistry INSTANCE = new ViewModelRegistry();
-    }
-
-    public static ViewModelRegistry getInstance() {
-        return RegistryHolder.INSTANCE;
-    }
-
     public <T extends ViewModel> void add(Class<? extends T> cls, T viewModel) {
         data.put(cls, viewModel);
     }
@@ -29,4 +21,13 @@ public final class ViewModelRegistry {
         }
         return cls.cast(viewModel);
     }
+
+    private static class RegistryHolder {
+        private static final ViewModelRegistry INSTANCE = new ViewModelRegistry();
+    }
+
+    public static ViewModelRegistry getInstance() {
+        return RegistryHolder.INSTANCE;
+    }
+
 }

@@ -3,7 +3,7 @@ package librarysystem.member.controller;
 import business.LibraryMember;
 import dataaccess.LibraryMemberDao;
 import librarysystem.util.Const;
-import librarysystem.util.IdManager;
+import librarysystem.util.MemberIdHelper;
 import librarysystem.utils.Result;
 
 import java.util.List;
@@ -18,7 +18,7 @@ class LibraryMemberControllerImpl implements LibraryMemberController {
     @Override
     public Result<Void> addNewMember(LibraryMember libraryMember) {
         try {
-            libraryMember.setMemberId(IdManager.getNextID(Const.MEMBER_PROPERTY_KEY));
+            libraryMember.setMemberId(MemberIdHelper.getNextID(Const.MEMBER_PROPERTY_KEY));
             libraryMemberDao.addLibraryMember(libraryMember);
             return new Result<>(true, "Successfully added");
         } catch (Exception e) {

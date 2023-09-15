@@ -1,15 +1,13 @@
-package librarysystem.book.view;
+package book.view;
 
 import business.Book;
+import core.navigator.GlobalProvider;
 import core.util.DialogUtil;
+import core.viewmodel.BookViewModel;
+import core.viewmodel.ViewModelRegistry;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import librarysystem.book.controller.BookController;
-import librarysystem.controller.ControllerFactory;
-import librarysystem.controller.UiLoader;
-
-import static librarysystem.util.Const.VIEW_DASHBOARD;
 
 public class AddNewCopyView {
 
@@ -19,7 +17,7 @@ public class AddNewCopyView {
     @FXML
     private TextField txtNumOfCopies;
 
-    private final BookController controller = ControllerFactory.get().getBookController();
+    private final BookViewModel controller = ViewModelRegistry.getInstance().get(BookViewModel.class);
 
     @FXML
     private void addNewCopy() {
@@ -57,6 +55,6 @@ public class AddNewCopyView {
 
     @FXML
     protected void cancelWindow() {
-        UiLoader.loadUI(VIEW_DASHBOARD);
+        GlobalProvider.getInstance().loader.loadViewController("view/DashboardView.fxml");
     }
 }

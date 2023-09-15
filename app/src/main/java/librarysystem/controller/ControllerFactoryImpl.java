@@ -1,7 +1,6 @@
 package librarysystem.controller;
 
 import dataaccess.DaoFactory;
-import librarysystem.book.controller.BookController;
 import librarysystem.book.controller.CheckoutController;
 import librarysystem.member.controller.LibraryMemberController;
 
@@ -21,11 +20,6 @@ class ControllerFactoryImpl implements ControllerFactory {
     @Override
     public LibraryMemberController getLibraryMemberController() {
         return LibraryMemberController.get(daoFactory.getLibraryMemberDao());
-    }
-
-    @Override
-    public BookController getBookController() {
-        return BookController.get(daoFactory.getBookDao());
     }
 
 }

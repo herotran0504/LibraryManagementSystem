@@ -1,6 +1,9 @@
-package librarysystem.book.view;
+package book.view;
 
 import business.Book;
+import core.util.Functors;
+import core.viewmodel.BookViewModel;
+import core.viewmodel.ViewModelRegistry;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -8,10 +11,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import librarysystem.book.controller.BookController;
-import librarysystem.controller.ControllerFactory;
 import core.util.DialogUtil;
-import librarysystem.util.Functors;
 import librarysystem.utils.Result;
 
 import java.net.URL;
@@ -46,7 +46,7 @@ public class BookSearchView implements Initializable {
     @FXML
     private TableColumn<Book, String> colPublicationType;
 
-    private final BookController controller = ControllerFactory.get().getBookController();
+    private final BookViewModel controller = ViewModelRegistry.getInstance().get(BookViewModel.class);
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

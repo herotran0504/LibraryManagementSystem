@@ -1,12 +1,14 @@
 package librarysystem.dashboard;
 
+import business.Auth;
+import core.auth.UserData;
+import core.navigator.GlobalProvider;
 import core.util.DialogUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import librarysystem.controller.UiLoader;
 import librarysystem.main.App;
 import librarysystem.util.Const;
 
@@ -16,12 +18,25 @@ import java.util.ResourceBundle;
 import static librarysystem.util.Const.VIEW_OVERDUE_COPIES;
 
 public class DashboardView implements Initializable {
+
+    @FXML
+    private Button memberView;
+    @FXML
+    private Button checkout;
+    @FXML
+    private Button openBook;
+    @FXML
+    private Button addMember;
+    @FXML
+    private Button addCopy;
+    @FXML
+    private Button overdueCopy;
     @FXML
     private Button logout;
 
     @FXML
     protected void openMemberView(ActionEvent event) {
-        UiLoader.loadUI(Const.VIEW_MEMBER);
+        GlobalProvider.getInstance().navigator.openMemberView();
     }
 
     @FXML
@@ -30,15 +45,26 @@ public class DashboardView implements Initializable {
     }
 
     public void openMembersListView() {
-        UiLoader.loadUI(Const.VIEW_MEMBER_TABLE);
+        GlobalProvider.getInstance().navigator.openMemberListView();
     }
 
     public void openCheckoutView() {
-        UiLoader.loadUI(Const.VIEW_CHECKOUT);
+        GlobalProvider.getInstance().navigator.openCheckoutView();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        if (UserData.getAuth().equals(Auth.ADMIN)) {
+            checkout.setDisable(true);
+        } else if (UserData.getAuth().equals(Auth.LIBRARIAN)) {
+            addCopy.setDisable(true);
+            openBook.setDisable(true);
+            addMember.setDisable(true);
+        }
+    }
+
+    private static String greeting(Auth librarian) {
+        return "Welcome, Access Level [" + librarian + ']';
     }
 
     @FXML
@@ -48,17 +74,17 @@ public class DashboardView implements Initializable {
 
     @FXML
     protected void openBook(ActionEvent event) {
-        UiLoader.loadUI(Const.VIEW_BOOK);
+        GlobalProvider.getInstance().loader.loadViewController(Const.VIEW_BOOK);
     }
 
     @FXML
     protected void addCopy(ActionEvent event) {
-        UiLoader.loadUI(Const.VIEW_ADD_COPY);
+        GlobalProvider.getInstance().loader.loadViewController(Const.VIEW_ADD_COPY);
     }
 
     @FXML
     protected void viewOverdueCopies(ActionEvent event) {
-        UiLoader.loadUI(VIEW_OVERDUE_COPIES);
+        GlobalProvider.getInstance().loader.loadViewController(VIEW_OVERDUE_COPIES);
     }
 
     @FXML

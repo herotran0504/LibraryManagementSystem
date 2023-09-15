@@ -1,4 +1,4 @@
-package librarysystem.util;
+package core.util;
 
 @FunctionalInterface
 public interface TriFunction<L, S, T, R> {

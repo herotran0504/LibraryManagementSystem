@@ -1,14 +1,14 @@
 package librarysystem.member.view;
 
+import business.Address;
+import business.LibraryMember;
+import core.navigator.GlobalProvider;
 import core.util.DialogUtil;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import librarysystem.controller.ControllerFactory;
-import librarysystem.controller.UiLoader;
 import librarysystem.member.controller.LibraryMemberController;
-import business.Address;
-import business.LibraryMember;
 import librarysystem.util.Const;
 
 import java.net.URL;
@@ -76,11 +76,10 @@ public class LibraryMemberView implements Initializable {
         } catch (Exception e) {
             DialogUtil.showServiceResponseMessage(e);
         }
-
     }
 
     public void setRecordAndShow(LibraryMember librabryMember) {
-        UiLoader.loadUI(Const.VIEW_MEMBER, librabryMember);
+        GlobalProvider.getInstance().loader.loadViewController(Const.VIEW_MEMBER, librabryMember);
     }
 
     @Override
@@ -160,9 +159,9 @@ public class LibraryMemberView implements Initializable {
     public void back() {
         String actionParent = getActionHdn();
         if (actionParent.equals(ACTION_CREATE)) {
-            UiLoader.loadUI(VIEW_DASHBOARD);
+            GlobalProvider.getInstance().navigator.reloadDashBoardView();
         } else if (actionParent.equals(ACTION_UPDATE)) {
-            UiLoader.loadUI(VIEW_MEMBER_TABLE);
+            GlobalProvider.getInstance().loader.loadViewController(VIEW_MEMBER_TABLE);
         }
     }
 
