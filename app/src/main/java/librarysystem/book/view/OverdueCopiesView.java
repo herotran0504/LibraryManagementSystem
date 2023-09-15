@@ -15,9 +15,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import librarysystem.book.controller.CheckoutController;
 import librarysystem.controller.ControllerFactory;
+import core.util.DialogUtil;
 import librarysystem.controller.UiLoader;
-import librarysystem.util.Const;
-import librarysystem.util.DialogUtil;
 import librarysystem.utils.DateUtil;
 
 import java.net.URL;
@@ -26,6 +25,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+
+import static librarysystem.util.Const.VIEW_DASHBOARD;
 
 public class OverdueCopiesView implements Initializable {
     @FXML
@@ -118,6 +119,6 @@ public class OverdueCopiesView implements Initializable {
     }
 
     public void back() {
-        UiLoader.loadUI(Const.VIEW_DASHBOARD);
+        UiLoader.loadUI(VIEW_DASHBOARD);
     }
 }

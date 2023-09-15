@@ -4,6 +4,7 @@ import business.Address;
 import business.Author;
 import business.Book;
 import business.exception.BookException;
+import core.util.DialogUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellEditEvent;
@@ -14,12 +15,12 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import librarysystem.book.controller.BookController;
 import librarysystem.controller.ControllerFactory;
 import librarysystem.controller.UiLoader;
-import librarysystem.util.Const;
-import librarysystem.util.DialogUtil;
 import librarysystem.utils.Result;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static librarysystem.util.Const.VIEW_DASHBOARD;
 
 public class AddBookView {
 
@@ -63,7 +64,7 @@ public class AddBookView {
         final int copyNum = Integer.parseInt(Copies.getText());
         final List<Author> authors = new ArrayList<>(authorstable.getItems());
         Book book = new Book(isbn, title, maxCheckoutLength, authors);
-        if(copyNum > 1) book.addCopy(copyNum - 1);
+        if (copyNum > 1) book.addCopy(copyNum - 1);
         try {
             Result<Void> response = controller.addNewBook(book);
             if (response.getSuccess()) {
@@ -84,7 +85,7 @@ public class AddBookView {
 
     @FXML
     protected void addNewAuthor() {
-        if(!validateForm()) return;
+        if (!validateForm()) return;
         final Author author = createAuthor();
         handleFirstName();
         handleLastName();
@@ -152,11 +153,11 @@ public class AddBookView {
     }
 
     private boolean validateForm() {
-        if(
-            isbn.getText().trim().isEmpty() ||
-            title.getText().trim().isEmpty() ||
-            maxcheckoutlength.getText().trim().isEmpty() ||
-            Copies.getText().trim().isEmpty()
+        if (
+                isbn.getText().trim().isEmpty() ||
+                        title.getText().trim().isEmpty() ||
+                        maxcheckoutlength.getText().trim().isEmpty() ||
+                        Copies.getText().trim().isEmpty()
         ) {
             DialogUtil.showExceptionDialog("Please input all field");
             return false;
@@ -180,6 +181,6 @@ public class AddBookView {
     }
 
     public void back() {
-        UiLoader.loadUI(Const.VIEW_DASHBOARD);
+        UiLoader.loadUI(VIEW_DASHBOARD);
     }
 }

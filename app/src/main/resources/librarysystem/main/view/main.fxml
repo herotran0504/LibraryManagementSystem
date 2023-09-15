@@ -6,7 +6,7 @@
 <VBox prefHeight="200.0"
     prefWidth="300.0"
     xmlns:fx="http://javafx.com/fxml"
-    fx:controller="librarysystem.main.MainController">
+    fx:controller="core.viewmodel.AppController">
     <children>
         <StackPane fx:id="stackPane"
             VBox.vgrow="ALWAYS" />

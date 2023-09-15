@@ -1,14 +1,15 @@
 package librarysystem.book.view;
 
 import business.Book;
+import core.util.DialogUtil;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import librarysystem.book.controller.BookController;
 import librarysystem.controller.ControllerFactory;
 import librarysystem.controller.UiLoader;
-import librarysystem.util.Const;
-import librarysystem.util.DialogUtil;
+
+import static librarysystem.util.Const.VIEW_DASHBOARD;
 
 public class AddNewCopyView {
 
@@ -56,6 +57,6 @@ public class AddNewCopyView {
 
     @FXML
     protected void cancelWindow() {
-        UiLoader.loadUI(Const.VIEW_DASHBOARD);
+        UiLoader.loadUI(VIEW_DASHBOARD);
     }
 }

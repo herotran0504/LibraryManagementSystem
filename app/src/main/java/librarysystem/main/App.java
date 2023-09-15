@@ -9,10 +9,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-import static librarysystem.util.Const.VIEW_LOGIN;
 import static librarysystem.util.Const.TITLE_LIBRARY_MANAGEMENT_SYSTEM;
+import static librarysystem.util.Const.VIEW_LOGIN;
 
-public class Main extends Application {
+public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -25,7 +25,7 @@ public class Main extends Application {
     }
 
     private static Pane loadUserLogin() throws IOException {
-        return FXMLLoader.load(Main.class.getResource(VIEW_LOGIN));
+        return FXMLLoader.load(App.class.getResource(VIEW_LOGIN));
     }
 
     private static Scene createScene(Pane mainPane) {
@@ -33,6 +33,7 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
+        AppInitializer.start();
         launch(args);
     }
 }

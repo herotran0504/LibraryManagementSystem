@@ -1,4 +1,4 @@
-package librarysystem.util;
+package core.util;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -18,7 +18,7 @@ public class DialogUtil {
     private static final String EXCEPTION_CONFIRMATION = "Confirmation";
 
     public static void showInformationDialog(String message) {
-        Alert alert = new Alert(INFORMATION);
+        Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle(INFORMATION_TITLE);
         alert.setHeaderText(null);
         alert.setContentText(message);
@@ -26,7 +26,7 @@ public class DialogUtil {
     }
 
     public static void showWarningDialog(String message) {
-        Alert alert = new Alert(WARNING);
+        Alert alert = new Alert(AlertType.WARNING);
         alert.setTitle(WARNING_TITLE);
         alert.setHeaderText(null);
         alert.setContentText(message);
@@ -61,6 +61,7 @@ public class DialogUtil {
     }
 
     public static void showServiceResponseMessage(Exception e) {
+        e.printStackTrace();
         showExceptionDialog(Result.getRuntimeException());
     }
 

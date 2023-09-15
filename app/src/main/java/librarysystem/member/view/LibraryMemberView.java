@@ -1,16 +1,15 @@
 package librarysystem.member.view;
 
+import core.util.DialogUtil;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import librarysystem.controller.ControllerFactory;
-import librarysystem.member.controller.LibraryMemberController;
 import librarysystem.controller.UiLoader;
+import librarysystem.member.controller.LibraryMemberController;
 import business.Address;
 import business.LibraryMember;
 import librarysystem.util.Const;
-import librarysystem.util.DialogUtil;
-import librarysystem.utils.Result;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -54,7 +53,6 @@ public class LibraryMemberView implements Initializable {
         address.setZip(getZip());
         libraryMember.setAddress(address);
         String msg = getActionHdn();
-
 
         try {
             switch (msg) {
