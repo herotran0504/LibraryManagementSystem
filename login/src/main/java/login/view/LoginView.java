@@ -1,28 +1,31 @@
-package librarysystem.user.view;
+package login.view;
 
 import business.User;
 import business.exception.LoginException;
+import core.navigator.Navigator;
+import core.navigator.GlobalProvider;
+import core.util.DialogUtil;
+import core.viewmodel.UserViewModel;
+import core.viewmodel.ViewModelRegistry;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import librarysystem.controller.ControllerFactory;
-import librarysystem.user.controller.UserController;
-import librarysystem.util.DialogUtil;
-import librarysystem.util.Navigator;
 import librarysystem.utils.Result;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class LoginView implements Navigator, Initializable {
+public class LoginView implements Initializable {
 
     @FXML
     private TextField userId;
     @FXML
     private PasswordField userPwd;
 
-    private final UserController controller = ControllerFactory.get().getUserController();
+    private final UserViewModel controller = ViewModelRegistry.getInstance().get(UserViewModel.class);
+    private final Navigator navigator = GlobalProvider.getInstance().navigator;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -48,6 +51,10 @@ public class LoginView implements Navigator, Initializable {
         } catch (Exception e) {
             DialogUtil.showServiceResponseMessage(e);
         }
+    }
+
+    private void openDashboardView() throws IOException {
+        navigator.openDashboardView();
     }
 
     private static void showLoginError() {

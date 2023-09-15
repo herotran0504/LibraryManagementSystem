@@ -10,7 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import librarysystem.book.controller.BookController;
 import librarysystem.controller.ControllerFactory;
-import librarysystem.util.DialogUtil;
+import core.util.DialogUtil;
 import librarysystem.util.Functors;
 import librarysystem.utils.Result;
 

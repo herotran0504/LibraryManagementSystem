@@ -10,8 +10,7 @@ import librarysystem.book.controller.CheckoutController;
 import librarysystem.controller.ControllerFactory;
 import librarysystem.controller.UiLoader;
 import librarysystem.member.controller.LibraryMemberController;
-import librarysystem.util.Const;
-import librarysystem.util.DialogUtil;
+import core.util.DialogUtil;
 import librarysystem.util.Functors;
 import librarysystem.utils.DateUtil;
 import librarysystem.utils.Result;
@@ -21,6 +20,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import static librarysystem.util.Const.VIEW_DASHBOARD;
 
 public class CheckoutView implements Initializable {
 
@@ -182,7 +183,7 @@ public class CheckoutView implements Initializable {
     }
 
     public void back() {
-        UiLoader.loadUI(Const.VIEW_DASHBOARD);
+        UiLoader.loadUI(VIEW_DASHBOARD);
     }
 
 }

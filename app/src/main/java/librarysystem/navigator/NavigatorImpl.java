@@ -1,21 +1,23 @@
-package librarysystem.util;
+package librarysystem.navigator;
 
+import core.navigator.Navigator;
+import core.viewmodel.AppController;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import librarysystem.controller.UiLoader;
-import librarysystem.main.Main;
-import librarysystem.main.MainController;
+import librarysystem.main.App;
 
 import java.io.IOException;
 
 import static librarysystem.util.Const.*;
 
-public interface Navigator {
+public class NavigatorImpl implements Navigator {
 
-    default void openDashboardView() throws IOException {
+    @Override
+    public void openDashboardView() throws IOException {
         Stage stage = new Stage();
         stage.setTitle(TITLE_LIBRARY_MANAGEMENT_SYSTEM);
         stage.setResizable(false);
@@ -27,12 +29,11 @@ public interface Navigator {
     }
 
     private static Pane loadMainPane() throws IOException {
-        FXMLLoader loader = new FXMLLoader(Main.class.getResource(VIEW_MAIN));
+        FXMLLoader loader = new FXMLLoader(App.class.getResource(VIEW_MAIN));
         Pane mainPane = loader.load();
-        MainController mainController = loader.getController();
-        UiLoader.setMainController(mainController);
+        AppController appController = loader.getController();
+        UiLoader.setAppController(appController);
         UiLoader.loadUI(VIEW_DASHBOARD);
         return mainPane;
     }
-
 }

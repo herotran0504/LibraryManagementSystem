@@ -1,10 +1,9 @@
 package librarysystem.controller;
 
 import dataaccess.DaoFactory;
-import librarysystem.book.controller.CheckoutController;
 import librarysystem.book.controller.BookController;
+import librarysystem.book.controller.CheckoutController;
 import librarysystem.member.controller.LibraryMemberController;
-import librarysystem.user.controller.UserController;
 
 class ControllerFactoryImpl implements ControllerFactory {
 
@@ -22,11 +21,6 @@ class ControllerFactoryImpl implements ControllerFactory {
     @Override
     public LibraryMemberController getLibraryMemberController() {
         return LibraryMemberController.get(daoFactory.getLibraryMemberDao());
-    }
-
-    @Override
-    public UserController getUserController() {
-        return UserController.get(daoFactory.getUserDao());
     }
 
     @Override

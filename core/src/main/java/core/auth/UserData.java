@@ -1,4 +1,4 @@
-package librarysystem.user.controller;
+package core.auth;
 
 import business.Auth;
 
@@ -17,11 +17,11 @@ public class UserData {
         return getInstance().auth;
     }
 
-    private static class Holder {
-        public static UserData instance = new UserData();
-    }
-
     public static UserData getInstance() {
         return UserData.Holder.instance;
+    }
+
+    private static class Holder {
+        public static UserData instance = new UserData();
     }
 }

@@ -1,22 +1,22 @@
 package librarysystem.controller;
 
+import core.viewmodel.AppController;
 import javafx.fxml.FXMLLoader;
-import librarysystem.main.Main;
-import librarysystem.main.MainController;
+import librarysystem.main.App;
 
 import java.io.IOException;
 
 public class UiLoader {
 
-    private MainController mainController;
+    private AppController appController;
 
-    public static void setMainController(MainController controller) {
-        getInstance().mainController = controller;
+    public static void setAppController(AppController controller) {
+        getInstance().appController = controller;
     }
 
     public static void loadUI(String fxml, Object userData) {
         try {
-            getInstance().mainController.setUi(FXMLLoader.load(Main.class.getResource(fxml)), userData);
+            getInstance().appController.setUi(FXMLLoader.load(App.class.getResource(fxml)), userData);
         } catch (IOException e) {
             e.printStackTrace();
         }

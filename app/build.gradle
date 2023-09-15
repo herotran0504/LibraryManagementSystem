@@ -21,12 +21,15 @@ application {
 }
 
 dependencies {
-    implementation  project(':utilities')
-    implementation  project(':business')
+    implementation project(':utilities')
+    implementation project(':business')
+    implementation project(':dataaccess')
+    implementation project(':login')
+    implementation project(':core')
+
     implementation 'org.apache.commons:commons-text'
     implementation 'org.openjfx:javafx-controls:16'
     implementation 'org.openjfx:javafx-fxml:16'
-    implementation project(path: ':dataaccess')
 }
 
 jlink {

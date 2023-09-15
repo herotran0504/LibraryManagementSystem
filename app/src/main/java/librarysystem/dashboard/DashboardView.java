@@ -1,41 +1,23 @@
 package librarysystem.dashboard;
 
-import business.Auth;
+import core.util.DialogUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import librarysystem.controller.UiLoader;
-import librarysystem.main.Main;
-import librarysystem.user.controller.UserData;
+import librarysystem.main.App;
 import librarysystem.util.Const;
-import librarysystem.util.DialogUtil;
-import librarysystem.util.Navigator;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import static librarysystem.util.Const.VIEW_OVERDUE_COPIES;
 
-public class DashboardView implements Navigator, Initializable {
-    @FXML
-    private Button memberView;
-    @FXML
-    private Button checkout;
-    @FXML
-    private Button openBook;
-    @FXML
-    private Button addMember;
-    @FXML
-    private Button addCopy;
-    @FXML
-    private Button overdueCopy;
+public class DashboardView implements Initializable {
     @FXML
     private Button logout;
-    @FXML
-    private Label welcomeLBL;
 
     @FXML
     protected void openMemberView(ActionEvent event) {
@@ -84,9 +66,9 @@ public class DashboardView implements Navigator, Initializable {
         if (DialogUtil.showConfirmDialog("Are you sure to logout?")) {
             try {
                 logout.getScene().getWindow().hide();
-                Main main = new Main();
+                App app = new App();
                 Stage stage = new Stage();
-                main.start(stage);
+                app.start(stage);
             } catch (Exception e) {
                 e.printStackTrace();
             }

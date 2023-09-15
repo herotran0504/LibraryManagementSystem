@@ -1,15 +1,18 @@
-package librarysystem.user.controller;
+package login.viewmodel;
 
 import business.User;
 import business.exception.LoginException;
+import core.auth.UserData;
+import core.util.DialogUtil;
+import core.viewmodel.UserViewModel;
+import dataaccess.DaoFactory;
 import dataaccess.UserDao;
-import librarysystem.util.DialogUtil;
 import librarysystem.utils.Result;
 
-class UserControllerImpl implements UserController {
+public final class UserViewModelImpl implements UserViewModel {
     private final UserDao userDao;
 
-    UserControllerImpl(UserDao userDao) {
+    public UserViewModelImpl(UserDao userDao) {
         this.userDao = userDao;
     }
 
@@ -48,4 +51,7 @@ class UserControllerImpl implements UserController {
         return true;
     }
 
+    public static UserViewModel create() {
+        return new UserViewModelImpl(DaoFactory.getDaoFactory().getUserDao());
+    }
 }
