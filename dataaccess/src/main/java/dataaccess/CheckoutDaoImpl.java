@@ -42,7 +42,11 @@ class CheckoutDaoImpl implements CheckoutDao {
         checkout = tempCheckout;
         FileOperation.saveToStorage(StorageType.CHECKOUT, tempCheckout);
         checkout.put(memberId, originalList);
-        updateCheckoutBook(checkoutEntries.get(0).getCopy().getBook());
+        updateCheckoutBook(getBook(checkoutEntries));
+    }
+
+    private static Book getBook(List<CheckoutRecordEntry> checkoutEntries) {
+        return checkoutEntries.get(0).getCopy().getBook();
     }
 
     private void updateCheckoutBook(Book book) throws CheckoutException {

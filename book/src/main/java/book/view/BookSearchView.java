@@ -43,8 +43,6 @@ public class BookSearchView implements Initializable {
     private TableColumn<Book, Integer> colTotalCopies;
     @FXML
     private TableColumn<Book, Integer> colMaxCheckoutLength;
-    @FXML
-    private TableColumn<Book, String> colPublicationType;
 
     private final BookViewModel viewModel = ViewModelRegistry.getInstance().get(BookViewModel.class);
 
@@ -63,7 +61,6 @@ public class BookSearchView implements Initializable {
     public void showCompleteList() {
         try {
             Result<List<Book>> result = viewModel.getAllBooks();
-            colPublicationType.setCellValueFactory(data -> new ReadOnlyObjectWrapper<>(data.getValue().getClass().getSimpleName()));
             collPublicationId.setCellValueFactory(data -> new ReadOnlyObjectWrapper<>(data.getValue().getIsbn()));
             colTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
             colAvailableCopies.setCellValueFactory(data -> {

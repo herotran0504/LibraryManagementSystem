@@ -2,13 +2,7 @@ package core.util;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonType;
 import librarysystem.utils.Result;
-
-import java.util.Optional;
-
-import static javafx.scene.control.Alert.AlertType.INFORMATION;
-import static javafx.scene.control.Alert.AlertType.WARNING;
 
 public class DialogUtil {
 
@@ -42,14 +36,15 @@ public class DialogUtil {
     }
 
     public static Boolean showConfirmDialog(String confirmMsg) {
-        Alert alert = new Alert(AlertType.CONFIRMATION);
-        alert.setTitle(EXCEPTION_CONFIRMATION);
-        alert.setHeaderText(null);
-        alert.setContentText(confirmMsg);
-
-        Optional<ButtonType> result = alert.showAndWait();
-        return result.get() == ButtonType.OK;
-
+        System.out.println(confirmMsg);
+        return true;
+//        Alert alert = new Alert(AlertType.CONFIRMATION);
+//        alert.setTitle(EXCEPTION_CONFIRMATION);
+//        alert.setHeaderText(null);
+//        alert.setContentText(confirmMsg);
+//
+//        Optional<ButtonType> result = alert.showAndWait();
+//        return result.get() == ButtonType.OK;
     }
 
     public static void showServiceResponseMessage(Result<?> result) {

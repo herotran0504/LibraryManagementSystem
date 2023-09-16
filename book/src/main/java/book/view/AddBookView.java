@@ -87,7 +87,6 @@ public class AddBookView {
         final Author author = createAuthor();
         handleFirstName();
         handleLastName();
-        handleCredentials();
         handlePhone();
         handleShortBio();
         authorstable.getItems().add(author);
@@ -115,21 +114,10 @@ public class AddBookView {
         Author author = new Author();
         author.setFirstname("First Name");
         author.setLastName("Last Name");
-        author.setCredentials("Credentials");
         author.setPhone("Phone Number");
-        author.setShortBio("Short Bio");
         Address address = new Address("Street", "City", "State", "Zip");
         author.setAddress(address);
         return author;
-    }
-
-    private void handleCredentials() {
-        column_credentials.setCellValueFactory(new PropertyValueFactory<>("credentials"));
-        column_credentials.setCellFactory(TextFieldTableCell.forTableColumn());
-        column_credentials.setOnEditCommit((CellEditEvent<Author, String> t) -> {
-            Author author = t.getTableView().getItems().get(t.getTablePosition().getRow());
-            author.setCredentials(t.getNewValue());
-        });
     }
 
     private void handleLastName() {

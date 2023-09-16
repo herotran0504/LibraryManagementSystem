@@ -2,7 +2,7 @@ package core.auth;
 
 import business.Auth;
 
-public class UserData {
+    public class UserAuthData {
     private Auth auth;
 
     public static void setAuth(Auth auth) {
@@ -17,11 +17,11 @@ public class UserData {
         return getInstance().auth;
     }
 
-    public static UserData getInstance() {
-        return UserData.Holder.instance;
+    public static UserAuthData getInstance() {
+        return UserAuthData.Holder.instance;
     }
 
     private static class Holder {
-        public static UserData instance = new UserData();
+        public static UserAuthData instance = new UserAuthData();
     }
 }

@@ -1,7 +1,7 @@
 package librarysystem.dashboard;
 
 import business.Auth;
-import core.auth.UserData;
+import core.auth.UserAuthData;
 import core.navigator.GlobalProvider;
 import core.util.DialogUtil;
 import javafx.event.ActionEvent;
@@ -54,9 +54,9 @@ public class DashboardView implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        if (UserData.getAuth().equals(Auth.ADMIN)) {
+        if (UserAuthData.getAuth().equals(Auth.ADMIN)) {
             checkout.setDisable(true);
-        } else if (UserData.getAuth().equals(Auth.LIBRARIAN)) {
+        } else if (UserAuthData.getAuth().equals(Auth.LIBRARIAN)) {
             addCopy.setDisable(true);
             openBook.setDisable(true);
             addMember.setDisable(true);

@@ -2,7 +2,7 @@ package login.viewmodel;
 
 import business.User;
 import business.exception.LoginException;
-import core.auth.UserData;
+import core.auth.UserAuthData;
 import core.util.DialogUtil;
 import core.viewmodel.UserViewModel;
 import dataaccess.DaoFactory;
@@ -31,10 +31,10 @@ public final class UserViewModelImpl implements UserViewModel {
         try {
             User result = userDao.checkUser(user);
             if (result != null) {
-                UserData.setAuth(result.getAuthorization());
+                UserAuthData.setAuth(result.getAuthorization());
                 return new Result<>(true, "User exist");
             } else {
-                UserData.clearAuth();
+                UserAuthData.clearAuth();
                 return new Result<>(false, "User doesn't exist");
             }
         } catch (Exception e) {

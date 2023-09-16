@@ -9,7 +9,7 @@ import static librarysystem.utils.FileOperation.STORAGE_DIR;
 
 public class MemberIdHelper {
 
-    public static final String OUTPUT_DIR = STORAGE_DIR + "ID.PROPERTIES";
+    public static final String OUTPUT_DIR = STORAGE_DIR + "IDS";
 
     public static String getNextID(String key) {
         Properties prop = new Properties();
