@@ -55,7 +55,7 @@ public class AddBookView {
     private final BookViewModel viewModel = ViewModelRegistry.getInstance().get(BookViewModel.class);
 
     @FXML
-    protected void addNewMember() {
+    protected void addNewBook() {
         if (!validateForm()) return;
         final String isbn = this.isbn.getText();
         final String title = this.title.getText();

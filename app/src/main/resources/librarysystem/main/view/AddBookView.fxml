@@ -31,7 +31,7 @@
 						<TableColumn fx:id="column_shortBio" maxWidth="5000.0" minWidth="10.0" prefWidth="167.0" text="Short Bio" />
 					</columns>
 				</TableView>
-				<Button alignment="CENTER" contentDisplay="CENTER" minHeight="36.0" minWidth="120.0" mnemonicParsing="false" onAction="#addNewMember" text="Submit" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="9">
+				<Button alignment="CENTER" contentDisplay="CENTER" minHeight="36.0" minWidth="120.0" mnemonicParsing="false" onAction="#addNewBook" text="Submit" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="9">
                <font>
                   <Font size="14.0" />
                </font></Button>
