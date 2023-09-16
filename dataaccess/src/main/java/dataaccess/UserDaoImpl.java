@@ -18,13 +18,15 @@ public class UserDaoImpl implements UserDao {
         if (!mems.containsKey(user.getId())) {
             mems.put(user.getId(), user);
             users = mems;
-            FileOperation.saveToStorage(StorageType.USERS, mems);
+            saveUserMap(mems);
             users.put(user.getId(), user);
         } else {
             System.out.println("ERROR: user already exist");
         }
+    }
 
-
+    private static void saveUserMap(Map<String, User> userMap) {
+        FileOperation.saveToStorage(StorageType.USERS, userMap);
     }
 
     @Override

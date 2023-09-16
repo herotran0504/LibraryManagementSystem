@@ -21,10 +21,9 @@ public class AddNewCopyView {
 
     @FXML
     private void addNewCopy() {
-        ObservableList<Book> selected = publicationViewController.getTableView()
-                .getSelectionModel().getSelectedItems();
+        ObservableList<Book> selected = publicationViewController.getTableView().getSelectionModel().getSelectedItems();
         if (selected.isEmpty()) {
-            DialogUtil.showInformationDialog("Select a publication first");
+            DialogUtil.showInformationDialog("Select a book first");
         } else if (selected.size() > 1) {
             DialogUtil.showInformationDialog("Selecting multiple items is not allowed!!");
         } else {

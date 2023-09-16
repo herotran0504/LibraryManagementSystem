@@ -29,7 +29,6 @@
 				<TableColumn fx:id="colAvailableCopies" maxWidth="5000.0" minWidth="10.0" prefWidth="104.0" text="Available Copies" />
 				<TableColumn fx:id="colTotalCopies" prefWidth="101.0" text="Total Copies" />
 				<TableColumn fx:id="colMaxCheckoutLength" maxWidth="5000.0" minWidth="10.0" prefWidth="113.0" text="Max Length" />
-				<TableColumn fx:id="colPublicationType" prefWidth="142.0" text="Publication" />
 			</columns>
 		</TableView>
 	</children>

@@ -5,40 +5,23 @@ import java.util.List;
 
 public class Author extends Person {
 
-    private String credentials;
-    private String shortBio;
-    private List<Book> bookList = new ArrayList<>();
+    private String bio;
+    private final List<Book> bookList = new ArrayList<>();
 
     public Author() {
     }
 
-    public Author(String firstname, String lastName, String phone, Address address, String shortBio) {
+    public Author(String firstname, String lastName, String phone, Address address, String bio) {
         super(firstname, lastName, phone, address);
-        this.shortBio = shortBio;
-    }
-
-    public String getCredentials() {
-        return credentials;
-    }
-
-    public void setCredentials(String credentials) {
-        this.credentials = credentials;
+        this.bio = bio;
     }
 
     public List<Book> getBookList() {
         return bookList;
     }
 
-    public void setBookList(List<Book> bookList) {
-        this.bookList = bookList;
-    }
-
-    public String getShortBio() {
-        return shortBio;
-    }
-
-    public void setShortBio(String shortBio) {
-        this.shortBio = shortBio;
+    public String getBio() {
+        return bio;
     }
 
 }

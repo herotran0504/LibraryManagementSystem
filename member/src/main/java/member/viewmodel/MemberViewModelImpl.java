@@ -14,6 +14,8 @@ public class MemberViewModelImpl implements MemberViewModel {
 
     private final LibraryMemberDao libraryMemberDao;
 
+    private LibraryMember libraryMember;
+
     MemberViewModelImpl(LibraryMemberDao libraryMemberDao) {
         this.libraryMemberDao = libraryMemberDao;
     }
@@ -44,6 +46,7 @@ public class MemberViewModelImpl implements MemberViewModel {
         try {
             LibraryMember libraryMember = libraryMemberDao.findLibraryMember(id);
             if (libraryMember != null) {
+                storeLibraryMember(libraryMember);
                 return new Result<>(true, "Successfully fetched", libraryMember);
             } else {
                 return new Result<>(false, "Member doesn't exist");
@@ -51,6 +54,10 @@ public class MemberViewModelImpl implements MemberViewModel {
         } catch (Exception e) {
             return new Result<>(false, Result.getRuntimeException());
         }
+    }
+
+    private void storeLibraryMember(LibraryMember libraryMember) {
+        this.libraryMember = libraryMember;
     }
 
     @Override

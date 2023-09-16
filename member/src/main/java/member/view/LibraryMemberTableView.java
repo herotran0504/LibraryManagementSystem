@@ -1,9 +1,10 @@
 package member.view;
 
 import business.Auth;
+import business.Book;
 import business.CheckoutRecordEntry;
 import business.LibraryMember;
-import core.auth.UserData;
+import core.auth.UserAuthData;
 import core.navigator.GlobalProvider;
 import core.util.DialogUtil;
 import core.util.Functors;
@@ -68,7 +69,7 @@ public class LibraryMemberTableView implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         populateGrid();
 
-        if (UserData.getAuth().toString().equals(Auth.LIBRARIAN.toString())) {
+        if (UserAuthData.getAuth().toString().equals(Auth.LIBRARIAN.toString())) {
             editBTN.setDisable(true);
             deleteBTN.setDisable(true);
         }
@@ -143,7 +144,7 @@ public class LibraryMemberTableView implements Initializable {
     }
 
     @FXML
-    protected void printCheckoutInfo() {
+    protected void printCheckoutRecord() {
         try {
             ObservableList<LibraryMember> list = tableView.getSelectionModel().getSelectedItems();
             if (list.isEmpty()) {
@@ -153,33 +154,24 @@ public class LibraryMemberTableView implements Initializable {
                 List<CheckoutRecordEntry> checkoutEntries = checkoutViewModel.getCheckoutDetail(libraryMember.getMemberId()).getData();
                 if (!checkoutEntries.isEmpty()) {
                     StringBuffer stringBuffer = new StringBuffer();
-                    stringBuffer.append(String.format("%-5s", "SNO")
-                            + String.format("%-15s", "ISBN/Issue")
-                            + String.format("%-30s", "Title")
-                            + String.format("%-12s", "Publication")
-                            + String.format("%-15s", "Checkout Date")
-                            + String.format("%-15s", "Due Date"));
+                    stringBuffer.append(String.format("%-5s", "SNO"))
+                            .append(String.format("%-15s", "ISBN/Issue"))
+                            .append(String.format("%-30s", "Title"))
+                            .append(String.format("%-15s", "Checkout Date")).append(String.format("%-15s", "Due Date"));
 
                     stringBuffer.append("\n========================================================================================");
                     int count = 0;
                     for (CheckoutRecordEntry checkoutRecordEntry : checkoutEntries) {
                         stringBuffer.append('\n');
-                        stringBuffer.append(String.format("%-5s", ++count)
-                                + String.format("%-15s", checkoutRecordEntry
-                                .getCopy().getBook()
-                                .getIsbn())
-                                + String.format("%-30s", checkoutRecordEntry
-                                .getCopy().getBook().getTitle())
-                                + String.format("%-12s", checkoutRecordEntry
-                                .getCopy().getBook().getClass()
-                                .getSimpleName())
-                                + String.format("%-15s",
-                                checkoutRecordEntry.getCheckoutDate())
-                                + String.format("%-15s",
-                                checkoutRecordEntry.getDueDate()));
+                        final Book book = checkoutRecordEntry.getCopy().getBook();
+                        stringBuffer.append(String.format("%-5s", ++count))
+                                .append(String.format("%-15s", book.getIsbn()))
+                                .append(String.format("%-30s", book.getTitle()))
+                                .append(String.format("%-12s", book.getClass().getSimpleName()))
+                                .append(String.format("%-15s", checkoutRecordEntry.getCheckoutDate()))
+                                .append(String.format("%-15s", checkoutRecordEntry.getDueDate()));
                     }
-                    stringBuffer
-                            .append("\n========================================================================================");
+                    stringBuffer.append("\n========================================================================================");
 
                     System.out.println(stringBuffer);
                     DialogUtil.showInformationDialog("Look in console");
