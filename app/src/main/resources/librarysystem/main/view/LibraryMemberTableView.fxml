@@ -12,10 +12,9 @@
     <children>
         <Pane layoutX="82.0" layoutY="126.0" prefHeight="262.0" prefWidth="706.0">
             <children>
-                <Label layoutY="21.0" prefHeight="17.0" prefWidth="87.0" text="Member ID:" />
-                <TextField fx:id="searchMemberId" layoutX="87.0" layoutY="17.0" />
-                <Label layoutX="374.0" layoutY="21.0" prefHeight="17.0" prefWidth="103.0" text="Member Name" />
-                <TextField fx:id="searchMemberName" layoutX="477.0" layoutY="17.0" prefHeight="25.0" prefWidth="226.0" />
+                <TextField fx:id="searchMemberId" layoutX="87.0" layoutY="-44.0" prefHeight="26.0" prefWidth="149.0" />
+                <Label layoutX="374.0" layoutY="-47.0" prefHeight="26.0" prefWidth="103.0" text="Member Name" />
+                <TextField fx:id="searchMemberName" layoutX="477.0" layoutY="-48.0" prefHeight="26.0" prefWidth="226.0" />
                 <TableView fx:id="tableView" layoutX="1.0" layoutY="-13.0" prefHeight="272.0" prefWidth="705.0">
                     <columns>
                         <TableColumn fx:id="colId" prefWidth="77.0" text="ID" />
@@ -32,7 +31,7 @@
         </Pane>
         <Pane layoutX="26.0" layoutY="391.0" prefHeight="44.0" prefWidth="818.0">
             <children>
-                <Button fx:id="deleteBTN" alignment="CENTER" contentDisplay="CENTER" layoutX="371.0" layoutY="4.0" minHeight="36.0" minWidth="120.0" mnemonicParsing="false" onAction="#deleteRecord" text="Delete Record" />
+                <Button fx:id="deleteBTN" alignment="CENTER" contentDisplay="CENTER" layoutX="371.0" layoutY="4.0" minHeight="36.0" minWidth="120.0" mnemonicParsing="false" onAction="#deleteRecord" text="Delete Record" visible="false"/>
               <Button fx:id="editBTN" alignment="CENTER" contentDisplay="CENTER" layoutX="507.0" layoutY="4.0" minHeight="36.0" minWidth="120.0" mnemonicParsing="false" onAction="#addEditAction" text="Edit Record" />
               <Button alignment="CENTER" contentDisplay="CENTER" layoutX="644.0" layoutY="4.0" minHeight="36.0" minWidth="120.0" mnemonicParsing="false" onAction="#printCheckoutRecord" text="Print" />
             </children>
@@ -43,5 +42,6 @@
             <Font size="36.0" />
          </font>
       </Text>
+          <Label layoutX="82.0" layoutY="76.0" prefHeight="36.0" prefWidth="87.0" text="Member ID:" />
     </children>
 </AnchorPane>
