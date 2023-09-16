@@ -36,11 +36,11 @@
     -fx-font-family: "Arial";
     -fx-font-weight: bold;
     -fx-font-size: 14.0;
-    -fx-background-color: #4daa54;
+    -fx-background-color: #4998ff;
 }
 
 .button:hover {
-    -fx-background-color: #6E6D70;
+    -fx-background-color: #609fff;
     -fx-text-alignment: center;
 }
 
