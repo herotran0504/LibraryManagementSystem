@@ -65,7 +65,6 @@ public class AddBookView {
             Result<Void> response = viewModel.addNewBook(book);
             if (response.getSuccess()) {
                 DialogUtil.showInformationDialog(response.getMessage());
-                back();
             } else {
                 DialogUtil.showWarningDialog(response.getMessage());
             }
