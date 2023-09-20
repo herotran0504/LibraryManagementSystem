@@ -17,8 +17,8 @@ public class LibraryMemberView implements Initializable {
 
     private final static String ACTION_CREATE = "Create";
     private final static String ACTION_UPDATE = "Update";
-    private static final String VIEW_MEMBER_TABLE = "view/LibraryMemberTableView.fxml";
-    private static final String VIEW_MEMBER = "view/LibraryMemberView.fxml";
+    private static final String VIEW_MEMBER_TABLE = "views/LibraryMemberTableView.fxml";
+    private static final String VIEW_MEMBER = "views/LibraryMemberView.fxml";
 
     @FXML
     private TextField firstName;
@@ -60,17 +60,13 @@ public class LibraryMemberView implements Initializable {
         try {
             switch (msg) {
                 case ACTION_CREATE:
-                    if (DialogUtil.showConfirmDialog("Are you sure to add?")) {
-                        DialogUtil.showServiceResponseMessage(viewModel.addNewMember(libraryMember));
-                        back();
-                    }
+                    DialogUtil.showServiceResponseMessage(viewModel.addNewMember(libraryMember));
+                    back();
                     break;
                 case ACTION_UPDATE:
-                    if (DialogUtil.showConfirmDialog("Are you sure to update?")) {
-                        libraryMember.setMemberId(getMemberIdHdn());
-                        DialogUtil.showServiceResponseMessage(viewModel.updateMember(libraryMember));
-                        back();
-                    }
+                    libraryMember.setMemberId(getMemberIdHdn());
+                    DialogUtil.showServiceResponseMessage(viewModel.updateMember(libraryMember));
+                    back();
                     break;
                 default:
                     break;
@@ -96,7 +92,6 @@ public class LibraryMemberView implements Initializable {
             state.textProperty().set(libraryMember.getAddress().getState());
             street.textProperty().set(libraryMember.getAddress().getStreet());
             zip.textProperty().set(libraryMember.getAddress().getZip());
-
             memberIdHdn.textProperty().set(libraryMember.getMemberId());
             actionHdn.textProperty().set(ACTION_UPDATE);
         } else {

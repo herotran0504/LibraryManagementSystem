@@ -54,6 +54,6 @@ public class AddNewCopyView {
 
     @FXML
     protected void cancelWindow() {
-        GlobalProvider.getInstance().loader.loadViewController("view/DashboardView.fxml");
+        GlobalProvider.getInstance().loader.loadViewController("views/DashboardView.fxml");
     }
 }

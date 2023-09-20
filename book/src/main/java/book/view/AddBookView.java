@@ -108,9 +108,9 @@ public class AddBookView {
 
     private static Author createAuthor() {
         Author author = new Author();
-        author.setFirstname(" ");
-        author.setLastName(" ");
-        author.setPhone(" ");
+        author.setFirstname("First Name");
+        author.setLastName("Last Name ");
+        author.setPhone("000");
         Address address = new Address(" ", " ", " ", " ");
         author.setAddress(address);
         return author;
@@ -166,7 +166,7 @@ public class AddBookView {
     }
 
     public void back() {
-        GlobalProvider.getInstance().loader.loadViewController("view/DashboardView.fxml");
+        GlobalProvider.getInstance().loader.loadViewController("views/DashboardView.fxml");
     }
 
 }

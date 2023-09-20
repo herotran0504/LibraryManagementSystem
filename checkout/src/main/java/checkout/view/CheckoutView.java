@@ -80,29 +80,27 @@ public class CheckoutView implements Initializable {
         if (list.isEmpty()) {
             DialogUtil.showInformationDialog("Select publication first");
         } else {
-            if (DialogUtil.showConfirmDialog("Are you sure to checkout?")) {
-                // Get Data
-                String member = getMemberId();
-                String checkoutDate = getCheckoutDate();
-                String dueDate = getDueDate();
-                Book publication = list.get(0);
+            // Get Data
+            String member = getMemberId();
+            String checkoutDate = getCheckoutDate();
+            String dueDate = getDueDate();
+            Book publication = list.get(0);
 
-                CheckoutRecord checkoutRecord;
-                LibraryMember libraryMember;
-                try {
-                    libraryMember = memberViewModel.getMember(member).getData();
-                    BookCopy copy = Functors.AVAILABLE_COPIES_FINDER.apply(publication).get(0);
-                    checkoutRecord = checkoutViewModel.getCheckoutRecord(libraryMember);
-                    List<CheckoutRecordEntry> checkoutEntries = checkoutRecord.getCheckoutEntries();
-                    checkoutEntries.add(new CheckoutRecordEntry(checkoutDate, dueDate, copy, checkoutRecord));
-                    Result<Void> serviceResponse = checkoutViewModel.save(checkoutRecord);
-                    DialogUtil.showServiceResponseMessage(serviceResponse);
-                    if (serviceResponse.getSuccess()) {
-                        back();
-                    }
-                } catch (Exception e) {
-                    DialogUtil.showServiceResponseMessage(e);
+            CheckoutRecord checkoutRecord;
+            LibraryMember libraryMember;
+            try {
+                libraryMember = memberViewModel.getMember(member).getData();
+                BookCopy copy = Functors.AVAILABLE_COPIES_FINDER.apply(publication).get(0);
+                checkoutRecord = checkoutViewModel.getCheckoutRecord(libraryMember);
+                List<CheckoutRecordEntry> checkoutEntries = checkoutRecord.getCheckoutEntries();
+                checkoutEntries.add(new CheckoutRecordEntry(checkoutDate, dueDate, copy, checkoutRecord));
+                Result<Void> serviceResponse = checkoutViewModel.save(checkoutRecord);
+                DialogUtil.showServiceResponseMessage(serviceResponse);
+                if (serviceResponse.getSuccess()) {
+                    back();
                 }
+            } catch (Exception e) {
+                DialogUtil.showServiceResponseMessage(e);
             }
         }
 
