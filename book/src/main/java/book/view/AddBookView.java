@@ -29,13 +29,13 @@ public class AddBookView {
     private TextField title;
 
     @FXML
-    private TextField Copies;
+    private TextField copies;
 
     @FXML
-    private TextField maxcheckoutlength;
+    private TextField maxCheckoutLength;
 
     @FXML
-    private TableView<Author> authorstable;
+    private TableView<Author> authorsTable;
 
     @FXML
     private TableColumn<Author, String> column_firstname;
@@ -44,13 +44,10 @@ public class AddBookView {
     private TableColumn<Author, String> column_lastname;
 
     @FXML
-    private TableColumn<Author, String> column_credentials;
-
-    @FXML
     private TableColumn<Author, String> column_phoneNumber;
 
     @FXML
-    private TableColumn<Author, String> column_shortBio;
+    private TableColumn<Author, String> column_bio;
 
     private final BookViewModel viewModel = ViewModelRegistry.getInstance().get(BookViewModel.class);
 
@@ -59,10 +56,10 @@ public class AddBookView {
         if (!validateForm()) return;
         final String isbn = this.isbn.getText();
         final String title = this.title.getText();
-        final int maxCheckoutLength = Integer.parseInt(maxcheckoutlength.getText());
-        final int copyNum = Integer.parseInt(Copies.getText());
-        final List<Author> authors = new ArrayList<>(authorstable.getItems());
-        Book book = new Book(isbn, title, maxCheckoutLength, authors);
+        final int length = Integer.parseInt(maxCheckoutLength.getText());
+        final int copyNum = Integer.parseInt(copies.getText());
+        final List<Author> authors = new ArrayList<>(authorsTable.getItems());
+        Book book = new Book(isbn, title, length, authors);
         if (copyNum > 1) book.addCopy(copyNum - 1);
         try {
             Result<Void> response = viewModel.addNewBook(book);
@@ -89,15 +86,15 @@ public class AddBookView {
         handleLastName();
         handlePhone();
         handleShortBio();
-        authorstable.getItems().add(author);
+        authorsTable.getItems().add(author);
     }
 
     private void handleShortBio() {
-        column_shortBio.setCellValueFactory(new PropertyValueFactory<>("shortBio"));
-        column_shortBio.setCellFactory(TextFieldTableCell.forTableColumn());
-        column_shortBio.setOnEditCommit((CellEditEvent<Author, String> t) -> {
+        column_bio.setCellValueFactory(new PropertyValueFactory<>("bio"));
+        column_bio.setCellFactory(TextFieldTableCell.forTableColumn());
+        column_bio.setOnEditCommit((CellEditEvent<Author, String> t) -> {
             Author author = t.getTableView().getItems().get(t.getTablePosition().getRow());
-            author.setPhone(t.getNewValue());
+            author.setBio(t.getNewValue());
         });
     }
 
@@ -112,10 +109,10 @@ public class AddBookView {
 
     private static Author createAuthor() {
         Author author = new Author();
-        author.setFirstname("First Name");
-        author.setLastName("Last Name");
-        author.setPhone("Phone Number");
-        Address address = new Address("Street", "City", "State", "Zip");
+        author.setFirstname(" ");
+        author.setLastName(" ");
+        author.setPhone(" ");
+        Address address = new Address(" ", " ", " ", " ");
         author.setAddress(address);
         return author;
     }
@@ -141,22 +138,26 @@ public class AddBookView {
     private boolean validateForm() {
         if (isbn.getText().trim().isEmpty() ||
                 title.getText().trim().isEmpty() ||
-                maxcheckoutlength.getText().trim().isEmpty() ||
-                Copies.getText().trim().isEmpty()
+                maxCheckoutLength.getText().trim().isEmpty() ||
+                copies.getText().trim().isEmpty()
         ) {
             DialogUtil.showExceptionDialog("Please input all field");
             return false;
         }
 
         try {
-            Integer.parseInt(maxcheckoutlength.getText().trim());
+            final int length = Integer.parseInt(maxCheckoutLength.getText().trim());
+            if (length != 7 && length != 21) {
+                DialogUtil.showExceptionDialog("Max Checkout Length must be 7 or 21 days");
+                return false;
+            }
         } catch (Exception e) {
             DialogUtil.showExceptionDialog("Max Checkout Length contains only digit");
             return false;
         }
 
         try {
-            Integer.parseInt(Copies.getText().trim());
+            Integer.parseInt(copies.getText().trim());
         } catch (Exception e) {
             DialogUtil.showExceptionDialog("Copies contains only digit");
             return false;

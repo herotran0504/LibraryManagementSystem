@@ -6,8 +6,8 @@ import java.util.List;
 public class Author extends Person {
 
     private String bio;
-    private final List<Book> bookList = new ArrayList<>();
 
+    private final List<Book> bookList = new ArrayList<>();
     public Author() {
     }
 
@@ -18,6 +18,10 @@ public class Author extends Person {
 
     public List<Book> getBookList() {
         return bookList;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
     }
 
     public String getBio() {

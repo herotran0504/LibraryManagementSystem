@@ -1,7 +1,5 @@
 package business;
 
-import business.Address;
-
 import java.io.Serializable;
 
 public class Person implements Serializable {

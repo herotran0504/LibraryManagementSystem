@@ -17,8 +17,11 @@ public final class GlobalProvider {
         return Holder.INSTANCE;
     }
 
-    static class Holder {
+    static final class Holder {
         static GlobalProvider INSTANCE = new GlobalProvider();
+
+        private Holder() {
+        }
     }
 
 }

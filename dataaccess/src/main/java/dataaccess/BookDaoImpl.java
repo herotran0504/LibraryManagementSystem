@@ -15,8 +15,12 @@ class BookDaoImpl implements BookDao {
 
     @Override
     public void addBook(Book newBook) throws BookException {
+        final String isbn = newBook.getIsbn();
         Map<String, Book> book = readBookMap();
-        book.put(newBook.getIsbn(), newBook);
+        if (book.containsKey(isbn)) {
+            throw new BookException("Book with isbn + " + isbn + " is existed");
+        }
+        book.put(isbn, newBook);
         books = book;
         FileOperation.saveToStorage(StorageType.BOOKS, book);
         books.put(newBook.getIsbn(), newBook);
