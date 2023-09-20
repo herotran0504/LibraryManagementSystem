@@ -20,9 +20,8 @@ public class UserDaoImpl implements UserDao {
             users = mems;
             saveUserMap(mems);
             users.put(user.getId(), user);
-        } else {
-            System.out.println("ERROR: user already exist");
         }
+        throw new UserException("user already exist");
     }
 
     private static void saveUserMap(Map<String, User> userMap) {

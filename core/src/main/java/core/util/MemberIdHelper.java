@@ -1,6 +1,7 @@
 package core.util;
 
 import librarysystem.utils.FileUtil;
+import librarysystem.utils.SimpleLogger;
 
 import java.io.*;
 import java.util.Properties;
@@ -33,7 +34,7 @@ public class MemberIdHelper {
                 try {
                     input.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    SimpleLogger.logError(e);
                 }
             }
         }
@@ -59,12 +60,12 @@ public class MemberIdHelper {
                 try {
                     output.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    SimpleLogger.logError(e);
                 }
             }
 
         }
-        System.out.println("New::" + prop.getProperty(key));
+        SimpleLogger.logDebug("New::" + prop.getProperty(key));
     }
 
     private static int getSafeKeyInt(Properties prop, String key) {
@@ -73,7 +74,7 @@ public class MemberIdHelper {
             if(id == null) return 0;
             return Integer.parseInt(id);
         } catch (Exception e) {
-            e.printStackTrace();
+            SimpleLogger.logError(e);
             return 0;
         }
     }

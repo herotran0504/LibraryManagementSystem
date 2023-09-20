@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import librarysystem.main.App;
 import librarysystem.util.Const;
+import librarysystem.utils.SimpleLogger;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -96,7 +97,7 @@ public class DashboardView implements Initializable {
                 Stage stage = new Stage();
                 app.start(stage);
             } catch (Exception e) {
-                e.printStackTrace();
+                SimpleLogger.logError(e);
             }
         }
     }

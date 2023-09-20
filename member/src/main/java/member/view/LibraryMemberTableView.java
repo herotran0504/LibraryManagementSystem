@@ -21,6 +21,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import librarysystem.utils.SimpleLogger;
 import librarysystem.utils.Result;
 
 import java.net.URL;
@@ -118,7 +119,7 @@ public class LibraryMemberTableView implements Initializable {
                 new LibraryMemberView().setRecordAndShow(list.get(0));
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            SimpleLogger.logError(e);
         }
     }
 
@@ -173,7 +174,7 @@ public class LibraryMemberTableView implements Initializable {
                     }
                     stringBuffer.append("\n========================================================================================");
 
-                    System.out.println(stringBuffer);
+                    SimpleLogger.logDebug(stringBuffer);
                     DialogUtil.showInformationDialog("Look in console");
                 } else {
                     DialogUtil.showInformationDialog("User doesn't have any checkout records");

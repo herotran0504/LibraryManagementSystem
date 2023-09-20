@@ -4,6 +4,7 @@ import business.LibraryMember;
 import business.exception.MemberException;
 import librarysystem.utils.FileOperation;
 import librarysystem.utils.FileOperation.StorageType;
+import librarysystem.utils.SimpleLogger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,7 @@ public class LibraryMemberDaoImpl implements LibraryMemberDao {
     @Override
     public void addLibraryMember(LibraryMember libraryMember) throws MemberException {
         readMemberMap();
-        System.out.println("Add: " + libraryMember);
+        SimpleLogger.logDebug("Add: " + libraryMember);
         members.put(libraryMember.getMemberId(), libraryMember);
         FileOperation.saveToStorage(StorageType.MEMBERS, members);
     }
@@ -29,7 +30,7 @@ public class LibraryMemberDaoImpl implements LibraryMemberDao {
     public void deleteLibraryMember(String id) throws MemberException {
         readMemberMap();
         LibraryMember mem = members.remove(id);
-        System.out.println("Delete: " + mem);
+        SimpleLogger.logDebug("Delete: " + mem);
         FileOperation.saveToStorage(StorageType.MEMBERS, members);
     }
 
@@ -38,7 +39,7 @@ public class LibraryMemberDaoImpl implements LibraryMemberDao {
         readMemberMap();
         if (members.containsKey(memberId)) {
             LibraryMember mem = members.get(memberId);
-            System.out.println(mem);
+            SimpleLogger.logDebug(mem);
             return mem;
         }
         return null;

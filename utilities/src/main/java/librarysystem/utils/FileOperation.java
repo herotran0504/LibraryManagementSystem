@@ -28,12 +28,13 @@ public class FileOperation {
             out = new ObjectOutputStream(Files.newOutputStream(path));
             out.writeObject(ob);
         } catch (IOException e) {
-            e.printStackTrace();
+            SimpleLogger.logError(e);
         } finally {
             if (out != null) {
                 try {
                     out.close();
                 } catch (Exception e) {
+                    SimpleLogger.logError(e);
                 }
             }
         }
@@ -52,7 +53,7 @@ public class FileOperation {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            SimpleLogger.logError(e);
         } finally {
             if (in != null) {
                 try {

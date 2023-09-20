@@ -3,6 +3,7 @@ package core.util;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import librarysystem.utils.SimpleLogger;
 import librarysystem.utils.Result;
 
 import java.util.Optional;
@@ -60,7 +61,7 @@ public final class DialogUtil {
     }
 
     public static void showServiceResponseMessage(Exception e) {
-        e.printStackTrace();
+        SimpleLogger.logError(e);
         showExceptionDialog(Result.getRuntimeException());
     }
 

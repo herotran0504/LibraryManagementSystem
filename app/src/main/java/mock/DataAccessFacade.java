@@ -4,6 +4,7 @@ import business.Book;
 import business.LibraryMember;
 import business.User;
 import librarysystem.utils.FileUtil;
+import librarysystem.utils.SimpleLogger;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -90,12 +91,13 @@ public class DataAccessFacade implements DataAccess {
             out = new ObjectOutputStream(Files.newOutputStream(path));
             out.writeObject(ob);
         } catch (IOException e) {
-            e.printStackTrace();
+            SimpleLogger.logError(e);
         } finally {
             if (out != null) {
                 try {
                     out.close();
                 } catch (Exception e) {
+                    SimpleLogger.logError(e);
                 }
             }
         }
@@ -109,12 +111,13 @@ public class DataAccessFacade implements DataAccess {
             in = new ObjectInputStream(Files.newInputStream(path));
             retVal = in.readObject();
         } catch (Exception e) {
-            e.printStackTrace();
+            SimpleLogger.logError(e);
         } finally {
             if (in != null) {
                 try {
                     in.close();
                 } catch (Exception e) {
+                    SimpleLogger.logError(e);
                 }
             }
         }

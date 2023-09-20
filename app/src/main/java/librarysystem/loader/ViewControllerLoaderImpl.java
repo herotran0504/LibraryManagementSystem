@@ -4,6 +4,7 @@ import core.loader.ViewControllerLoader;
 import core.viewmodel.AppController;
 import javafx.fxml.FXMLLoader;
 import librarysystem.main.App;
+import librarysystem.utils.SimpleLogger;
 
 import java.io.IOException;
 
@@ -21,7 +22,7 @@ public final class ViewControllerLoaderImpl implements ViewControllerLoader {
         try {
             appController.setUi(FXMLLoader.load(App.class.getResource(fxml)), userData);
         } catch (IOException e) {
-            e.printStackTrace();
+            SimpleLogger.logError(e);
         }
     }
 
