@@ -31,8 +31,10 @@
         </Pane>
         <Pane layoutX="26.0" layoutY="391.0" prefHeight="44.0" prefWidth="818.0">
             <children>
-                <Button fx:id="deleteBTN" alignment="CENTER" contentDisplay="CENTER" layoutX="371.0" layoutY="4.0" minHeight="36.0" minWidth="120.0" mnemonicParsing="false" onAction="#deleteRecord" text="Delete Record" visible="false"/>
-              <Button fx:id="editBTN" alignment="CENTER" contentDisplay="CENTER" layoutX="507.0" layoutY="4.0" minHeight="36.0" minWidth="120.0" mnemonicParsing="false" onAction="#addEditAction" text="Edit Record" />
+                <Button fx:id="deleteBTN" alignment="CENTER" contentDisplay="CENTER" layoutX="371.0" layoutY="4.0" minHeight="36.0" minWidth="120.0" mnemonicParsing="false" onAction="#deleteRecord"
+                    text="Delete Member" visible="true"/>
+              <Button fx:id="editBTN" alignment="CENTER" contentDisplay="CENTER" layoutX="507.0" layoutY="4.0" minHeight="36.0" minWidth="120.0" mnemonicParsing="false" onAction="#addEditAction"
+                  text="Edit Member" />
               <Button alignment="CENTER" contentDisplay="CENTER" layoutX="644.0" layoutY="4.0" minHeight="36.0" minWidth="120.0" mnemonicParsing="false" onAction="#printCheckoutRecord" text="Print" />
             </children>
         </Pane>
