@@ -12,6 +12,9 @@ import java.util.stream.Collectors;
 
 public final class Functors {
 
+    private Functors() {
+    }
+
     public static final TriFunction<List<Book>, String, String, List<Book>> BOOK_FILTER = (l, idSubString, titleSubString) -> l
             .stream()
             .filter(p -> p.getIsbn().toLowerCase().contains(idSubString.toLowerCase()))
@@ -32,6 +35,4 @@ public final class Functors {
             .filter(BookCopy::isAvailable)
             .collect(Collectors.toList());
 
-    private Functors() {
-    }
 }

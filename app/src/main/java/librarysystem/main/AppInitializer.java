@@ -8,6 +8,7 @@ import librarysystem.loader.ViewControllerLoaderImpl;
 import librarysystem.navigator.NavigatorImpl;
 import login.init.LoginInitializer;
 import member.init.MemberInitializer;
+import mock.TestData;
 
 import java.util.Arrays;
 
@@ -17,6 +18,7 @@ final class AppInitializer implements Initializer {
 
     @Override
     public void initialize() {
+        TestData.createDummyData();
         Arrays.asList(
                 new LoginInitializer(),
                 new BookInitializer(),
@@ -35,4 +37,5 @@ final class AppInitializer implements Initializer {
     static void start() {
         new AppInitializer().initialize();
     }
+
 }

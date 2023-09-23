@@ -18,7 +18,8 @@ public class FileOperation {
 
     public static final String SLASH = System.getProperty("file.separator");
 
-    public static final String STORAGE_DIR = System.getProperty("user.dir") + SLASH + "storage" + SLASH;
+    public static final String CURRENT_DIR = new File("").getAbsolutePath();
+    public static final String STORAGE_DIR = CURRENT_DIR + SLASH + "storage" + SLASH;
 
     public static void saveToStorage(StorageType type, Object ob) {
         ObjectOutputStream out = null;
